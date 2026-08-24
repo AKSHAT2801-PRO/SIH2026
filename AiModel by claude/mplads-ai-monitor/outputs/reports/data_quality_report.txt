@@ -1,0 +1,81 @@
+==============================================================================
+MPLADS DATA QUALITY REPORT
+==============================================================================
+Run id            : run_20260824T180321Z_5e3822
+Generated         : 2026-08-24T18:05:53+00:00
+Official source   : https://mplads.mospi.gov.in/digigov/dashboard.html
+Portal reachable  : False
+Snapshot used     : 20260822
+
+Records received        :    233,821
+Valid records           :    233,821
+Quarantined records     :          0
+Duplicate records       :     31,950
+Missing critical cells  :     43,929
+
+Overall data quality    : 96.06%
+  validity              : 100.00%
+  completeness          : 97.92%
+  uniqueness            : 86.34%
+  reconciliation        : 100.00%
+
+------------------------------------------------------------------------------
+PER DATASET
+------------------------------------------------------------------------------
+
+recommended_works
+  received 83,621 | valid 83,621 | quarantined 0 | validity 100.0%
+  duplicate rows 0 | mean missing cells 0.0%
+    - [WARN] text_too_short:work_description: 49
+    - [WARN] duplicate_key:work_id: 15
+
+completed_works
+  received 43,173 | valid 43,173 | quarantined 0 | validity 100.0%
+  duplicate rows 0 | mean missing cells 8.3326%
+    - [WARN] text_too_short:work_description: 18
+
+expenditures
+  received 106,263 | valid 106,263 | quarantined 0 | validity 100.0%
+  duplicate rows 31,950 | mean missing cells 0.0%
+    - [WARN] duplicate_row: 31,950
+    ! 38,598 expenditure lines are exact repeats of another line. Because no payment id is published, they are preserved and surfaced as a risk signal rather than deleted.
+
+mp_summary
+  received 764 | valid 764 | quarantined 0 | validity 100.0%
+  duplicate rows 0 | mean missing cells 0.0%
+    - [WARN] range_zero:total_expenditure: 66
+    - [WARN] range_max:allocated_amount: 13
+    - [WARN] range_max:unspent_amount: 3
+    - [WARN] range_zero:allocated_amount: 1
+    - [WARN] range_zero:unspent_amount: 1
+
+------------------------------------------------------------------------------
+CROSS-DATASET LINKAGE
+------------------------------------------------------------------------------
+  work_id_overlap_recommended_completed: 128
+  work_id_overlap_pct_of_completed: 0.296
+  expenditure_to_work_description_match_pct: 1.257
+  mp_key_coverage_recommended_pct: 100.0
+  mp_key_coverage_completed_pct: 100.0
+  mp_key_coverage_expenditures_pct: 100.0
+  mp_dimension_rows: 764
+  supported_joins: ['mp_key (all datasets)', 'state / constituency / ida_district (all datasets)']
+  ! UNSUPPORTED: recommended_work -> completed_work by work_id: only 128 ids are shared (0.296% of completed works). Per-work approval-to-completion duration is therefore NOT computable and is not estimated.
+  ! UNSUPPORTED: expenditure -> work: the portal publishes no work id on payment lines and only 1.257% of payment descriptions match a work description exactly. Payments are therefore analysed at MP / vendor / district level.
+
+------------------------------------------------------------------------------
+RECONCILIATION AGAINST PORTAL CONTROL TOTALS
+------------------------------------------------------------------------------
+  totalMPs                     portal=            764.00  computed=            764.00  diff=  0.0000%
+  totalWorksRecommended        portal=         83,621.00  computed=         83,621.00  diff=  0.0000%
+  totalWorksCompleted          portal=         43,173.00  computed=         43,173.00  diff=  0.0000%
+  pendingWorks                 portal=         40,448.00  computed=         40,448.00  diff=  0.0000%
+  totalTransactions            portal=        106,263.00  computed=        106,263.00  diff=  0.0000%
+  totalAllocated               portal=116,210,588,210.35  computed=116,210,588,210.35  diff=  0.0000%
+  totalExpenditure             portal= 39,187,346,910.14  computed= 39,187,346,910.14  diff=  0.0000%
+  completedWorksValue          portal= 23,640,220,472.61  computed= 23,640,220,472.61  diff=  0.0000%
+  inProgressPayments           portal= 15,547,126,437.53  computed= 15,547,126,437.53  diff= -0.0000%
+  utilizationPercentage        portal=             33.72  computed=             33.72  diff=  0.0000%
+  completionRate               portal=             51.63  computed=             51.63  diff=  0.0000%
+  avgAllocation                portal=    152,108,099.75  computed=    152,108,099.75  diff=  0.0000%
+  paymentGap                   portal=             39.67  computed=             39.67  diff= -0.0000%

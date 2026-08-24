@@ -1,0 +1,113 @@
+==============================================================================
+MPLADS EXPLORATORY DATA ANALYSIS REPORT
+==============================================================================
+Run id     : run_20260824T180321Z_5e3822
+Generated  : 2026-08-24T18:05:53+00:00
+
+1. DATASET OVERVIEW
+------------------------------------------------------------------------------
+  Recommended works :     83,621   value ₹5,382.28 cr
+  Completed works   :     43,173   value ₹2,364.02 cr
+  Payment lines     :    106,263   value ₹3,918.73 cr
+  MPs / states      :        764 / 36
+  Districts/vendors :        772 / 26,491
+  Allocated         : ₹11,621.06 cr   utilisation 33.72%
+  Coverage          : recommendations ['2023-06-14', '2026-08-21'], payments ['2023-07-27', '2026-08-21']
+
+2. DATA QUALITY
+------------------------------------------------------------------------------
+  validity_pct                     100.0
+  completeness_pct                 97.92
+  uniqueness_pct                   86.34
+  reconciliation_pct               100.0
+  overall_data_quality_pct         96.06
+  records_quarantined              0
+  duplicate_records                31950
+
+3. DESCRIPTIVE STATISTICS
+------------------------------------------------------------------------------
+  variable                      count          median             p90               max     skew
+  recommended_amount           83,621      400,000.00    1,200,000.00     99,965,000.00    23.33
+  completed_amount             43,173      300,000.00    1,000,000.00     46,470,400.00    17.10
+  expenditure_amount          106,263      199,999.00      884,862.60     32,562,250.00    11.92
+  mp_allocated                    764  147,000,000.00  196,063,957.11    327,477,390.86    -0.16
+  mp_utilisation_pct              764           29.94           62.06             94.94     0.40
+  mp_completion_rate_pct          764           24.45           63.53             96.61     0.65
+  work_age_days                83,621          263.00          569.00          1,164.00     0.58
+
+4. UNIVARIATE HIGHLIGHTS
+------------------------------------------------------------------------------
+  category Normal/Others                  81,384 (97.325%)
+  category Repair and Renovation           1,333 (1.594%)
+  category Trust and Society                 881 (1.054%)
+  category Bar and Associations               18 (0.022%)
+  category N/A                                 5 (0.006%)
+
+5. BIVARIATE / GROUP COMPARISONS
+------------------------------------------------------------------------------
+  Lok Sabha vs Rajya Sabha           median 338,927 vs 500,000 | p=0 | distributions differ significantly
+  Lok Sabha vs Rajya Sabha           median 32 vs 24 | p=0.00254 | distributions differ significantly
+  COMPLETED vs RECOMMENDED           median 300,000 vs 400,000 | p=3.51e-262 | distributions differ significantly
+
+6. MULTIVARIATE
+------------------------------------------------------------------------------
+  (state, category) cells with >= min group size : 65
+  vendor amount Gini                             : 0.7747
+  districts with vendor HHI > 0.30               : 180
+
+7. TIME SERIES
+------------------------------------------------------------------------------
+  sudden monthly changes in recommendations: 8
+      2025-03  ₹2,172,009,912  mom 56.86%  z=3.9
+      2025-04  ₹1,361,586,562  mom -37.31%  z=-4.16
+      2025-05  ₹2,404,596,939  mom 76.6%  z=5.19
+      2026-01  ₹2,859,977,497  mom 34.52%  z=3.63
+  sudden monthly changes in completions: 3
+      2026-01  ₹2,619,103,816  mom 54.14%  z=5.24
+      2026-06  ₹0  mom -100.0%  z=-4.14
+      2026-07  ₹865,026,107  mom inf%  z=4.92
+  sudden monthly changes in expenditure: 6
+      2025-04  ₹661,934,531  mom -43.55%  z=-3.69
+      2025-05  ₹1,322,560,794  mom 99.8%  z=4.3
+      2025-07  ₹2,165,899,119  mom 56.14%  z=5.11
+      2026-04  ₹1,693,475,514  mom -33.01%  z=-5.89
+
+8. GEOGRAPHIC
+------------------------------------------------------------------------------
+  expenditure Gini across states: 0.6184
+  The official source publishes no GPS coordinates. Geography is analysed at state / constituency / implementing-district level only; no coordinates are invented.
+
+9. IMPORTANT PATTERNS
+------------------------------------------------------------------------------
+  • MP fund utilisation is highly dispersed: median 29.9%, p10 1.5%, p90 62.1%.
+  • 325 MPs have utilised under 25% of their allocation, while 0 are above 95%.
+  • Recommended work amounts are strongly right-skewed (median ₹400,000, p99 ₹4,500,000, max ₹99,965,000).
+  • 52.9% of recommended amounts are exact multiples of ₹1 lakh or more, versus 10.2% of payment lines.
+  • 38,598 payment lines (36.3%) are exact repeats of another line on the same day for the same vendor, agency and amount.
+  • The 10 largest vendors account for 4.4% of all payment value across 26,491 vendors.
+  • Completed works are smaller than open recommendations (median ₹300,000 vs ₹400,000).
+
+10. POTENTIAL ANOMALY SIGNALS (candidates, not findings)
+------------------------------------------------------------------------------
+  works_robust_z_above_threshold                   9,154
+  works_above_district_p90                         10,405
+  payment_lines_robust_z_above_threshold           13,281
+  repeated_payment_lines                           38,598
+  repeated_payment_lines_above_5                   25,479
+  mps_with_zero_completion                         109
+  mps_utilisation_over_100                         0
+  mps_published_vs_derived_gap_over_10pct          0
+  NOTE: These are statistical signals only. None of them is evidence of fraud; they define the candidate population that the anomaly and risk layers score and explain.
+
+11. ML RECOMMENDATIONS
+------------------------------------------------------------------------------
+  • Amounts are heavy-tailed and right-skewed → use log1p transforms and robust (median/MAD) statistics rather than mean/std for every amount feature.
+  • No confirmed fraud labels exist in the official data → supervised fraud classification is impossible. Use unsupervised anomaly detection (Isolation Forest, LOF, DBSCAN) plus explicit rules, and present the output as risk, never as fraud.
+  • Peer comparison must be done inside (state, category) and district groups; national comparison would flag whole states rather than individual works.
+  • Work descriptions are short, repetitive and noisy → character n-gram TF-IDF with cosine similarity inside state blocks is more robust here than word-level embeddings.
+  • Recommended and completed works share almost no work ids → do not attempt supervised completion-time regression at work level; model completion propensity at MP/district level instead.
+  • Payment lines repeat exactly and carry no payment id → repetition count is a feature, and any financial aggregate must state whether duplicates were collapsed.
+
+12. THRESHOLD DERIVATION
+------------------------------------------------------------------------------
+  Isolation Forest contamination is configured at 0.03, which is deliberately close to the observed extreme-value rate (3.27% of works, 2.60% of payment lines) so the unsupervised detector does not manufacture more anomalies than the distribution actually contains. Amount distributions are log-normal-like and heavy tailed, so all amount features are log-transformed and compared within (state, category) peer groups rather than nationally.

@@ -1,0 +1,145 @@
+{
+  "trained": true,
+  "model": "HistGradientBoostingClassifier",
+  "model_version": "1.0.0",
+  "target": "work has been reported complete (1) vs still open (0)",
+  "trained_at": "2026-08-24T19:33:45+00:00",
+  "rows_train": 94483,
+  "rows_test": 32311,
+  "split": "GroupShuffleSplit by MP \u2014 no MP appears in both train and test",
+  "class_balance_train": 0.334927976461374,
+  "metrics": {
+    "roc_auc": 0.8703,
+    "average_precision": 0.8243,
+    "precision": 0.7829,
+    "recall": 0.6557,
+    "f1": 0.7137,
+    "brier_score": 0.1342,
+    "false_positive_rate": 0.1009
+  },
+  "confusion_matrix": [
+    [
+      18687,
+      2096
+    ],
+    [
+      3969,
+      7559
+    ]
+  ],
+  "classification_report": {
+    "0": {
+      "precision": 0.8248146186440678,
+      "recall": 0.8991483423952269,
+      "f1-score": 0.8603789221667165,
+      "support": 20783.0
+    },
+    "1": {
+      "precision": 0.7829104091144484,
+      "recall": 0.6557078417765441,
+      "f1-score": 0.7136855025256101,
+      "support": 11528.0
+    },
+    "accuracy": 0.8122930271424592,
+    "macro avg": {
+      "precision": 0.8038625138792581,
+      "recall": 0.7774280920858855,
+      "f1-score": 0.7870322123461633,
+      "support": 32311.0
+    },
+    "weighted avg": {
+      "precision": 0.8098639291743066,
+      "recall": 0.8122930271424592,
+      "f1-score": 0.8080412742566341,
+      "support": 32311.0
+    }
+  },
+  "permutation_importance": [
+    {
+      "feature": "log_amount",
+      "importance": NaN,
+      "std": NaN
+    },
+    {
+      "feature": "state_category_robust_z",
+      "importance": NaN,
+      "std": NaN
+    },
+    {
+      "feature": "district_robust_z",
+      "importance": NaN,
+      "std": NaN
+    },
+    {
+      "feature": "category_robust_z",
+      "importance": NaN,
+      "std": NaN
+    },
+    {
+      "feature": "amount_last_digits_zero",
+      "importance": NaN,
+      "std": NaN
+    },
+    {
+      "feature": "description_length",
+      "importance": NaN,
+      "std": NaN
+    },
+    {
+      "feature": "description_token_count",
+      "importance": NaN,
+      "std": NaN
+    },
+    {
+      "feature": "description_repeat_count",
+      "importance": NaN,
+      "std": NaN
+    },
+    {
+      "feature": "district_work_count",
+      "importance": NaN,
+      "std": NaN
+    },
+    {
+      "feature": "district_vendor_hhi",
+      "importance": NaN,
+      "std": NaN
+    },
+    {
+      "feature": "mp_utilisation_pct",
+      "importance": NaN,
+      "std": NaN
+    },
+    {
+      "feature": "state",
+      "importance": NaN,
+      "std": NaN
+    },
+    {
+      "feature": "category",
+      "importance": NaN,
+      "std": NaN
+    },
+    {
+      "feature": "house",
+      "importance": NaN,
+      "std": NaN
+    }
+  ],
+  "excluded_features_and_why": {
+    "missing_data_ratio": "Excluded. The completed and recommended exports have different column sets, so any completeness metric partly encodes which export a record came from \u2014 i.e. the label.",
+    "age_days / event_date / fy": "Excluded deliberately. A completed work's date is its completion date while an open work's date is its recommendation date, so any time feature would leak the label rather than predict it.",
+    "risk scores": "Never used as inputs \u2014 they are downstream of this model."
+  },
+  "interpretation": "This is a *propensity* model, not a forecast. It answers 'does this open work look like the works that get completed?' It cannot say when a work will finish, because the source publishes no work-level duration.",
+  "caveats": [
+    "Selection effect: the completed export is a different snapshot slice from the recommended export, so the negative class contains works that may simply not have been re-published yet.",
+    "The score must not be used to rank MPs; it is a work-level signal only."
+  ],
+  "unsupported_models": {
+    "expected_completion_time": "The two work exports share almost no work ids, so no work has both a recommendation date and a completion date. Not modelled.",
+    "cost_overrun_probability": "Only one amount per work is published; no sanctioned-vs-revised cost pair exists. Not modelled.",
+    "payment_failure_probability": "The portal publishes only 'Payment Success' and 'Payment In-Progress'; there are no failure events to learn from. Not modelled.",
+    "fraud_probability": "No confirmed fraud labels exist in any official MPLADS dataset. A supervised fraud model is impossible and would be misleading. Not modelled."
+  }
+}
