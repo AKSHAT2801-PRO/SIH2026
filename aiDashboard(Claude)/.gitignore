@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+data/raw/
+data/cleaned/
+data/processed/
+data/analytical/
+data/quarantine/
+outputs/logs/
+outputs/*.png
+outputs/*.log

@@ -1,0 +1,3962 @@
+{
+  "run_id": "run_20260824T180321Z_5e3822",
+  "generated_at": "2026-08-24T18:05:53+00:00",
+  "overview": {
+    "works_recommended": 83621,
+    "works_completed": 43173,
+    "expenditure_lines": 106263,
+    "mps": 764,
+    "states": 36,
+    "districts": 772,
+    "constituencies": 537,
+    "implementing_agencies": 761,
+    "vendors": 26491,
+    "categories": 5,
+    "recommended_value": 53822824430.66,
+    "completed_value": 23640220472.61,
+    "expenditure_value": 39187346910.14,
+    "allocated_value": 116210588210.35,
+    "utilisation_pct": 33.720978022422464,
+    "date_range": {
+      "recommendations": [
+        "2023-06-14",
+        "2026-08-21"
+      ],
+      "completions": [
+        "2023-08-02",
+        "2026-08-21"
+      ],
+      "payments": [
+        "2023-07-27",
+        "2026-08-21"
+      ]
+    }
+  },
+  "data_quality": {
+    "validity_pct": 100.0,
+    "completeness_pct": 97.92,
+    "uniqueness_pct": 86.34,
+    "reconciliation_pct": 100.0,
+    "overall_data_quality_pct": 96.06,
+    "records_quarantined": 0,
+    "duplicate_records": 31950
+  },
+  "descriptive": {
+    "recommended_amount": {
+      "variable": "recommended_amount",
+      "count": 83621,
+      "mean": 643652.0064416834,
+      "median": 400000.0,
+      "mode": 500000.0,
+      "min": 1.0,
+      "max": 99965000.0,
+      "std": 1239920.415024342,
+      "variance": 1537402635594.1365,
+      "mad": 200000.0,
+      "p01": 20900.0,
+      "p05": 74000.0,
+      "p25": 200000.0,
+      "p50": 400000.0,
+      "p75": 711000.0,
+      "p90": 1200000.0,
+      "p95": 2000000.0,
+      "p99": 4500000.0,
+      "p999": 14508648.000000184,
+      "iqr": 511000.0,
+      "skewness": 23.325550997006964,
+      "kurtosis": 1136.071543807187,
+      "cv": 1.9263832049231437,
+      "zero_count": 0,
+      "iqr_outliers": 7121,
+      "extreme_iqr_outliers": 3051,
+      "robust_z_gt_3_5": 7303,
+      "gini": 0.5270999495265518
+    },
+    "completed_amount": {
+      "variable": "completed_amount",
+      "count": 43173,
+      "mean": 547569.556727816,
+      "median": 300000.0,
+      "mode": 500000.0,
+      "min": 8448.0,
+      "max": 46470400.0,
+      "std": 1024149.7845004142,
+      "variance": 1048882781092.2448,
+      "mad": 193150.0,
+      "p01": 19989.0,
+      "p05": 40000.0,
+      "p25": 176528.0,
+      "p50": 300000.0,
+      "p75": 600000.0,
+      "p90": 1000000.0,
+      "p95": 1499661.4,
+      "p99": 3128906.1599999936,
+      "p999": 13134032.000000326,
+      "iqr": 423472.0,
+      "skewness": 17.095858296553352,
+      "kurtosis": 490.1059638584426,
+      "cv": 1.8703555957722737,
+      "zero_count": 0,
+      "iqr_outliers": 3568,
+      "extreme_iqr_outliers": 1506,
+      "robust_z_gt_3_5": 3337,
+      "gini": 0.5306717755044519
+    },
+    "expenditure_amount": {
+      "variable": "expenditure_amount",
+      "count": 106263,
+      "mean": 368776.96761939715,
+      "median": 199999.0,
+      "mode": 500000.0,
+      "min": 0.01,
+      "max": 32562250.0,
+      "std": 652709.91302897,
+      "variance": 426030230566.2856,
+      "mad": 157612.0,
+      "p01": 1795.7200000000007,
+      "p05": 7200.0,
+      "p25": 70000.0,
+      "p50": 199999.0,
+      "p75": 457981.0,
+      "p90": 884862.6000000008,
+      "p95": 1201967.399999998,
+      "p99": 2576553.660000025,
+      "p999": 7489587.857999903,
+      "iqr": 387981.0,
+      "skewness": 11.916912646938023,
+      "kurtosis": 332.7611121001926,
+      "cv": 1.769931341543572,
+      "zero_count": 0,
+      "iqr_outliers": 6515,
+      "extreme_iqr_outliers": 2768,
+      "robust_z_gt_3_5": 6641,
+      "gini": 0.602683155924086
+    },
+    "mp_allocated": {
+      "variable": "mp_allocated",
+      "count": 764,
+      "mean": 152108099.751767,
+      "median": 147000000.0,
+      "mode": 147000000.0,
+      "min": 0.0,
+      "max": 327477390.86,
+      "std": 40010538.81158604,
+      "variance": 1600843215993432.5,
+      "mad": 0.0,
+      "p01": 49000000.0,
+      "p05": 49009593.5665,
+      "p25": 147000000.0,
+      "p50": 147000000.0,
+      "p75": 158265185.9225,
+      "p90": 196063957.11,
+      "p95": 221228299.98400003,
+      "p99": 269500000.0,
+      "p999": 314828042.9940895,
+      "iqr": 11265185.922500014,
+      "skewness": -0.15634307681847412,
+      "kurtosis": 3.112684004385131,
+      "cv": 0.2630401594450347,
+      "zero_count": 1,
+      "iqr_outliers": 202,
+      "extreme_iqr_outliers": 101,
+      "robust_z_gt_3_5": 0,
+      "gini": 0.118429611674008
+    },
+    "mp_utilisation_pct": {
+      "variable": "mp_utilisation_pct",
+      "count": 764,
+      "mean": 31.551151832460736,
+      "median": 29.935000000000002,
+      "mode": 0.0,
+      "min": 0.0,
+      "max": 94.94,
+      "std": 21.899116494934198,
+      "variance": 479.5713032586991,
+      "mad": 16.48,
+      "p01": 0.0,
+      "p05": 0.0,
+      "p25": 14.405,
+      "p50": 29.935000000000002,
+      "p75": 47.49,
+      "p90": 62.057,
+      "p95": 68.27600000000001,
+      "p99": 86.65480000000001,
+      "p999": 94.20751999999997,
+      "iqr": 33.085,
+      "skewness": 0.3953609962317986,
+      "kurtosis": -0.5633762115799974,
+      "cv": 0.6940829485788774,
+      "zero_count": 66,
+      "iqr_outliers": 0,
+      "extreme_iqr_outliers": 0,
+      "robust_z_gt_3_5": 0,
+      "gini": 0.3949863662810986
+    },
+    "mp_completion_rate_pct": {
+      "variable": "mp_completion_rate_pct",
+      "count": 764,
+      "mean": 28.362028795811515,
+      "median": 24.455,
+      "mode": 0.0,
+      "min": 0.0,
+      "max": 96.61,
+      "std": 23.406705045666822,
+      "variance": 547.8738410948447,
+      "mad": 17.59,
+      "p01": 0.0,
+      "p05": 0.0,
+      "p25": 8.61,
+      "p50": 24.455,
+      "p75": 44.6125,
+      "p90": 63.532000000000004,
+      "p95": 70.70550000000001,
+      "p99": 88.1474,
+      "p999": 96.56421999999999,
+      "iqr": 36.0025,
+      "skewness": 0.6513389568221756,
+      "kurtosis": -0.3716027896306242,
+      "cv": 0.8252831704734573,
+      "zero_count": 109,
+      "iqr_outliers": 0,
+      "extreme_iqr_outliers": 0,
+      "robust_z_gt_3_5": 0,
+      "gini": 0.46309336940719925
+    },
+    "work_age_days": {
+      "variable": "open_work_age_days",
+      "count": 83621,
+      "mean": 286.73686035804405,
+      "median": 263.0,
+      "mode": 198.0,
+      "min": 0.0,
+      "max": 1164.0,
+      "std": 208.92589324255778,
+      "variance": 43650.02886720065,
+      "mad": 170.0,
+      "p01": 3.0,
+      "p05": 15.0,
+      "p25": 95.0,
+      "p50": 263.0,
+      "p75": 437.0,
+      "p90": 569.0,
+      "p95": 654.0,
+      "p99": 765.0,
+      "p999": 1091.0,
+      "iqr": 342.0,
+      "skewness": 0.5831020628648144,
+      "kurtosis": -0.06727418677000596,
+      "cv": 0.7286328412108409,
+      "zero_count": 178,
+      "iqr_outliers": 489,
+      "extreme_iqr_outliers": 0,
+      "robust_z_gt_3_5": 41,
+      "gini": 0.4107859463608241
+    }
+  },
+  "univariate": {
+    "category_recommended": [
+      {
+        "value": "Normal/Others",
+        "count": 81384,
+        "share_pct": 97.325
+      },
+      {
+        "value": "Repair and Renovation",
+        "count": 1333,
+        "share_pct": 1.594
+      },
+      {
+        "value": "Trust and Society",
+        "count": 881,
+        "share_pct": 1.054
+      },
+      {
+        "value": "Bar and Associations",
+        "count": 18,
+        "share_pct": 0.022
+      },
+      {
+        "value": "N/A",
+        "count": 5,
+        "share_pct": 0.006
+      }
+    ],
+    "category_completed": [
+      {
+        "value": "Normal/Others",
+        "count": 42536,
+        "share_pct": 98.525
+      },
+      {
+        "value": "Repair and Renovation",
+        "count": 461,
+        "share_pct": 1.068
+      },
+      {
+        "value": "Trust and Society",
+        "count": 170,
+        "share_pct": 0.394
+      },
+      {
+        "value": "N/A",
+        "count": 5,
+        "share_pct": 0.012
+      },
+      {
+        "value": "Bar and Associations",
+        "count": 1,
+        "share_pct": 0.002
+      }
+    ],
+    "house": [
+      {
+        "value": "Lok Sabha",
+        "count": 102289,
+        "share_pct": 80.673
+      },
+      {
+        "value": "Rajya Sabha",
+        "count": 24505,
+        "share_pct": 19.327
+      }
+    ],
+    "payment_status": [
+      {
+        "value": "Payment Success",
+        "count": 102900,
+        "share_pct": 96.835
+      },
+      {
+        "value": "Payment In-Progress",
+        "count": 3363,
+        "share_pct": 3.165
+      }
+    ],
+    "state_work_counts": [
+      {
+        "value": "Uttar Pradesh",
+        "count": 23602,
+        "share_pct": 18.614
+      },
+      {
+        "value": "Gujarat",
+        "count": 9286,
+        "share_pct": 7.324
+      },
+      {
+        "value": "Madhya Pradesh",
+        "count": 8577,
+        "share_pct": 6.765
+      },
+      {
+        "value": "Bihar",
+        "count": 7571,
+        "share_pct": 5.971
+      },
+      {
+        "value": "Tamil Nadu",
+        "count": 6823,
+        "share_pct": 5.381
+      },
+      {
+        "value": "Odisha",
+        "count": 6661,
+        "share_pct": 5.253
+      },
+      {
+        "value": "Telangana",
+        "count": 6030,
+        "share_pct": 4.756
+      },
+      {
+        "value": "West Bengal",
+        "count": 5898,
+        "share_pct": 4.652
+      },
+      {
+        "value": "Karnataka",
+        "count": 5876,
+        "share_pct": 4.634
+      },
+      {
+        "value": "Kerala",
+        "count": 5811,
+        "share_pct": 4.583
+      },
+      {
+        "value": "Maharashtra",
+        "count": 5696,
+        "share_pct": 4.492
+      },
+      {
+        "value": "Jharkhand",
+        "count": 5531,
+        "share_pct": 4.362
+      },
+      {
+        "value": "Punjab",
+        "count": 5019,
+        "share_pct": 3.958
+      },
+      {
+        "value": "Andhra Pradesh",
+        "count": 4296,
+        "share_pct": 3.388
+      },
+      {
+        "value": "Rajasthan",
+        "count": 4190,
+        "share_pct": 3.305
+      },
+      {
+        "value": "Assam",
+        "count": 2715,
+        "share_pct": 2.141
+      },
+      {
+        "value": "Chhattisgarh",
+        "count": 2666,
+        "share_pct": 2.103
+      },
+      {
+        "value": "Himachal Pradesh",
+        "count": 2511,
+        "share_pct": 1.98
+      },
+      {
+        "value": "Haryana",
+        "count": 2161,
+        "share_pct": 1.704
+      },
+      {
+        "value": "Uttarakhand",
+        "count": 1438,
+        "share_pct": 1.134
+      },
+      {
+        "value": "Jammu and Kashmir",
+        "count": 1226,
+        "share_pct": 0.967
+      },
+      {
+        "value": "Delhi",
+        "count": 725,
+        "share_pct": 0.572
+      },
+      {
+        "value": "Meghalaya",
+        "count": 578,
+        "share_pct": 0.456
+      },
+      {
+        "value": "Arunachal Pradesh",
+        "count": 295,
+        "share_pct": 0.233
+      },
+      {
+        "value": "Goa",
+        "count": 279,
+        "share_pct": 0.22
+      },
+      {
+        "value": "Mizoram",
+        "count": 266,
+        "share_pct": 0.21
+      },
+      {
+        "value": "Sikkim",
+        "count": 237,
+        "share_pct": 0.187
+      },
+      {
+        "value": "Puducherry",
+        "count": 175,
+        "share_pct": 0.138
+      },
+      {
+        "value": "Chandigarh",
+        "count": 136,
+        "share_pct": 0.107
+      },
+      {
+        "value": "Nagaland",
+        "count": 131,
+        "share_pct": 0.103
+      },
+      {
+        "value": "Tripura",
+        "count": 131,
+        "share_pct": 0.103
+      },
+      {
+        "value": "Manipur",
+        "count": 84,
+        "share_pct": 0.066
+      },
+      {
+        "value": "The Dadra and Nagar Haveli and Daman and Diu",
+        "count": 63,
+        "share_pct": 0.05
+      },
+      {
+        "value": "Ladakh",
+        "count": 55,
+        "share_pct": 0.043
+      },
+      {
+        "value": "Lakshadweep",
+        "count": 28,
+        "share_pct": 0.022
+      },
+      {
+        "value": "Andaman and Nicobar Islands",
+        "count": 27,
+        "share_pct": 0.021
+      }
+    ],
+    "amount_histogram_recommended": {
+      "scale": "log10",
+      "bin_edges_log10": [
+        0.0,
+        0.333,
+        0.667,
+        1.0,
+        1.333,
+        1.667,
+        2.0,
+        2.333,
+        2.667,
+        3.0,
+        3.333,
+        3.667,
+        4.0,
+        4.333,
+        4.667,
+        5.0,
+        5.333,
+        5.667,
+        6.0,
+        6.333,
+        6.667,
+        7.0,
+        7.333,
+        7.667,
+        8.0
+      ],
+      "bin_edges_rupees": [
+        1.0,
+        2.15,
+        4.64,
+        10.0,
+        21.54,
+        46.41,
+        99.99,
+        215.42,
+        464.1,
+        999.87,
+        2154.12,
+        4640.84,
+        9998.25,
+        21540.26,
+        46406.41,
+        99978.12,
+        215393.2,
+        464043.8,
+        999737.49,
+        2153837.71,
+        4640235.0,
+        9996937.43,
+        21537434.65,
+        46400319.56,
+        99965000.0
+      ],
+      "counts": [
+        23,
+        3,
+        3,
+        6,
+        1,
+        0,
+        0,
+        0,
+        3,
+        0,
+        2,
+        9,
+        1056,
+        2007,
+        2454,
+        17056,
+        20919,
+        24290,
+        12626,
+        2349,
+        618,
+        165,
+        23,
+        8
+      ]
+    },
+    "amount_histogram_expenditure": {
+      "scale": "log10",
+      "bin_edges_log10": [
+        -2.0,
+        -1.604,
+        -1.207,
+        -0.811,
+        -0.415,
+        -0.018,
+        0.378,
+        0.775,
+        1.171,
+        1.567,
+        1.964,
+        2.36,
+        2.756,
+        3.153,
+        3.549,
+        3.945,
+        4.342,
+        4.738,
+        5.135,
+        5.531,
+        5.927,
+        6.324,
+        6.72,
+        7.116,
+        7.513
+      ],
+      "bin_edges_rupees": [
+        0.01,
+        0.02,
+        0.06,
+        0.15,
+        0.38,
+        0.96,
+        2.39,
+        5.95,
+        14.82,
+        36.92,
+        91.97,
+        229.08,
+        570.63,
+        1421.41,
+        3540.65,
+        8819.55,
+        21968.97,
+        54723.35,
+        136312.54,
+        339546.22,
+        845788.95,
+        2106808.71,
+        5247932.08,
+        13072278.93,
+        32562250.0
+      ],
+      "counts": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        7,
+        10,
+        16,
+        21,
+        43,
+        104,
+        415,
+        321,
+        1328,
+        4105,
+        6393,
+        10823,
+        18154,
+        29003,
+        24447,
+        9373,
+        1493,
+        181,
+        25
+      ]
+    },
+    "rare_categories": [
+      "Trust and Society",
+      "Bar and Associations",
+      "N/A"
+    ],
+    "round_amount_share_recommended": 0.5289102019827555,
+    "round_amount_share_expenditure": 0.10203927989987108
+  },
+  "bivariate": {
+    "mp_correlations": {
+      "method": "spearman",
+      "columns": [
+        "allocated_amount",
+        "derived_expenditure",
+        "utilization_pct",
+        "completion_rate_pct",
+        "derived_recommended_works",
+        "derived_completed_works",
+        "derived_vendors",
+        "pending_payment_share",
+        "unspent_pct"
+      ],
+      "matrix": [
+        [
+          1.0,
+          0.4576,
+          0.3326,
+          0.3629,
+          0.232,
+          0.36,
+          0.3001,
+          -0.0325,
+          -0.3297
+        ],
+        [
+          0.4576,
+          1.0,
+          0.9799,
+          0.7124,
+          0.2441,
+          0.7067,
+          0.4307,
+          -0.0289,
+          -0.9798
+        ],
+        [
+          0.3326,
+          0.9799,
+          1.0,
+          0.7089,
+          0.233,
+          0.6973,
+          0.4135,
+          -0.0347,
+          -1.0
+        ],
+        [
+          0.3629,
+          0.7124,
+          0.7089,
+          1.0,
+          0.0518,
+          0.842,
+          0.4123,
+          -0.1273,
+          -0.7079
+        ],
+        [
+          0.232,
+          0.2441,
+          0.233,
+          0.0518,
+          1.0,
+          0.4833,
+          0.5216,
+          0.2712,
+          -0.23
+        ],
+        [
+          0.36,
+          0.7067,
+          0.6973,
+          0.842,
+          0.4833,
+          1.0,
+          0.5771,
+          0.0238,
+          -0.6962
+        ],
+        [
+          0.3001,
+          0.4307,
+          0.4135,
+          0.4123,
+          0.5216,
+          0.5771,
+          1.0,
+          0.2183,
+          -0.4112
+        ],
+        [
+          -0.0325,
+          -0.0289,
+          -0.0347,
+          -0.1273,
+          0.2712,
+          0.0238,
+          0.2183,
+          1.0,
+          0.0346
+        ],
+        [
+          -0.3297,
+          -0.9798,
+          -1.0,
+          -0.7079,
+          -0.23,
+          -0.6962,
+          -0.4112,
+          0.0346,
+          1.0
+        ]
+      ]
+    },
+    "work_correlations": {
+      "method": "spearman",
+      "columns": [
+        "amount",
+        "age_days",
+        "state_category_robust_z",
+        "district_robust_z",
+        "amount_last_digits_zero",
+        "missing_data_ratio"
+      ],
+      "matrix": [
+        [
+          1.0,
+          0.0179,
+          0.8514,
+          0.6455,
+          0.2765,
+          0.0
+        ],
+        [
+          0.0179,
+          1.0,
+          0.0225,
+          0.0194,
+          0.0162,
+          0.0
+        ],
+        [
+          0.8514,
+          0.0225,
+          1.0,
+          0.7122,
+          0.1987,
+          0.0
+        ],
+        [
+          0.6455,
+          0.0194,
+          0.7122,
+          1.0,
+          0.1832,
+          0.0
+        ],
+        [
+          0.2765,
+          0.0162,
+          0.1987,
+          0.1832,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ]
+    },
+    "amount_by_category": [
+      {
+        "category": "Normal/Others",
+        "count": 123920,
+        "sum": 75030750637.27,
+        "mean": 605477.329,
+        "median": 385127.0,
+        "p90": 1149062.7,
+        "max": 99965000.0
+      },
+      {
+        "category": "Repair and Renovation",
+        "count": 1794,
+        "sum": 1222752985.0,
+        "mean": 681579.144,
+        "median": 500000.0,
+        "p90": 1499000.0,
+        "max": 9276051.0
+      },
+      {
+        "category": "Trust and Society",
+        "count": 1051,
+        "sum": 1196864431.0,
+        "mean": 1138786.328,
+        "median": 996000.0,
+        "p90": 2500000.0,
+        "max": 9500000.0
+      },
+      {
+        "category": "N/A",
+        "count": 10,
+        "sum": 11701850.0,
+        "mean": 1170185.0,
+        "median": 950000.0,
+        "p90": 2498385.4,
+        "max": 2500000.0
+      },
+      {
+        "category": "Bar and Associations",
+        "count": 19,
+        "sum": 975000.0,
+        "mean": 51315.789,
+        "median": 50000.0,
+        "p90": 80000.0,
+        "max": 100000.0
+      }
+    ],
+    "amount_by_state": [
+      {
+        "state": "Uttar Pradesh",
+        "count": 23602,
+        "sum": 13370395001.0,
+        "mean": 566494.153,
+        "median": 240387.0,
+        "p90": 1194832.4,
+        "max": 49740000.0
+      },
+      {
+        "state": "Bihar",
+        "count": 7571,
+        "sum": 5973829768.0,
+        "mean": 789041.047,
+        "median": 697000.0,
+        "p90": 1492104.0,
+        "max": 99965000.0
+      },
+      {
+        "state": "Tamil Nadu",
+        "count": 6823,
+        "sum": 5960321141.5,
+        "mean": 873563.116,
+        "median": 600000.0,
+        "p90": 1572348.4,
+        "max": 39955654.0
+      },
+      {
+        "state": "Maharashtra",
+        "count": 5696,
+        "sum": 5677818944.87,
+        "mean": 996808.101,
+        "median": 999863.0,
+        "p90": 1900000.0,
+        "max": 18000000.0
+      },
+      {
+        "state": "West Bengal",
+        "count": 5898,
+        "sum": 4932289027.25,
+        "mean": 836264.671,
+        "median": 377924.0,
+        "p90": 1676191.3,
+        "max": 73500000.0
+      },
+      {
+        "state": "Karnataka",
+        "count": 5876,
+        "sum": 4037381228.0,
+        "mean": 687096.873,
+        "median": 500000.0,
+        "p90": 1000000.0,
+        "max": 44000000.0
+      },
+      {
+        "state": "Madhya Pradesh",
+        "count": 8577,
+        "sum": 3954300071.0,
+        "mean": 461035.335,
+        "median": 259942.0,
+        "p90": 1000000.0,
+        "max": 27400000.0
+      },
+      {
+        "state": "Kerala",
+        "count": 5811,
+        "sum": 3902895965.34,
+        "mean": 671639.299,
+        "median": 300000.0,
+        "p90": 1626438.0,
+        "max": 30000000.0
+      },
+      {
+        "state": "Gujarat",
+        "count": 9286,
+        "sum": 3628729511.0,
+        "mean": 390774.231,
+        "median": 300000.0,
+        "p90": 500000.0,
+        "max": 17704600.0
+      },
+      {
+        "state": "Andhra Pradesh",
+        "count": 4296,
+        "sum": 3084120724.0,
+        "mean": 717905.196,
+        "median": 498972.0,
+        "p90": 1500000.0,
+        "max": 12000000.0
+      },
+      {
+        "state": "Rajasthan",
+        "count": 4190,
+        "sum": 2951481196.1,
+        "mean": 704410.787,
+        "median": 500000.0,
+        "p90": 1498120.9,
+        "max": 10000000.0
+      },
+      {
+        "state": "Odisha",
+        "count": 6661,
+        "sum": 2772085235.0,
+        "mean": 416166.527,
+        "median": 300000.0,
+        "p90": 800000.0,
+        "max": 49500000.0
+      },
+      {
+        "state": "Telangana",
+        "count": 6030,
+        "sum": 2363016712.0,
+        "mean": 391876.735,
+        "median": 250000.0,
+        "p90": 500000.0,
+        "max": 29495741.0
+      },
+      {
+        "state": "Jharkhand",
+        "count": 5531,
+        "sum": 2122331018.0,
+        "mean": 383715.606,
+        "median": 300000.0,
+        "p90": 700000.0,
+        "max": 5960000.0
+      },
+      {
+        "state": "Punjab",
+        "count": 5019,
+        "sum": 2121675371.26,
+        "mean": 422728.705,
+        "median": 293025.0,
+        "p90": 682360.8,
+        "max": 27500000.0
+      },
+      {
+        "state": "Assam",
+        "count": 2715,
+        "sum": 1973183204.54,
+        "mean": 726770.978,
+        "median": 500000.0,
+        "p90": 1500000.0,
+        "max": 14000000.0
+      },
+      {
+        "state": "Chhattisgarh",
+        "count": 2666,
+        "sum": 1489678162.0,
+        "mean": 558769.003,
+        "median": 500000.0,
+        "p90": 1000000.0,
+        "max": 30000000.0
+      },
+      {
+        "state": "Haryana",
+        "count": 2161,
+        "sum": 1179582579.0,
+        "mean": 545850.337,
+        "median": 410000.0,
+        "p90": 1100000.0,
+        "max": 9386764.0
+      },
+      {
+        "state": "Delhi",
+        "count": 725,
+        "sum": 818168651.63,
+        "mean": 1128508.485,
+        "median": 669192.0,
+        "p90": 1950629.4,
+        "max": 25217575.0
+      },
+      {
+        "state": "Uttarakhand",
+        "count": 1438,
+        "sum": 757575432.0,
+        "mean": 526825.752,
+        "median": 250000.0,
+        "p90": 1067200.0,
+        "max": 5000000.0
+      },
+      {
+        "state": "Himachal Pradesh",
+        "count": 2511,
+        "sum": 685637945.04,
+        "mean": 273053.742,
+        "median": 200000.0,
+        "p90": 500000.0,
+        "max": 4963575.0
+      },
+      {
+        "state": "Jammu and Kashmir",
+        "count": 1226,
+        "sum": 670032383.45,
+        "mean": 546519.073,
+        "median": 275578.0,
+        "p90": 981396.0,
+        "max": 21870000.0
+      },
+      {
+        "state": "Puducherry",
+        "count": 175,
+        "sum": 391632634.0,
+        "mean": 2237900.766,
+        "median": 2000000.0,
+        "p90": 4230806.8,
+        "max": 12920000.0
+      },
+      {
+        "state": "Goa",
+        "count": 279,
+        "sum": 356133325.29,
+        "mean": 1276463.532,
+        "median": 763447.0,
+        "p90": 2885517.6,
+        "max": 7000000.0
+      },
+      {
+        "state": "Nagaland",
+        "count": 131,
+        "sum": 345671000.0,
+        "mean": 2638709.924,
+        "median": 1000000.0,
+        "p90": 8500000.0,
+        "max": 25000000.0
+      },
+      {
+        "state": "Tripura",
+        "count": 131,
+        "sum": 288142819.0,
+        "mean": 2199563.504,
+        "median": 1200000.0,
+        "p90": 4860920.0,
+        "max": 11517641.0
+      },
+      {
+        "state": "Sikkim",
+        "count": 237,
+        "sum": 279595294.0,
+        "mean": 1179726.979,
+        "median": 693964.0,
+        "p90": 3000000.0,
+        "max": 5000000.0
+      },
+      {
+        "state": "The Dadra and Nagar Haveli and Daman and Diu",
+        "count": 63,
+        "sum": 256486200.0,
+        "mean": 4071209.524,
+        "median": 2500000.0,
+        "p90": 8000000.0,
+        "max": 30000000.0
+      },
+      {
+        "state": "Meghalaya",
+        "count": 578,
+        "sum": 232370000.0,
+        "mean": 402024.221,
+        "median": 300000.0,
+        "p90": 621000.0,
+        "max": 10000000.0
+      },
+      {
+        "state": "Arunachal Pradesh",
+        "count": 295,
+        "sum": 227603990.0,
+        "mean": 771538.949,
+        "median": 500000.0,
+        "p90": 1500000.0,
+        "max": 2500000.0
+      },
+      {
+        "state": "Manipur",
+        "count": 84,
+        "sum": 215391768.0,
+        "mean": 2564187.714,
+        "median": 1879510.0,
+        "p90": 5000000.0,
+        "max": 11000000.0
+      },
+      {
+        "state": "Mizoram",
+        "count": 266,
+        "sum": 123394229.0,
+        "mean": 463888.079,
+        "median": 250000.0,
+        "p90": 1000000.0,
+        "max": 1990000.0
+      },
+      {
+        "state": "Chandigarh",
+        "count": 136,
+        "sum": 99048778.0,
+        "mean": 728299.838,
+        "median": 500000.0,
+        "p90": 1268500.0,
+        "max": 3023000.0
+      },
+      {
+        "state": "Lakshadweep",
+        "count": 28,
+        "sum": 91411791.0,
+        "mean": 3264706.821,
+        "median": 292500.0,
+        "p90": 2160468.4,
+        "max": 45000000.0
+      },
+      {
+        "state": "Andaman and Nicobar Islands",
+        "count": 27,
+        "sum": 75115803.0,
+        "mean": 2782066.778,
+        "median": 2592551.0,
+        "p90": 5076982.6,
+        "max": 7041042.0
+      },
+      {
+        "state": "Ladakh",
+        "count": 55,
+        "sum": 54518000.0,
+        "mean": 991236.364,
+        "median": 800000.0,
+        "p90": 2240000.0,
+        "max": 4500000.0
+      }
+    ],
+    "lok_vs_rajya_amount": {
+      "comparison": "Lok Sabha vs Rajya Sabha",
+      "sufficient_data": true,
+      "n_a": 102289,
+      "n_b": 24505,
+      "median_a": 338927.0,
+      "median_b": 500000.0,
+      "mann_whitney_u": 982384118.0,
+      "p_value": 0.0,
+      "significant_at_1pct": true,
+      "interpretation": "distributions differ significantly"
+    },
+    "lok_vs_rajya_utilisation": {
+      "comparison": "Lok Sabha vs Rajya Sabha",
+      "sufficient_data": true,
+      "n_a": 543,
+      "n_b": 221,
+      "median_a": 31.65,
+      "median_b": 23.84,
+      "mann_whitney_u": 68347.5,
+      "p_value": 0.00254232286143468,
+      "significant_at_1pct": true,
+      "interpretation": "distributions differ significantly"
+    },
+    "completed_vs_recommended_amount": {
+      "comparison": "COMPLETED vs RECOMMENDED",
+      "sufficient_data": true,
+      "n_a": 43173,
+      "n_b": 83621,
+      "median_a": 300000.0,
+      "median_b": 400000.0,
+      "mann_whitney_u": 1591629856.5,
+      "p_value": 3.5089288426732816e-262,
+      "significant_at_1pct": true,
+      "interpretation": "distributions differ significantly"
+    }
+  },
+  "multivariate": {
+    "state_category_cells": 65,
+    "national_median_amount": 399482.0,
+    "highest_median_cells": [
+      {
+        "state": "Andaman and Nicobar Islands",
+        "category": "Normal/Others",
+        "count": 25,
+        "median": 2500000.0,
+        "sum": 65175798.0,
+        "median_ratio_to_national": 6.26
+      },
+      {
+        "state": "The Dadra and Nagar Haveli and Daman and Diu",
+        "category": "Normal/Others",
+        "count": 63,
+        "median": 2500000.0,
+        "sum": 256486200.0,
+        "median_ratio_to_national": 6.26
+      },
+      {
+        "state": "Kerala",
+        "category": "Trust and Society",
+        "count": 35,
+        "median": 2200000.0,
+        "sum": 89427976.0,
+        "median_ratio_to_national": 5.51
+      },
+      {
+        "state": "Puducherry",
+        "category": "Normal/Others",
+        "count": 173,
+        "median": 2000000.0,
+        "sum": 388740597.0,
+        "median_ratio_to_national": 5.01
+      },
+      {
+        "state": "Manipur",
+        "category": "Normal/Others",
+        "count": 81,
+        "median": 1879510.0,
+        "sum": 208632748.0,
+        "median_ratio_to_national": 4.7
+      },
+      {
+        "state": "Rajasthan",
+        "category": "Trust and Society",
+        "count": 47,
+        "median": 1500000.0,
+        "sum": 83992039.0,
+        "median_ratio_to_national": 3.76
+      },
+      {
+        "state": "West Bengal",
+        "category": "Trust and Society",
+        "count": 22,
+        "median": 1228267.5,
+        "sum": 38013968.0,
+        "median_ratio_to_national": 3.08
+      },
+      {
+        "state": "Tripura",
+        "category": "Normal/Others",
+        "count": 129,
+        "median": 1195256.0,
+        "sum": 283544629.0,
+        "median_ratio_to_national": 2.99
+      },
+      {
+        "state": "Haryana",
+        "category": "Trust and Society",
+        "count": 98,
+        "median": 1099884.5,
+        "sum": 106678272.0,
+        "median_ratio_to_national": 2.75
+      },
+      {
+        "state": "Uttar Pradesh",
+        "category": "Repair and Renovation",
+        "count": 53,
+        "median": 1054000.0,
+        "sum": 89567840.0,
+        "median_ratio_to_national": 2.64
+      },
+      {
+        "state": "Maharashtra",
+        "category": "Trust and Society",
+        "count": 81,
+        "median": 1000000.0,
+        "sum": 121840430.0,
+        "median_ratio_to_national": 2.5
+      },
+      {
+        "state": "Maharashtra",
+        "category": "Repair and Renovation",
+        "count": 73,
+        "median": 1000000.0,
+        "sum": 75132656.0,
+        "median_ratio_to_national": 2.5
+      },
+      {
+        "state": "Nagaland",
+        "category": "Normal/Others",
+        "count": 131,
+        "median": 1000000.0,
+        "sum": 345671000.0,
+        "median_ratio_to_national": 2.5
+      },
+      {
+        "state": "Madhya Pradesh",
+        "category": "Trust and Society",
+        "count": 112,
+        "median": 1000000.0,
+        "sum": 113946466.0,
+        "median_ratio_to_national": 2.5
+      },
+      {
+        "state": "Maharashtra",
+        "category": "Normal/Others",
+        "count": 5542,
+        "median": 999579.0,
+        "sum": 5480845858.87,
+        "median_ratio_to_national": 2.5
+      }
+    ],
+    "district_duration_completion": [
+      {
+        "ida_district": "Jalna",
+        "open_works": 71.0,
+        "open_median_age_days": 574.0,
+        "completed_works": 0.0,
+        "expenditure": 42113484.0,
+        "vendors": 27.0,
+        "completion_ratio": 0.0
+      },
+      {
+        "ida_district": "Umaria",
+        "open_works": 36.0,
+        "open_median_age_days": 564.0,
+        "completed_works": 0.0,
+        "expenditure": 5145309.0,
+        "vendors": 2.0,
+        "completion_ratio": 0.0
+      },
+      {
+        "ida_district": "Raisen",
+        "open_works": 104.0,
+        "open_median_age_days": 510.0,
+        "completed_works": 0.0,
+        "expenditure": 29647000.0,
+        "vendors": 66.0,
+        "completion_ratio": 0.0
+      },
+      {
+        "ida_district": "Alipurduar",
+        "open_works": 77.0,
+        "open_median_age_days": 479.0,
+        "completed_works": 0.0,
+        "expenditure": 6969593.0,
+        "vendors": 4.0,
+        "completion_ratio": 0.0
+      },
+      {
+        "ida_district": "Barpeta",
+        "open_works": 43.0,
+        "open_median_age_days": 446.0,
+        "completed_works": 0.0,
+        "expenditure": 23290000.0,
+        "vendors": 30.0,
+        "completion_ratio": 0.0
+      },
+      {
+        "ida_district": "Sahebganj",
+        "open_works": 132.0,
+        "open_median_age_days": 430.0,
+        "completed_works": 0.0,
+        "expenditure": 20340000.0,
+        "vendors": 2.0,
+        "completion_ratio": 0.0
+      },
+      {
+        "ida_district": "Saraikela Kharsawan",
+        "open_works": 97.0,
+        "open_median_age_days": 406.0,
+        "completed_works": 0.0,
+        "expenditure": 42160749.0,
+        "vendors": 5.0,
+        "completion_ratio": 0.0
+      },
+      {
+        "ida_district": "Yamunanagar",
+        "open_works": 88.0,
+        "open_median_age_days": 403.0,
+        "completed_works": 0.0,
+        "expenditure": 19323183.0,
+        "vendors": 28.0,
+        "completion_ratio": 0.0
+      },
+      {
+        "ida_district": "Rewa",
+        "open_works": 87.0,
+        "open_median_age_days": 395.0,
+        "completed_works": 0.0,
+        "expenditure": 72117973.0,
+        "vendors": 29.0,
+        "completion_ratio": 0.0
+      },
+      {
+        "ida_district": "Chatra",
+        "open_works": 338.0,
+        "open_median_age_days": 388.0,
+        "completed_works": 0.0,
+        "expenditure": 28661363.0,
+        "vendors": 1.0,
+        "completion_ratio": 0.0
+      },
+      {
+        "ida_district": "Tamulpur",
+        "open_works": 55.0,
+        "open_median_age_days": 386.0,
+        "completed_works": 0.0,
+        "expenditure": 2595244.0,
+        "vendors": 2.0,
+        "completion_ratio": 0.0
+      },
+      {
+        "ida_district": "Mumbai Suburban",
+        "open_works": 284.0,
+        "open_median_age_days": 376.0,
+        "completed_works": 0.0,
+        "expenditure": 295075488.0,
+        "vendors": 73.0,
+        "completion_ratio": 0.0
+      },
+      {
+        "ida_district": "Godda",
+        "open_works": 32.0,
+        "open_median_age_days": 352.0,
+        "completed_works": 0.0,
+        "expenditure": 2325000.0,
+        "vendors": 3.0,
+        "completion_ratio": 0.0
+      },
+      {
+        "ida_district": "Golaghat",
+        "open_works": 64.0,
+        "open_median_age_days": 351.0,
+        "completed_works": 0.0,
+        "expenditure": 11168880.0,
+        "vendors": 15.0,
+        "completion_ratio": 0.0
+      },
+      {
+        "ida_district": "Niwari",
+        "open_works": 72.0,
+        "open_median_age_days": 335.0,
+        "completed_works": 0.0,
+        "expenditure": 1954831.0,
+        "vendors": 9.0,
+        "completion_ratio": 0.0
+      },
+      {
+        "ida_district": "Kodagu",
+        "open_works": 60.0,
+        "open_median_age_days": 331.0,
+        "completed_works": 0.0,
+        "expenditure": 48562000.0,
+        "vendors": 4.0,
+        "completion_ratio": 0.0
+      },
+      {
+        "ida_district": "Pakur",
+        "open_works": 292.0,
+        "open_median_age_days": 328.0,
+        "completed_works": 0.0,
+        "expenditure": 6221697.0,
+        "vendors": 1.0,
+        "completion_ratio": 0.0
+      },
+      {
+        "ida_district": "Kamrup Metro",
+        "open_works": 118.0,
+        "open_median_age_days": 292.0,
+        "completed_works": 0.0,
+        "expenditure": 64104607.0,
+        "vendors": 65.0,
+        "completion_ratio": 0.0
+      },
+      {
+        "ida_district": "Vijayapura",
+        "open_works": 364.0,
+        "open_median_age_days": 285.0,
+        "completed_works": 0.0,
+        "expenditure": 90525977.0,
+        "vendors": 39.0,
+        "completion_ratio": 0.0
+      },
+      {
+        "ida_district": "Sribhumi",
+        "open_works": 71.0,
+        "open_median_age_days": 274.0,
+        "completed_works": 0.0,
+        "expenditure": 66488500.0,
+        "vendors": 13.0,
+        "completion_ratio": 0.0
+      }
+    ],
+    "vendor_district_concentration": {
+      "vendors": 26491,
+      "top10_vendor_share_pct": 4.363,
+      "vendor_amount_gini": 0.7746715971230378,
+      "districts_scored": 758,
+      "median_district_hhi": 0.1288,
+      "districts_hhi_above_0_3": 180,
+      "most_concentrated_districts": {
+        "Longleng": 1.0,
+        "Lakhisarai": 1.0,
+        "Kishtwar": 1.0,
+        "Kulgam": 1.0,
+        "Simdega": 1.0,
+        "Kiphire": 1.0,
+        "South Tripura": 1.0,
+        "Tapi": 1.0,
+        "Kishanganj": 1.0,
+        "Imphal East": 1.0,
+        "Kangpokpi": 1.0,
+        "Gadag": 1.0,
+        "Gajapati": 1.0,
+        "Tengnoupal": 1.0,
+        "Leh Ladakh": 1.0
+      }
+    }
+  },
+  "time_series": {
+    "recommendations_monthly": [
+      {
+        "event_date": "2023-06",
+        "count": 41,
+        "sum": 16319176.0,
+        "median": 300000.0,
+        "mom_change_pct": null,
+        "change_robust_z": null,
+        "is_sudden_change": null
+      },
+      {
+        "event_date": "2023-07",
+        "count": 9,
+        "sum": 3870000.0,
+        "median": 300000.0,
+        "mom_change_pct": -76.29,
+        "change_robust_z": -0.136,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2023-08",
+        "count": 44,
+        "sum": 44946180.0,
+        "median": 550000.0,
+        "mom_change_pct": 1061.4,
+        "change_robust_z": 0.134,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2023-09",
+        "count": 130,
+        "sum": 84700823.0,
+        "median": 500000.0,
+        "mom_change_pct": 88.45,
+        "change_robust_z": 0.128,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2023-10",
+        "count": 53,
+        "sum": 34685898.0,
+        "median": 500000.0,
+        "mom_change_pct": -59.05,
+        "change_robust_z": -0.326,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2023-11",
+        "count": 70,
+        "sum": 47075225.89,
+        "median": 430400.0,
+        "mom_change_pct": 35.72,
+        "change_robust_z": -0.01,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2023-12",
+        "count": 68,
+        "sum": 91466975.0,
+        "median": 987000.0,
+        "mom_change_pct": 94.3,
+        "change_robust_z": 0.151,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2024-01",
+        "count": 126,
+        "sum": 169356894.0,
+        "median": 943288.0,
+        "mom_change_pct": 85.16,
+        "change_robust_z": 0.32,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2024-02",
+        "count": 142,
+        "sum": 142301624.0,
+        "median": 838000.0,
+        "mom_change_pct": -15.98,
+        "change_robust_z": -0.21,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2024-03",
+        "count": 43,
+        "sum": 31327458.0,
+        "median": 500000.0,
+        "mom_change_pct": -77.99,
+        "change_robust_z": -0.633,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2024-04",
+        "count": 0,
+        "sum": 0.0,
+        "median": null,
+        "mom_change_pct": -100.0,
+        "change_robust_z": -0.231,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2024-05",
+        "count": 0,
+        "sum": 0.0,
+        "median": null,
+        "mom_change_pct": null,
+        "change_robust_z": -0.073,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2024-06",
+        "count": 54,
+        "sum": 88433890.0,
+        "median": 1100000.0,
+        "mom_change_pct": Infinity,
+        "change_robust_z": 0.373,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2024-07",
+        "count": 150,
+        "sum": 104965856.0,
+        "median": 300000.0,
+        "mom_change_pct": 18.69,
+        "change_robust_z": 0.01,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2024-08",
+        "count": 294,
+        "sum": 245808400.62,
+        "median": 500000.0,
+        "mom_change_pct": 134.18,
+        "change_robust_z": 0.638,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2024-09",
+        "count": 1607,
+        "sum": 939279553.0,
+        "median": 250000.0,
+        "mom_change_pct": 282.12,
+        "change_robust_z": 3.428,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2024-10",
+        "count": 1214,
+        "sum": 841473741.0,
+        "median": 500000.0,
+        "mom_change_pct": -10.41,
+        "change_robust_z": -0.567,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2024-11",
+        "count": 1016,
+        "sum": 780581321.68,
+        "median": 495000.0,
+        "mom_change_pct": -7.24,
+        "change_robust_z": -0.38,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2024-12",
+        "count": 1638,
+        "sum": 1005144143.0,
+        "median": 400000.0,
+        "mom_change_pct": 28.77,
+        "change_robust_z": 1.061,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2025-01",
+        "count": 2031,
+        "sum": 1405660816.1,
+        "median": 495000.0,
+        "mom_change_pct": 39.85,
+        "change_robust_z": 1.949,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2025-02",
+        "count": 1791,
+        "sum": 1384675440.0,
+        "median": 400000.0,
+        "mom_change_pct": -1.49,
+        "change_robust_z": -0.179,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2025-03",
+        "count": 3711,
+        "sum": 2172009912.2,
+        "median": 387800.0,
+        "mom_change_pct": 56.86,
+        "change_robust_z": 3.902,
+        "is_sudden_change": true
+      },
+      {
+        "event_date": "2025-04",
+        "count": 1871,
+        "sum": 1361586562.0,
+        "median": 499000.0,
+        "mom_change_pct": -37.31,
+        "change_robust_z": -4.165,
+        "is_sudden_change": true
+      },
+      {
+        "event_date": "2025-05",
+        "count": 3704,
+        "sum": 2404596939.3,
+        "median": 400000.0,
+        "mom_change_pct": 76.6,
+        "change_robust_z": 5.193,
+        "is_sudden_change": true
+      },
+      {
+        "event_date": "2025-06",
+        "count": 3953,
+        "sum": 2392837669.0,
+        "median": 339000.0,
+        "mom_change_pct": -0.49,
+        "change_robust_z": -0.132,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2025-07",
+        "count": 3909,
+        "sum": 2606817713.0,
+        "median": 400080.0,
+        "mom_change_pct": 8.94,
+        "change_robust_z": 1.007,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2025-08",
+        "count": 3121,
+        "sum": 2236578986.87,
+        "median": 450000.0,
+        "mom_change_pct": -14.2,
+        "change_robust_z": -1.942,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2025-09",
+        "count": 4552,
+        "sum": 2654252745.69,
+        "median": 350000.0,
+        "mom_change_pct": 18.67,
+        "change_robust_z": 2.036,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2025-10",
+        "count": 2944,
+        "sum": 2049693847.0,
+        "median": 468550.0,
+        "mom_change_pct": -22.78,
+        "change_robust_z": -3.125,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2025-11",
+        "count": 3317,
+        "sum": 2252415843.0,
+        "median": 500000.0,
+        "mom_change_pct": 9.89,
+        "change_robust_z": 0.951,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2025-12",
+        "count": 3361,
+        "sum": 2126071271.59,
+        "median": 475000.0,
+        "mom_change_pct": -5.61,
+        "change_robust_z": -0.711,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2026-01",
+        "count": 4088,
+        "sum": 2859977497.0,
+        "median": 500000.0,
+        "mom_change_pct": 34.52,
+        "change_robust_z": 3.632,
+        "is_sudden_change": true
+      },
+      {
+        "event_date": "2026-02",
+        "count": 5794,
+        "sum": 2801230872.0,
+        "median": 250000.0,
+        "mom_change_pct": -2.05,
+        "change_robust_z": -0.37,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2026-03",
+        "count": 4445,
+        "sum": 2417894531.0,
+        "median": 400000.0,
+        "mom_change_pct": -13.68,
+        "change_robust_z": -2.008,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2026-04",
+        "count": 1772,
+        "sum": 1214713974.0,
+        "median": 500000.0,
+        "mom_change_pct": -49.76,
+        "change_robust_z": -6.148,
+        "is_sudden_change": true
+      },
+      {
+        "event_date": "2026-05",
+        "count": 4003,
+        "sum": 2789115556.0,
+        "median": 480118.0,
+        "mom_change_pct": 129.61,
+        "change_robust_z": 7.876,
+        "is_sudden_change": true
+      },
+      {
+        "event_date": "2026-06",
+        "count": 4613,
+        "sum": 3280923194.41,
+        "median": 498000.0,
+        "mom_change_pct": 17.63,
+        "change_robust_z": 2.41,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2026-07",
+        "count": 8317,
+        "sum": 5374785336.56,
+        "median": 435000.0,
+        "mom_change_pct": 63.82,
+        "change_robust_z": 10.499,
+        "is_sudden_change": true
+      },
+      {
+        "event_date": "2026-08",
+        "count": 5625,
+        "sum": 3365248564.75,
+        "median": 400000.0,
+        "mom_change_pct": -37.39,
+        "change_robust_z": -10.219,
+        "is_sudden_change": true
+      }
+    ],
+    "completions_monthly": [
+      {
+        "event_date": "2023-08",
+        "count": 2,
+        "sum": 782518.0,
+        "median": 391259.0,
+        "mom_change_pct": null,
+        "change_robust_z": null,
+        "is_sudden_change": null
+      },
+      {
+        "event_date": "2023-09",
+        "count": 7,
+        "sum": 12774926.0,
+        "median": 1484550.0,
+        "mom_change_pct": 1532.54,
+        "change_robust_z": -0.009,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2023-10",
+        "count": 13,
+        "sum": 27777658.0,
+        "median": 2468981.0,
+        "mom_change_pct": 117.44,
+        "change_robust_z": 0.009,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2023-11",
+        "count": 5,
+        "sum": 6889135.0,
+        "median": 841614.0,
+        "mom_change_pct": -75.2,
+        "change_robust_z": -0.199,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2023-12",
+        "count": 8,
+        "sum": 12415360.0,
+        "median": 1246833.5,
+        "mom_change_pct": 80.22,
+        "change_robust_z": -0.046,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2024-01",
+        "count": 65,
+        "sum": 75860255.0,
+        "median": 998022.0,
+        "mom_change_pct": 511.02,
+        "change_robust_z": 0.289,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2024-02",
+        "count": 298,
+        "sum": 118108124.0,
+        "median": 283000.0,
+        "mom_change_pct": 55.69,
+        "change_robust_z": 0.166,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2024-03",
+        "count": 461,
+        "sum": 145413484.4,
+        "median": 243000.0,
+        "mom_change_pct": 23.12,
+        "change_robust_z": 0.08,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2024-04",
+        "count": 67,
+        "sum": 40841589.0,
+        "median": 275000.0,
+        "mom_change_pct": -71.91,
+        "change_robust_z": -0.683,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2024-05",
+        "count": 43,
+        "sum": 49965507.0,
+        "median": 998059.0,
+        "mom_change_pct": 22.34,
+        "change_robust_z": -0.025,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2024-06",
+        "count": 68,
+        "sum": 50526647.0,
+        "median": 491278.0,
+        "mom_change_pct": 1.12,
+        "change_robust_z": -0.075,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2024-07",
+        "count": 131,
+        "sum": 129504257.74,
+        "median": 499200.0,
+        "mom_change_pct": 156.31,
+        "change_robust_z": 0.379,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2024-08",
+        "count": 84,
+        "sum": 71169272.8,
+        "median": 268246.0,
+        "mom_change_pct": -45.04,
+        "change_robust_z": -0.415,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2024-09",
+        "count": 180,
+        "sum": 100377967.98,
+        "median": 243000.0,
+        "mom_change_pct": 41.04,
+        "change_robust_z": 0.091,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2024-10",
+        "count": 179,
+        "sum": 95918330.54,
+        "median": 399432.0,
+        "mom_change_pct": -4.44,
+        "change_robust_z": -0.104,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2024-11",
+        "count": 341,
+        "sum": 378235244.92,
+        "median": 483780.0,
+        "mom_change_pct": 294.33,
+        "change_robust_z": 1.554,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2024-12",
+        "count": 380,
+        "sum": 280212219.14,
+        "median": 489791.0,
+        "mom_change_pct": -25.92,
+        "change_robust_z": -0.645,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2025-01",
+        "count": 714,
+        "sum": 343462144.84,
+        "median": 163273.5,
+        "mom_change_pct": 22.57,
+        "change_robust_z": 0.288,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2025-02",
+        "count": 503,
+        "sum": 354420273.75,
+        "median": 499850.0,
+        "mom_change_pct": 3.19,
+        "change_robust_z": -0.015,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2025-03",
+        "count": 965,
+        "sum": 627348595.93,
+        "median": 495000.0,
+        "mom_change_pct": 77.01,
+        "change_robust_z": 1.5,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2025-04",
+        "count": 820,
+        "sum": 518810492.42,
+        "median": 473826.0,
+        "mom_change_pct": -17.3,
+        "change_robust_z": -0.706,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2025-05",
+        "count": 1249,
+        "sum": 673429289.48,
+        "median": 348759.0,
+        "mom_change_pct": 29.8,
+        "change_robust_z": 0.816,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2025-06",
+        "count": 1363,
+        "sum": 933085926.53,
+        "median": 349929.0,
+        "mom_change_pct": 38.56,
+        "change_robust_z": 1.423,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2025-07",
+        "count": 2352,
+        "sum": 1509540737.62,
+        "median": 359972.5,
+        "mom_change_pct": 61.78,
+        "change_robust_z": 3.255,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2025-08",
+        "count": 2750,
+        "sum": 1109452693.8,
+        "median": 244689.5,
+        "mom_change_pct": -26.5,
+        "change_robust_z": -2.391,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2025-09",
+        "count": 2430,
+        "sum": 1450803401.0,
+        "median": 400000.0,
+        "mom_change_pct": 30.77,
+        "change_robust_z": 1.896,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2025-10",
+        "count": 2171,
+        "sum": 1224185196.57,
+        "median": 400000.0,
+        "mom_change_pct": -15.62,
+        "change_robust_z": -1.388,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2025-11",
+        "count": 2230,
+        "sum": 1299582316.41,
+        "median": 393586.5,
+        "mom_change_pct": 6.16,
+        "change_robust_z": 0.358,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2025-12",
+        "count": 2869,
+        "sum": 1699219682.05,
+        "median": 348591.0,
+        "mom_change_pct": 30.75,
+        "change_robust_z": 2.233,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2026-01",
+        "count": 5117,
+        "sum": 2619103816.12,
+        "median": 259942.0,
+        "mom_change_pct": 54.14,
+        "change_robust_z": 5.241,
+        "is_sudden_change": true
+      },
+      {
+        "event_date": "2026-02",
+        "count": 4140,
+        "sum": 2073675725.35,
+        "median": 300000.0,
+        "mom_change_pct": -20.82,
+        "change_robust_z": -3.232,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2026-03",
+        "count": 3189,
+        "sum": 1759734163.44,
+        "median": 393751.0,
+        "mom_change_pct": -15.14,
+        "change_robust_z": -1.893,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2026-04",
+        "count": 2588,
+        "sum": 1286828666.0,
+        "median": 299712.5,
+        "mom_change_pct": -26.87,
+        "change_robust_z": -2.813,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2026-05",
+        "count": 1264,
+        "sum": 701988342.0,
+        "median": 309996.5,
+        "mom_change_pct": -45.45,
+        "change_robust_z": -3.46,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2026-06",
+        "count": 0,
+        "sum": 0.0,
+        "median": null,
+        "mom_change_pct": -100.0,
+        "change_robust_z": -4.137,
+        "is_sudden_change": true
+      },
+      {
+        "event_date": "2026-07",
+        "count": 2330,
+        "sum": 865026107.0,
+        "median": 169530.0,
+        "mom_change_pct": Infinity,
+        "change_robust_z": 4.924,
+        "is_sudden_change": true
+      },
+      {
+        "event_date": "2026-08",
+        "count": 1797,
+        "sum": 993750405.78,
+        "median": 346960.0,
+        "mom_change_pct": 14.88,
+        "change_robust_z": 0.666,
+        "is_sudden_change": false
+      }
+    ],
+    "expenditure_monthly": [
+      {
+        "event_date": "2023-07",
+        "count": 1,
+        "sum": 283000.0,
+        "median": 283000.0,
+        "mom_change_pct": null,
+        "change_robust_z": null,
+        "is_sudden_change": null
+      },
+      {
+        "event_date": "2023-08",
+        "count": 100,
+        "sum": 28300000.0,
+        "median": 283000.0,
+        "mom_change_pct": 9900.0,
+        "change_robust_z": -0.014,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2023-09",
+        "count": 186,
+        "sum": 63274870.0,
+        "median": 243000.0,
+        "mom_change_pct": 123.59,
+        "change_robust_z": 0.034,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2023-10",
+        "count": 172,
+        "sum": 93303363.01,
+        "median": 322800.0,
+        "mom_change_pct": 47.46,
+        "change_robust_z": 0.0,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2023-11",
+        "count": 19,
+        "sum": 24413813.0,
+        "median": 1484100.0,
+        "mom_change_pct": -73.83,
+        "change_robust_z": -0.674,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2023-12",
+        "count": 298,
+        "sum": 112691484.0,
+        "median": 243000.0,
+        "mom_change_pct": 361.59,
+        "change_robust_z": 0.397,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2024-01",
+        "count": 212,
+        "sum": 145010219.91,
+        "median": 371672.0,
+        "mom_change_pct": 28.68,
+        "change_robust_z": 0.016,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2024-02",
+        "count": 418,
+        "sum": 157360698.55,
+        "median": 133930.0,
+        "mom_change_pct": 8.52,
+        "change_robust_z": -0.121,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2024-03",
+        "count": 531,
+        "sum": 206752760.38,
+        "median": 243000.0,
+        "mom_change_pct": 31.39,
+        "change_robust_z": 0.132,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2024-04",
+        "count": 387,
+        "sum": 122036024.68,
+        "median": 105000.0,
+        "mom_change_pct": -40.97,
+        "change_robust_z": -0.782,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2024-05",
+        "count": 302,
+        "sum": 120370671.42,
+        "median": 154102.5,
+        "mom_change_pct": -1.36,
+        "change_robust_z": -0.216,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2024-06",
+        "count": 245,
+        "sum": 134125739.03,
+        "median": 365696.0,
+        "mom_change_pct": 11.43,
+        "change_robust_z": -0.111,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2024-07",
+        "count": 376,
+        "sum": 159209072.5,
+        "median": 211601.5,
+        "mom_change_pct": 18.7,
+        "change_robust_z": -0.034,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2024-08",
+        "count": 384,
+        "sum": 186115156.28,
+        "median": 363000.0,
+        "mom_change_pct": 16.9,
+        "change_robust_z": -0.021,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2024-09",
+        "count": 734,
+        "sum": 261861687.46,
+        "median": 125407.5,
+        "mom_change_pct": 40.7,
+        "change_robust_z": 0.312,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2024-10",
+        "count": 578,
+        "sum": 375599395.32,
+        "median": 375000.0,
+        "mom_change_pct": 43.43,
+        "change_robust_z": 0.571,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2024-11",
+        "count": 947,
+        "sum": 522953166.98,
+        "median": 279789.0,
+        "mom_change_pct": 39.23,
+        "change_robust_z": 0.8,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2024-12",
+        "count": 1237,
+        "sum": 552923082.98,
+        "median": 232062.0,
+        "mom_change_pct": 5.73,
+        "change_robust_z": -0.0,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2025-01",
+        "count": 2156,
+        "sum": 862245729.64,
+        "median": 225000.0,
+        "mom_change_pct": 55.94,
+        "change_robust_z": 1.904,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2025-02",
+        "count": 1861,
+        "sum": 815168667.34,
+        "median": 250000.0,
+        "mom_change_pct": -5.46,
+        "change_robust_z": -0.526,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2025-03",
+        "count": 2703,
+        "sum": 1172601337.22,
+        "median": 227446.0,
+        "mom_change_pct": 43.85,
+        "change_robust_z": 2.232,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2025-04",
+        "count": 1851,
+        "sum": 661934531.44,
+        "median": 199955.0,
+        "mom_change_pct": -43.55,
+        "change_robust_z": -3.687,
+        "is_sudden_change": true
+      },
+      {
+        "event_date": "2025-05",
+        "count": 3561,
+        "sum": 1322560794.0,
+        "median": 175000.0,
+        "mom_change_pct": 99.8,
+        "change_robust_z": 4.3,
+        "is_sudden_change": true
+      },
+      {
+        "event_date": "2025-06",
+        "count": 3499,
+        "sum": 1387176127.0,
+        "median": 240944.0,
+        "mom_change_pct": 4.89,
+        "change_robust_z": 0.236,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2025-07",
+        "count": 5450,
+        "sum": 2165899119.0,
+        "median": 199483.0,
+        "mom_change_pct": 56.14,
+        "change_robust_z": 5.105,
+        "is_sudden_change": true
+      },
+      {
+        "event_date": "2025-08",
+        "count": 5330,
+        "sum": 1782097760.0,
+        "median": 166204.5,
+        "mom_change_pct": -17.72,
+        "change_robust_z": -2.822,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2025-09",
+        "count": 5945,
+        "sum": 2136425093.0,
+        "median": 199836.0,
+        "mom_change_pct": 19.88,
+        "change_robust_z": 2.211,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2025-10",
+        "count": 5287,
+        "sum": 2040983530.0,
+        "median": 225000.0,
+        "mom_change_pct": -4.47,
+        "change_robust_z": -0.856,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2025-11",
+        "count": 5286,
+        "sum": 1822474823.0,
+        "median": 174718.0,
+        "mom_change_pct": -10.71,
+        "change_robust_z": -1.695,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2025-12",
+        "count": 6623,
+        "sum": 2142298829.0,
+        "median": 159300.0,
+        "mom_change_pct": 17.55,
+        "change_robust_z": 1.976,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2026-01",
+        "count": 6648,
+        "sum": 2331835807.0,
+        "median": 187500.0,
+        "mom_change_pct": 8.85,
+        "change_robust_z": 1.088,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2026-02",
+        "count": 7542,
+        "sum": 2527051874.0,
+        "median": 174540.0,
+        "mom_change_pct": 8.37,
+        "change_robust_z": 1.126,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2026-03",
+        "count": 7321,
+        "sum": 2527805856.0,
+        "median": 178982.0,
+        "mom_change_pct": 0.03,
+        "change_robust_z": -0.2,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2026-04",
+        "count": 5141,
+        "sum": 1693475514.0,
+        "median": 175000.0,
+        "mom_change_pct": -33.01,
+        "change_robust_z": -5.894,
+        "is_sudden_change": true
+      },
+      {
+        "event_date": "2026-05",
+        "count": 5473,
+        "sum": 1916965202.0,
+        "median": 199659.0,
+        "mom_change_pct": 13.2,
+        "change_robust_z": 1.319,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2026-06",
+        "count": 4865,
+        "sum": 1940174097.0,
+        "median": 200000.0,
+        "mom_change_pct": 1.21,
+        "change_robust_z": -0.047,
+        "is_sudden_change": false
+      },
+      {
+        "event_date": "2026-07",
+        "count": 7570,
+        "sum": 2864096852.0,
+        "median": 200000.0,
+        "mom_change_pct": 47.62,
+        "change_robust_z": 6.095,
+        "is_sudden_change": true
+      },
+      {
+        "event_date": "2026-08",
+        "count": 5024,
+        "sum": 1807491162.0,
+        "median": 200000.0,
+        "mom_change_pct": -36.89,
+        "change_robust_z": -7.41,
+        "is_sudden_change": true
+      }
+    ],
+    "sudden_change_months": {
+      "recommendations": [
+        {
+          "event_date": "2025-03",
+          "sum": 2172009912.2,
+          "mom_change_pct": 56.86,
+          "change_robust_z": 3.9
+        },
+        {
+          "event_date": "2025-04",
+          "sum": 1361586562.0,
+          "mom_change_pct": -37.31,
+          "change_robust_z": -4.16
+        },
+        {
+          "event_date": "2025-05",
+          "sum": 2404596939.3,
+          "mom_change_pct": 76.6,
+          "change_robust_z": 5.19
+        },
+        {
+          "event_date": "2026-01",
+          "sum": 2859977497.0,
+          "mom_change_pct": 34.52,
+          "change_robust_z": 3.63
+        },
+        {
+          "event_date": "2026-04",
+          "sum": 1214713974.0,
+          "mom_change_pct": -49.76,
+          "change_robust_z": -6.15
+        },
+        {
+          "event_date": "2026-05",
+          "sum": 2789115556.0,
+          "mom_change_pct": 129.61,
+          "change_robust_z": 7.88
+        },
+        {
+          "event_date": "2026-07",
+          "sum": 5374785336.56,
+          "mom_change_pct": 63.82,
+          "change_robust_z": 10.5
+        },
+        {
+          "event_date": "2026-08",
+          "sum": 3365248564.75,
+          "mom_change_pct": -37.39,
+          "change_robust_z": -10.22
+        }
+      ],
+      "completions": [
+        {
+          "event_date": "2026-01",
+          "sum": 2619103816.12,
+          "mom_change_pct": 54.14,
+          "change_robust_z": 5.24
+        },
+        {
+          "event_date": "2026-06",
+          "sum": 0.0,
+          "mom_change_pct": -100.0,
+          "change_robust_z": -4.14
+        },
+        {
+          "event_date": "2026-07",
+          "sum": 865026107.0,
+          "mom_change_pct": Infinity,
+          "change_robust_z": 4.92
+        }
+      ],
+      "expenditure": [
+        {
+          "event_date": "2025-04",
+          "sum": 661934531.44,
+          "mom_change_pct": -43.55,
+          "change_robust_z": -3.69
+        },
+        {
+          "event_date": "2025-05",
+          "sum": 1322560794.0,
+          "mom_change_pct": 99.8,
+          "change_robust_z": 4.3
+        },
+        {
+          "event_date": "2025-07",
+          "sum": 2165899119.0,
+          "mom_change_pct": 56.14,
+          "change_robust_z": 5.11
+        },
+        {
+          "event_date": "2026-04",
+          "sum": 1693475514.0,
+          "mom_change_pct": -33.01,
+          "change_robust_z": -5.89
+        },
+        {
+          "event_date": "2026-07",
+          "sum": 2864096852.0,
+          "mom_change_pct": 47.62,
+          "change_robust_z": 6.1
+        },
+        {
+          "event_date": "2026-08",
+          "sum": 1807491162.0,
+          "mom_change_pct": -36.89,
+          "change_robust_z": -7.41
+        }
+      ]
+    },
+    "fy_totals": {
+      "recommended": {
+        "2023-24": 666050253.89,
+        "2024-25": 8968033073.6,
+        "2025-26": 28163954477.45,
+        "2026-27": 16024786625.72
+      },
+      "completed": {
+        "2023-24": 400021460.4,
+        "2024-25": 2521982050.64,
+        "2025-26": 16870623440.79,
+        "2026-27": 3847593520.78
+      },
+      "expenditure": {
+        "2023-24": 831390208.85,
+        "2024-25": 5285209730.85,
+        "2025-26": 22848544143.44,
+        "2026-27": 10222202827.0
+      }
+    }
+  },
+  "geographic": {
+    "state_summary": [
+      {
+        "state": "Uttar Pradesh",
+        "recommended_works": 13632,
+        "completed_works": 9970.0,
+        "recommended_value": 8117852388.6,
+        "completed_value": 5252542612.4,
+        "expenditure": 8988295899.89,
+        "vendors": 1390.0,
+        "mps": 111,
+        "allocated": 17782562208.78,
+        "utilisation_pct": 50.55,
+        "completion_rate_pct": 42.24
+      },
+      {
+        "state": "Bihar",
+        "recommended_works": 3757,
+        "completed_works": 3814.0,
+        "recommended_value": 2959433765.0,
+        "completed_value": 3014396003.0,
+        "expenditure": 3789219605.0,
+        "vendors": 443.0,
+        "mps": 55,
+        "allocated": 8513486680.34,
+        "utilisation_pct": 44.51,
+        "completion_rate_pct": 50.38
+      },
+      {
+        "state": "Tamil Nadu",
+        "recommended_works": 3259,
+        "completed_works": 3564.0,
+        "recommended_value": 3194426792.5,
+        "completed_value": 2765894349.0,
+        "expenditure": 3592659860.0,
+        "vendors": 1393.0,
+        "mps": 57,
+        "allocated": 8377110903.57,
+        "utilisation_pct": 42.89,
+        "completion_rate_pct": 52.24
+      },
+      {
+        "state": "Madhya Pradesh",
+        "recommended_works": 5965,
+        "completed_works": 2612.0,
+        "recommended_value": 2841417665.0,
+        "completed_value": 1112882406.0,
+        "expenditure": 2349576505.12,
+        "vendors": 2338.0,
+        "mps": 38,
+        "allocated": 5828218108.37,
+        "utilisation_pct": 40.31,
+        "completion_rate_pct": 30.45
+      },
+      {
+        "state": "West Bengal",
+        "recommended_works": 3520,
+        "completed_works": 2378.0,
+        "recommended_value": 3558518316.87,
+        "completed_value": 1373770710.38,
+        "expenditure": 2280066076.38,
+        "vendors": 1132.0,
+        "mps": 53,
+        "allocated": 7837496151.29,
+        "utilisation_pct": 29.09,
+        "completion_rate_pct": 40.32
+      },
+      {
+        "state": "Maharashtra",
+        "recommended_works": 4524,
+        "completed_works": 1172.0,
+        "recommended_value": 4699577882.87,
+        "completed_value": 978241062.0,
+        "expenditure": 1900955683.0,
+        "vendors": 1070.0,
+        "mps": 65,
+        "allocated": 9424796648.27,
+        "utilisation_pct": 20.17,
+        "completion_rate_pct": 20.58
+      },
+      {
+        "state": "Karnataka",
+        "recommended_works": 4585,
+        "completed_works": 1291.0,
+        "recommended_value": 3308602594.0,
+        "completed_value": 728778634.0,
+        "expenditure": 1769653417.0,
+        "vendors": 806.0,
+        "mps": 41,
+        "allocated": 6189559383.33,
+        "utilisation_pct": 28.59,
+        "completion_rate_pct": 21.97
+      },
+      {
+        "state": "Rajasthan",
+        "recommended_works": 2899,
+        "completed_works": 1291.0,
+        "recommended_value": 2135210490.0,
+        "completed_value": 816270706.1,
+        "expenditure": 1381651449.11,
+        "vendors": 3961.0,
+        "mps": 35,
+        "allocated": 5139829373.26,
+        "utilisation_pct": 26.88,
+        "completion_rate_pct": 30.81
+      },
+      {
+        "state": "Gujarat",
+        "recommended_works": 6235,
+        "completed_works": 3051.0,
+        "recommended_value": 2630612434.0,
+        "completed_value": 998117077.0,
+        "expenditure": 1340633811.0,
+        "vendors": 2504.0,
+        "mps": 34,
+        "allocated": 4998467459.47,
+        "utilisation_pct": 26.82,
+        "completion_rate_pct": 32.86
+      },
+      {
+        "state": "Jharkhand",
+        "recommended_works": 4556,
+        "completed_works": 975.0,
+        "recommended_value": 1622075897.0,
+        "completed_value": 500255121.0,
+        "expenditure": 1340109673.0,
+        "vendors": 86.0,
+        "mps": 18,
+        "allocated": 2931597994.93,
+        "utilisation_pct": 45.71,
+        "completion_rate_pct": 17.63
+      },
+      {
+        "state": "Punjab",
+        "recommended_works": 3049,
+        "completed_works": 1970.0,
+        "recommended_value": 1380553517.0,
+        "completed_value": 741121854.26,
+        "expenditure": 1327594018.67,
+        "vendors": 3190.0,
+        "mps": 19,
+        "allocated": 3137546001.45,
+        "utilisation_pct": 42.31,
+        "completion_rate_pct": 39.25
+      },
+      {
+        "state": "Andhra Pradesh",
+        "recommended_works": 2846,
+        "completed_works": 1450.0,
+        "recommended_value": 2253038984.0,
+        "completed_value": 831081740.0,
+        "expenditure": 1261065157.0,
+        "vendors": 756.0,
+        "mps": 37,
+        "allocated": 5545272701.2,
+        "utilisation_pct": 22.74,
+        "completion_rate_pct": 33.75
+      },
+      {
+        "state": "Kerala",
+        "recommended_works": 4567,
+        "completed_works": 1244.0,
+        "recommended_value": 3177639167.34,
+        "completed_value": 725256798.0,
+        "expenditure": 1102322937.0,
+        "vendors": 725.0,
+        "mps": 31,
+        "allocated": 5203830627.88,
+        "utilisation_pct": 21.18,
+        "completion_rate_pct": 21.41
+      },
+      {
+        "state": "Chhattisgarh",
+        "recommended_works": 1616,
+        "completed_works": 1050.0,
+        "recommended_value": 933918510.0,
+        "completed_value": 555759652.0,
+        "expenditure": 972651906.5,
+        "vendors": 1196.0,
+        "mps": 16,
+        "allocated": 2458511981.39,
+        "utilisation_pct": 39.56,
+        "completion_rate_pct": 39.38
+      },
+      {
+        "state": "Telangana",
+        "recommended_works": 3684,
+        "completed_works": 2346.0,
+        "recommended_value": 1675012707.0,
+        "completed_value": 688004005.0,
+        "expenditure": 935011795.0,
+        "vendors": 734.0,
+        "mps": 23,
+        "allocated": 3876511766.52,
+        "utilisation_pct": 24.12,
+        "completion_rate_pct": 38.91
+      },
+      {
+        "state": "Assam",
+        "recommended_works": 2490,
+        "completed_works": 225.0,
+        "recommended_value": 1812558137.1,
+        "completed_value": 160625067.44,
+        "expenditure": 878913075.44,
+        "vendors": 814.0,
+        "mps": 21,
+        "allocated": 2794428071.33,
+        "utilisation_pct": 31.45,
+        "completion_rate_pct": 8.29
+      },
+      {
+        "state": "Odisha",
+        "recommended_works": 5117,
+        "completed_works": 1544.0,
+        "recommended_value": 2360067462.0,
+        "completed_value": 412017773.0,
+        "expenditure": 692522788.0,
+        "vendors": 907.0,
+        "mps": 29,
+        "allocated": 4436627382.71,
+        "utilisation_pct": 15.61,
+        "completion_rate_pct": 23.18
+      },
+      {
+        "state": "Haryana",
+        "recommended_works": 1703,
+        "completed_works": 458.0,
+        "recommended_value": 997919790.0,
+        "completed_value": 181662789.0,
+        "expenditure": 439258753.0,
+        "vendors": 590.0,
+        "mps": 15,
+        "allocated": 2117454264.0,
+        "utilisation_pct": 20.74,
+        "completion_rate_pct": 21.19
+      },
+      {
+        "state": "Himachal Pradesh",
+        "recommended_works": 1828,
+        "completed_works": 683.0,
+        "recommended_value": 476390752.0,
+        "completed_value": 209247193.04,
+        "expenditure": 432496441.04,
+        "vendors": 771.0,
+        "mps": 7,
+        "allocated": 1033386998.44,
+        "utilisation_pct": 41.85,
+        "completion_rate_pct": 27.2
+      },
+      {
+        "state": "Nagaland",
+        "recommended_works": 36,
+        "completed_works": 95.0,
+        "recommended_value": 112308000.0,
+        "completed_value": 233363000.0,
+        "expenditure": 334256200.0,
+        "vendors": 116.0,
+        "mps": 2,
+        "allocated": 353563957.11,
+        "utilisation_pct": 94.54,
+        "completion_rate_pct": 72.52
+      },
+      {
+        "state": "Uttarakhand",
+        "recommended_works": 1087,
+        "completed_works": 351.0,
+        "recommended_value": 554009784.0,
+        "completed_value": 203565648.0,
+        "expenditure": 333031756.0,
+        "vendors": 891.0,
+        "mps": 8,
+        "allocated": 1304873590.51,
+        "utilisation_pct": 25.52,
+        "completion_rate_pct": 24.41
+      },
+      {
+        "state": "Jammu and Kashmir",
+        "recommended_works": 723,
+        "completed_works": 503.0,
+        "recommended_value": 432897167.45,
+        "completed_value": 237135216.0,
+        "expenditure": 284993612.0,
+        "vendors": 315.0,
+        "mps": 10,
+        "allocated": 1225063957.11,
+        "utilisation_pct": 23.26,
+        "completion_rate_pct": 41.03
+      },
+      {
+        "state": "Delhi",
+        "recommended_works": 482,
+        "completed_works": 243.0,
+        "recommended_value": 678764688.63,
+        "completed_value": 139403963.0,
+        "expenditure": 190897652.0,
+        "vendors": 60.0,
+        "mps": 11,
+        "allocated": 1682994118.11,
+        "utilisation_pct": 11.34,
+        "completion_rate_pct": 33.52
+      },
+      {
+        "state": "Sikkim",
+        "recommended_works": 114,
+        "completed_works": 123.0,
+        "recommended_value": 117703000.0,
+        "completed_value": 161892294.0,
+        "expenditure": 189944460.0,
+        "vendors": 60.0,
+        "mps": 2,
+        "allocated": 302174649.22,
+        "utilisation_pct": 62.86,
+        "completion_rate_pct": 51.9
+      },
+      {
+        "state": "Arunachal Pradesh",
+        "recommended_works": 75,
+        "completed_works": 220.0,
+        "recommended_value": 53500000.0,
+        "completed_value": 174103990.0,
+        "expenditure": 185067486.0,
+        "vendors": 202.0,
+        "mps": 3,
+        "allocated": 343000000.0,
+        "utilisation_pct": 53.96,
+        "completion_rate_pct": 74.58
+      },
+      {
+        "state": "Manipur",
+        "recommended_works": 50,
+        "completed_works": 34.0,
+        "recommended_value": 147591752.0,
+        "completed_value": 67800016.0,
+        "expenditure": 178812355.0,
+        "vendors": 11.0,
+        "mps": 3,
+        "allocated": 343000000.0,
+        "utilisation_pct": 52.13,
+        "completion_rate_pct": 40.48
+      },
+      {
+        "state": "Meghalaya",
+        "recommended_works": 364,
+        "completed_works": 214.0,
+        "recommended_value": 152020000.0,
+        "completed_value": 80350000.0,
+        "expenditure": 166890000.0,
+        "vendors": 375.0,
+        "mps": 3,
+        "allocated": 294000000.0,
+        "utilisation_pct": 56.77,
+        "completion_rate_pct": 37.02
+      },
+      {
+        "state": "Puducherry",
+        "recommended_works": 132,
+        "completed_works": 43.0,
+        "recommended_value": 300355869.0,
+        "completed_value": 91276765.0,
+        "expenditure": 132090184.0,
+        "vendors": 77.0,
+        "mps": 2,
+        "allocated": 502250828.6,
+        "utilisation_pct": 26.3,
+        "completion_rate_pct": 24.57
+      },
+      {
+        "state": "Tripura",
+        "recommended_works": 93,
+        "completed_works": 38.0,
+        "recommended_value": 232198355.0,
+        "completed_value": 55944464.0,
+        "expenditure": 119108040.0,
+        "vendors": 41.0,
+        "mps": 3,
+        "allocated": 416500000.0,
+        "utilisation_pct": 28.6,
+        "completion_rate_pct": 29.01
+      },
+      {
+        "state": "Goa",
+        "recommended_works": 229,
+        "completed_works": 50.0,
+        "recommended_value": 297547623.3,
+        "completed_value": 58585701.99,
+        "expenditure": 101670731.99,
+        "vendors": 24.0,
+        "mps": 3,
+        "allocated": 465500000.0,
+        "utilisation_pct": 21.84,
+        "completion_rate_pct": 17.92
+      },
+      {
+        "state": "Mizoram",
+        "recommended_works": 132,
+        "completed_works": 134.0,
+        "recommended_value": 52960000.0,
+        "completed_value": 70434229.0,
+        "expenditure": 94866729.0,
+        "vendors": 147.0,
+        "mps": 2,
+        "allocated": 171500000.0,
+        "utilisation_pct": 55.32,
+        "completion_rate_pct": 50.38
+      },
+      {
+        "state": "Chandigarh",
+        "recommended_works": 101,
+        "completed_works": 35.0,
+        "recommended_value": 80242192.0,
+        "completed_value": 18806586.0,
+        "expenditure": 40213579.0,
+        "vendors": 85.0,
+        "mps": 2,
+        "allocated": 325351443.75,
+        "utilisation_pct": 12.36,
+        "completion_rate_pct": 25.74
+      },
+      {
+        "state": "Lakshadweep",
+        "recommended_works": 26,
+        "completed_works": 2.0,
+        "recommended_value": 89778744.0,
+        "completed_value": 1633047.0,
+        "expenditure": 39337535.0,
+        "vendors": 18.0,
+        "mps": 1,
+        "allocated": 153942460.41,
+        "utilisation_pct": 25.55,
+        "completion_rate_pct": 7.14
+      },
+      {
+        "state": "Andaman and Nicobar Islands",
+        "recommended_works": 27,
+        "completed_works": 0.0,
+        "recommended_value": 75115803.0,
+        "completed_value": 0.0,
+        "expenditure": 15498347.0,
+        "vendors": 8.0,
+        "mps": 1,
+        "allocated": 147000000.0,
+        "utilisation_pct": 10.54,
+        "completion_rate_pct": 0.0
+      },
+      {
+        "state": "Ladakh",
+        "recommended_works": 55,
+        "completed_works": 0.0,
+        "recommended_value": 54518000.0,
+        "completed_value": 0.0,
+        "expenditure": 6009392.0,
+        "vendors": 6.0,
+        "mps": 1,
+        "allocated": 161114542.0,
+        "utilisation_pct": 3.73,
+        "completion_rate_pct": 0.0
+      },
+      {
+        "state": "The Dadra and Nagar Haveli and Daman and Diu",
+        "recommended_works": 63,
+        "completed_works": 0.0,
+        "recommended_value": 256486200.0,
+        "completed_value": 0.0,
+        "expenditure": 0.0,
+        "vendors": 0.0,
+        "mps": 2,
+        "allocated": 392063957.0,
+        "utilisation_pct": 0.0,
+        "completion_rate_pct": 0.0
+      }
+    ],
+    "top_districts_by_expenditure": [
+      {
+        "state": "Bihar",
+        "ida_district": "Patna",
+        "works_recommended": 194.0,
+        "works_completed": 549.0,
+        "work_amount": 706626760.0,
+        "mps": 9.0,
+        "payment_lines": 634.0,
+        "expenditure": 609585204.0,
+        "vendors": 15.0,
+        "pending_lines": 15.0,
+        "completion_rate_pct": 73.89,
+        "payments_per_vendor": 42.27,
+        "run_id": "run_20260824T180321Z_5e3822"
+      },
+      {
+        "state": "Jharkhand",
+        "ida_district": "Ranchi",
+        "works_recommended": 773.0,
+        "works_completed": 385.0,
+        "work_amount": 634173451.0,
+        "mps": 6.0,
+        "payment_lines": 1491.0,
+        "expenditure": 533541757.0,
+        "vendors": 15.0,
+        "pending_lines": 2.0,
+        "completion_rate_pct": 33.25,
+        "payments_per_vendor": 99.4,
+        "run_id": "run_20260824T180321Z_5e3822"
+      },
+      {
+        "state": "West Bengal",
+        "ida_district": "Kolkata",
+        "works_recommended": 141.0,
+        "works_completed": 51.0,
+        "work_amount": 552134174.0,
+        "mps": 11.0,
+        "payment_lines": 197.0,
+        "expenditure": 422168891.0,
+        "vendors": 101.0,
+        "pending_lines": 4.0,
+        "completion_rate_pct": 26.56,
+        "payments_per_vendor": 1.95,
+        "run_id": "run_20260824T180321Z_5e3822"
+      },
+      {
+        "state": "Tamil Nadu",
+        "ida_district": "Madurai",
+        "works_recommended": 175.0,
+        "works_completed": 367.0,
+        "work_amount": 502483049.0,
+        "mps": 7.0,
+        "payment_lines": 420.0,
+        "expenditure": 400965042.0,
+        "vendors": 69.0,
+        "pending_lines": 3.0,
+        "completion_rate_pct": 67.71,
+        "payments_per_vendor": 6.09,
+        "run_id": "run_20260824T180321Z_5e3822"
+      },
+      {
+        "state": "Uttar Pradesh",
+        "ida_district": "Shahjahanpur",
+        "works_recommended": 10.0,
+        "works_completed": 199.0,
+        "work_amount": 410999370.0,
+        "mps": 7.0,
+        "payment_lines": 294.0,
+        "expenditure": 372318170.0,
+        "vendors": 9.0,
+        "pending_lines": 0.0,
+        "completion_rate_pct": 95.22,
+        "payments_per_vendor": 32.67,
+        "run_id": "run_20260824T180321Z_5e3822"
+      },
+      {
+        "state": "Uttar Pradesh",
+        "ida_district": "Chandauli",
+        "works_recommended": 85.0,
+        "works_completed": 176.0,
+        "work_amount": 437479933.0,
+        "mps": 7.0,
+        "payment_lines": 476.0,
+        "expenditure": 370982272.0,
+        "vendors": 35.0,
+        "pending_lines": 0.0,
+        "completion_rate_pct": 67.43,
+        "payments_per_vendor": 13.6,
+        "run_id": "run_20260824T180321Z_5e3822"
+      },
+      {
+        "state": "Karnataka",
+        "ida_district": "Bengaluru Urban",
+        "works_recommended": 359.0,
+        "works_completed": 273.0,
+        "work_amount": 616418898.0,
+        "mps": 12.0,
+        "payment_lines": 520.0,
+        "expenditure": 349120929.0,
+        "vendors": 103.0,
+        "pending_lines": 2.0,
+        "completion_rate_pct": 43.2,
+        "payments_per_vendor": 5.05,
+        "run_id": "run_20260824T180321Z_5e3822"
+      },
+      {
+        "state": "Uttar Pradesh",
+        "ida_district": "Budaun",
+        "works_recommended": 106.0,
+        "works_completed": 383.0,
+        "work_amount": 348916284.09,
+        "mps": 3.0,
+        "payment_lines": 1016.0,
+        "expenditure": 297332265.09,
+        "vendors": 12.0,
+        "pending_lines": 25.0,
+        "completion_rate_pct": 78.32,
+        "payments_per_vendor": 84.67,
+        "run_id": "run_20260824T180321Z_5e3822"
+      },
+      {
+        "state": "Maharashtra",
+        "ida_district": "Mumbai Suburban",
+        "works_recommended": 284.0,
+        "works_completed": 0.0,
+        "work_amount": 669300000.0,
+        "mps": 8.0,
+        "payment_lines": 126.0,
+        "expenditure": 295075488.0,
+        "vendors": 73.0,
+        "pending_lines": 12.0,
+        "completion_rate_pct": 0.0,
+        "payments_per_vendor": 1.73,
+        "run_id": "run_20260824T180321Z_5e3822"
+      },
+      {
+        "state": "Uttar Pradesh",
+        "ida_district": "Agra",
+        "works_recommended": 237.0,
+        "works_completed": 116.0,
+        "work_amount": 410416323.0,
+        "mps": 9.0,
+        "payment_lines": 367.0,
+        "expenditure": 289023639.0,
+        "vendors": 13.0,
+        "pending_lines": 0.0,
+        "completion_rate_pct": 32.86,
+        "payments_per_vendor": 28.23,
+        "run_id": "run_20260824T180321Z_5e3822"
+      },
+      {
+        "state": "Bihar",
+        "ida_district": "Madhubani",
+        "works_recommended": 234.0,
+        "works_completed": 281.0,
+        "work_amount": 386568949.0,
+        "mps": 8.0,
+        "payment_lines": 376.0,
+        "expenditure": 287890072.0,
+        "vendors": 21.0,
+        "pending_lines": 1.0,
+        "completion_rate_pct": 54.56,
+        "payments_per_vendor": 17.9,
+        "run_id": "run_20260824T180321Z_5e3822"
+      },
+      {
+        "state": "Uttar Pradesh",
+        "ida_district": "Firozabad",
+        "works_recommended": 56.0,
+        "works_completed": 59.0,
+        "work_amount": 274071482.0,
+        "mps": 3.0,
+        "payment_lines": 205.0,
+        "expenditure": 263025956.0,
+        "vendors": 13.0,
+        "pending_lines": 0.0,
+        "completion_rate_pct": 51.3,
+        "payments_per_vendor": 15.77,
+        "run_id": "run_20260824T180321Z_5e3822"
+      },
+      {
+        "state": "Uttar Pradesh",
+        "ida_district": "Jaunpur",
+        "works_recommended": 1020.0,
+        "works_completed": 1226.0,
+        "work_amount": 409754996.0,
+        "mps": 8.0,
+        "payment_lines": 1777.0,
+        "expenditure": 261746715.0,
+        "vendors": 54.0,
+        "pending_lines": 178.0,
+        "completion_rate_pct": 54.59,
+        "payments_per_vendor": 32.91,
+        "run_id": "run_20260824T180321Z_5e3822"
+      },
+      {
+        "state": "Uttar Pradesh",
+        "ida_district": "Sonbhadra",
+        "works_recommended": 296.0,
+        "works_completed": 374.0,
+        "work_amount": 272549346.2,
+        "mps": 2.0,
+        "payment_lines": 1339.0,
+        "expenditure": 241428288.2,
+        "vendors": 68.0,
+        "pending_lines": 3.0,
+        "completion_rate_pct": 55.82,
+        "payments_per_vendor": 19.69,
+        "run_id": "run_20260824T180321Z_5e3822"
+      },
+      {
+        "state": "Bihar",
+        "ida_district": "Purbi Champaran",
+        "works_recommended": 147.0,
+        "works_completed": 165.0,
+        "work_amount": 349781625.0,
+        "mps": 9.0,
+        "payment_lines": 239.0,
+        "expenditure": 240734848.0,
+        "vendors": 71.0,
+        "pending_lines": 4.0,
+        "completion_rate_pct": 52.88,
+        "payments_per_vendor": 3.37,
+        "run_id": "run_20260824T180321Z_5e3822"
+      },
+      {
+        "state": "Uttar Pradesh",
+        "ida_district": "Kushinagar",
+        "works_recommended": 159.0,
+        "works_completed": 241.0,
+        "work_amount": 304341454.0,
+        "mps": 5.0,
+        "payment_lines": 654.0,
+        "expenditure": 235247941.0,
+        "vendors": 59.0,
+        "pending_lines": 5.0,
+        "completion_rate_pct": 60.25,
+        "payments_per_vendor": 11.08,
+        "run_id": "run_20260824T180321Z_5e3822"
+      },
+      {
+        "state": "Uttar Pradesh",
+        "ida_district": "Lucknow",
+        "works_recommended": 285.0,
+        "works_completed": 75.0,
+        "work_amount": 399865302.0,
+        "mps": 9.0,
+        "payment_lines": 272.0,
+        "expenditure": 233582906.0,
+        "vendors": 38.0,
+        "pending_lines": 10.0,
+        "completion_rate_pct": 20.83,
+        "payments_per_vendor": 7.16,
+        "run_id": "run_20260824T180321Z_5e3822"
+      },
+      {
+        "state": "Bihar",
+        "ida_district": "Muzaffarpur",
+        "works_recommended": 67.0,
+        "works_completed": 107.0,
+        "work_amount": 275230274.0,
+        "mps": 5.0,
+        "payment_lines": 140.0,
+        "expenditure": 230484026.0,
+        "vendors": 12.0,
+        "pending_lines": 1.0,
+        "completion_rate_pct": 61.49,
+        "payments_per_vendor": 11.67,
+        "run_id": "run_20260824T180321Z_5e3822"
+      },
+      {
+        "state": "Uttar Pradesh",
+        "ida_district": "Auraiya",
+        "works_recommended": 267.0,
+        "works_completed": 245.0,
+        "work_amount": 282436190.73,
+        "mps": 5.0,
+        "payment_lines": 607.0,
+        "expenditure": 224429317.35,
+        "vendors": 19.0,
+        "pending_lines": 3.0,
+        "completion_rate_pct": 47.85,
+        "payments_per_vendor": 31.95,
+        "run_id": "run_20260824T180321Z_5e3822"
+      },
+      {
+        "state": "West Bengal",
+        "ida_district": "South 24 Parganas",
+        "works_recommended": 317.0,
+        "works_completed": 558.0,
+        "work_amount": 325541081.0,
+        "mps": 5.0,
+        "payment_lines": 657.0,
+        "expenditure": 222114282.0,
+        "vendors": 316.0,
+        "pending_lines": 1.0,
+        "completion_rate_pct": 63.77,
+        "payments_per_vendor": 2.08,
+        "run_id": "run_20260824T180321Z_5e3822"
+      },
+      {
+        "state": "Uttar Pradesh",
+        "ida_district": "Ghazipur",
+        "works_recommended": 874.0,
+        "works_completed": 46.0,
+        "work_amount": 383071696.0,
+        "mps": 5.0,
+        "payment_lines": 654.0,
+        "expenditure": 217586817.5,
+        "vendors": 45.0,
+        "pending_lines": 1.0,
+        "completion_rate_pct": 5.0,
+        "payments_per_vendor": 14.53,
+        "run_id": "run_20260824T180321Z_5e3822"
+      },
+      {
+        "state": "Uttar Pradesh",
+        "ida_district": "Pilibhit",
+        "works_recommended": 31.0,
+        "works_completed": 263.0,
+        "work_amount": 250512862.0,
+        "mps": 4.0,
+        "payment_lines": 327.0,
+        "expenditure": 214152314.0,
+        "vendors": 17.0,
+        "pending_lines": 2.0,
+        "completion_rate_pct": 89.46,
+        "payments_per_vendor": 19.24,
+        "run_id": "run_20260824T180321Z_5e3822"
+      },
+      {
+        "state": "Punjab",
+        "ida_district": "Ferozepur",
+        "works_recommended": 114.0,
+        "works_completed": 354.0,
+        "work_amount": 255317316.0,
+        "mps": 7.0,
+        "payment_lines": 1222.0,
+        "expenditure": 209443062.0,
+        "vendors": 299.0,
+        "pending_lines": 0.0,
+        "completion_rate_pct": 75.64,
+        "payments_per_vendor": 4.09,
+        "run_id": "run_20260824T180321Z_5e3822"
+      },
+      {
+        "state": "West Bengal",
+        "ida_district": "Birbhum",
+        "works_recommended": 72.0,
+        "works_completed": 173.0,
+        "work_amount": 276101678.6,
+        "mps": 3.0,
+        "payment_lines": 196.0,
+        "expenditure": 203299658.6,
+        "vendors": 108.0,
+        "pending_lines": 0.0,
+        "completion_rate_pct": 70.61,
+        "payments_per_vendor": 1.81,
+        "run_id": "run_20260824T180321Z_5e3822"
+      },
+      {
+        "state": "Uttar Pradesh",
+        "ida_district": "Mirzapur",
+        "works_recommended": 73.0,
+        "works_completed": 47.0,
+        "work_amount": 286255099.0,
+        "mps": 5.0,
+        "payment_lines": 205.0,
+        "expenditure": 200928496.0,
+        "vendors": 34.0,
+        "pending_lines": 11.0,
+        "completion_rate_pct": 39.17,
+        "payments_per_vendor": 6.03,
+        "run_id": "run_20260824T180321Z_5e3822"
+      }
+    ],
+    "districts_with_lowest_completion": [
+      {
+        "state": "Assam",
+        "ida_district": "Tamulpur",
+        "works_recommended": 55.0,
+        "works_completed": 0.0,
+        "work_amount": 18400000.0,
+        "mps": 2.0,
+        "payment_lines": 12.0,
+        "expenditure": 2595244.0,
+        "vendors": 2.0,
+        "pending_lines": 0.0,
+        "completion_rate_pct": 0.0,
+        "payments_per_vendor": 6.0,
+        "run_id": "run_20260824T180321Z_5e3822"
+      },
+      {
+        "state": "Assam",
+        "ida_district": "Sribhumi",
+        "works_recommended": 71.0,
+        "works_completed": 0.0,
+        "work_amount": 113880003.0,
+        "mps": 2.0,
+        "payment_lines": 116.0,
+        "expenditure": 66488500.0,
+        "vendors": 13.0,
+        "pending_lines": 13.0,
+        "completion_rate_pct": 0.0,
+        "payments_per_vendor": 8.92,
+        "run_id": "run_20260824T180321Z_5e3822"
+      },
+      {
+        "state": "Maharashtra",
+        "ida_district": "Mumbai Suburban",
+        "works_recommended": 284.0,
+        "works_completed": 0.0,
+        "work_amount": 669300000.0,
+        "mps": 8.0,
+        "payment_lines": 126.0,
+        "expenditure": 295075488.0,
+        "vendors": 73.0,
+        "pending_lines": 12.0,
+        "completion_rate_pct": 0.0,
+        "payments_per_vendor": 1.73,
+        "run_id": "run_20260824T180321Z_5e3822"
+      },
+      {
+        "state": "Haryana",
+        "ida_district": "Yamunanagar",
+        "works_recommended": 87.0,
+        "works_completed": 0.0,
+        "work_amount": 52521400.0,
+        "mps": 3.0,
+        "payment_lines": 77.0,
+        "expenditure": 19323183.0,
+        "vendors": 28.0,
+        "pending_lines": 2.0,
+        "completion_rate_pct": 0.0,
+        "payments_per_vendor": 2.75,
+        "run_id": "run_20260824T180321Z_5e3822"
+      },
+      {
+        "state": "Odisha",
+        "ida_district": "Anugola",
+        "works_recommended": 55.0,
+        "works_completed": 0.0,
+        "work_amount": 50785000.0,
+        "mps": 3.0,
+        "payment_lines": 2.0,
+        "expenditure": 1030128.0,
+        "vendors": 2.0,
+        "pending_lines": 1.0,
+        "completion_rate_pct": 0.0,
+        "payments_per_vendor": 1.0,
+        "run_id": "run_20260824T180321Z_5e3822"
+      },
+      {
+        "state": "Odisha",
+        "ida_district": "Dhenkanal",
+        "works_recommended": 58.0,
+        "works_completed": 0.0,
+        "work_amount": 40280000.0,
+        "mps": 2.0,
+        "payment_lines": 20.0,
+        "expenditure": 2008929.0,
+        "vendors": 12.0,
+        "pending_lines": 0.0,
+        "completion_rate_pct": 0.0,
+        "payments_per_vendor": 1.67,
+        "run_id": "run_20260824T180321Z_5e3822"
+      },
+      {
+        "state": "Maharashtra",
+        "ida_district": "Jalna",
+        "works_recommended": 71.0,
+        "works_completed": 0.0,
+        "work_amount": 69891000.0,
+        "mps": 3.0,
+        "payment_lines": 46.0,
+        "expenditure": 42113484.0,
+        "vendors": 27.0,
+        "pending_lines": 2.0,
+        "completion_rate_pct": 0.0,
+        "payments_per_vendor": 1.7,
+        "run_id": "run_20260824T180321Z_5e3822"
+      },
+      {
+        "state": "Karnataka",
+        "ida_district": "Kodagu",
+        "works_recommended": 60.0,
+        "works_completed": 0.0,
+        "work_amount": 75000000.0,
+        "mps": 4.0,
+        "payment_lines": 47.0,
+        "expenditure": 48562000.0,
+        "vendors": 4.0,
+        "pending_lines": 0.0,
+        "completion_rate_pct": 0.0,
+        "payments_per_vendor": 11.75,
+        "run_id": "run_20260824T180321Z_5e3822"
+      },
+      {
+        "state": "Jharkhand",
+        "ida_district": "Sahebganj",
+        "works_recommended": 132.0,
+        "works_completed": 0.0,
+        "work_amount": 22300000.0,
+        "mps": 2.0,
+        "payment_lines": 241.0,
+        "expenditure": 20340000.0,
+        "vendors": 2.0,
+        "pending_lines": 0.0,
+        "completion_rate_pct": 0.0,
+        "payments_per_vendor": 120.5,
+        "run_id": "run_20260824T180321Z_5e3822"
+      },
+      {
+        "state": "Jharkhand",
+        "ida_district": "Pakur",
+        "works_recommended": 292.0,
+        "works_completed": 0.0,
+        "work_amount": 62615000.0,
+        "mps": 1.0,
+        "payment_lines": 31.0,
+        "expenditure": 6221697.0,
+        "vendors": 1.0,
+        "pending_lines": 0.0,
+        "completion_rate_pct": 0.0,
+        "payments_per_vendor": 31.0,
+        "run_id": "run_20260824T180321Z_5e3822"
+      },
+      {
+        "state": "Jharkhand",
+        "ida_district": "West Singhbhum",
+        "works_recommended": 94.0,
+        "works_completed": 0.0,
+        "work_amount": 62805160.0,
+        "mps": 2.0,
+        "payment_lines": 93.0,
+        "expenditure": 45870492.0,
+        "vendors": 2.0,
+        "pending_lines": 0.0,
+        "completion_rate_pct": 0.0,
+        "payments_per_vendor": 46.5,
+        "run_id": "run_20260824T180321Z_5e3822"
+      },
+      {
+        "state": "Jharkhand",
+        "ida_district": "Saraikela Kharsawan",
+        "works_recommended": 97.0,
+        "works_completed": 0.0,
+        "work_amount": 52177134.0,
+        "mps": 4.0,
+        "payment_lines": 116.0,
+        "expenditure": 42160749.0,
+        "vendors": 5.0,
+        "pending_lines": 0.0,
+        "completion_rate_pct": 0.0,
+        "payments_per_vendor": 23.2,
+        "run_id": "run_20260824T180321Z_5e3822"
+      },
+      {
+        "state": "Madhya Pradesh",
+        "ida_district": "Raisen",
+        "works_recommended": 104.0,
+        "works_completed": 0.0,
+        "work_amount": 39960000.0,
+        "mps": 6.0,
+        "payment_lines": 128.0,
+        "expenditure": 29647000.0,
+        "vendors": 66.0,
+        "pending_lines": 1.0,
+        "completion_rate_pct": 0.0,
+        "payments_per_vendor": 1.94,
+        "run_id": "run_20260824T180321Z_5e3822"
+      },
+      {
+        "state": "Madhya Pradesh",
+        "ida_district": "Rewa",
+        "works_recommended": 87.0,
+        "works_completed": 0.0,
+        "work_amount": 113400022.0,
+        "mps": 4.0,
+        "payment_lines": 59.0,
+        "expenditure": 72117973.0,
+        "vendors": 29.0,
+        "pending_lines": 2.0,
+        "completion_rate_pct": 0.0,
+        "payments_per_vendor": 2.03,
+        "run_id": "run_20260824T180321Z_5e3822"
+      },
+      {
+        "state": "Jharkhand",
+        "ida_district": "Chatra",
+        "works_recommended": 338.0,
+        "works_completed": 0.0,
+        "work_amount": 63250000.0,
+        "mps": 2.0,
+        "payment_lines": 148.0,
+        "expenditure": 28661363.0,
+        "vendors": 1.0,
+        "pending_lines": 28.0,
+        "completion_rate_pct": 0.0,
+        "payments_per_vendor": 148.0,
+        "run_id": "run_20260824T180321Z_5e3822"
+      },
+      {
+        "state": "Madhya Pradesh",
+        "ida_district": "Niwari",
+        "works_recommended": 72.0,
+        "works_completed": 0.0,
+        "work_amount": 29155520.0,
+        "mps": 1.0,
+        "payment_lines": 10.0,
+        "expenditure": 1954831.0,
+        "vendors": 9.0,
+        "pending_lines": 2.0,
+        "completion_rate_pct": 0.0,
+        "payments_per_vendor": 1.11,
+        "run_id": "run_20260824T180321Z_5e3822"
+      },
+      {
+        "state": "Madhya Pradesh",
+        "ida_district": "Dindori",
+        "works_recommended": 90.0,
+        "works_completed": 0.0,
+        "work_amount": 40148505.0,
+        "mps": 6.0,
+        "payment_lines": 64.0,
+        "expenditure": 20278648.0,
+        "vendors": 24.0,
+        "pending_lines": 1.0,
+        "completion_rate_pct": 0.0,
+        "payments_per_vendor": 2.67,
+        "run_id": "run_20260824T180321Z_5e3822"
+      },
+      {
+        "state": "Uttar Pradesh",
+        "ida_district": "Shrawasti",
+        "works_recommended": 660.0,
+        "works_completed": 0.0,
+        "work_amount": 46492410.0,
+        "mps": 1.0,
+        "payment_lines": 55.0,
+        "expenditure": 14754674.0,
+        "vendors": 2.0,
+        "pending_lines": 55.0,
+        "completion_rate_pct": 0.0,
+        "payments_per_vendor": 27.5,
+        "run_id": "run_20260824T180321Z_5e3822"
+      },
+      {
+        "state": "Assam",
+        "ida_district": "Kamrup",
+        "works_recommended": 71.0,
+        "works_completed": 0.0,
+        "work_amount": 32950000.0,
+        "mps": 5.0,
+        "payment_lines": 33.0,
+        "expenditure": 6507796.0,
+        "vendors": 15.0,
+        "pending_lines": 1.0,
+        "completion_rate_pct": 0.0,
+        "payments_per_vendor": 2.2,
+        "run_id": "run_20260824T180321Z_5e3822"
+      },
+      {
+        "state": "Assam",
+        "ida_district": "Golaghat",
+        "works_recommended": 64.0,
+        "works_completed": 0.0,
+        "work_amount": 76019000.0,
+        "mps": 3.0,
+        "payment_lines": 24.0,
+        "expenditure": 11168880.0,
+        "vendors": 15.0,
+        "pending_lines": 1.0,
+        "completion_rate_pct": 0.0,
+        "payments_per_vendor": 1.6,
+        "run_id": "run_20260824T180321Z_5e3822"
+      }
+    ],
+    "expenditure_gini_across_states": 0.6184233364523821,
+    "note": "The official source publishes no GPS coordinates. Geography is analysed at state / constituency / implementing-district level only; no coordinates are invented."
+  },
+  "patterns": [
+    "MP fund utilisation is highly dispersed: median 29.9%, p10 1.5%, p90 62.1%.",
+    "325 MPs have utilised under 25% of their allocation, while 0 are above 95%.",
+    "Recommended work amounts are strongly right-skewed (median \u20b9400,000, p99 \u20b94,500,000, max \u20b999,965,000).",
+    "52.9% of recommended amounts are exact multiples of \u20b91 lakh or more, versus 10.2% of payment lines.",
+    "38,598 payment lines (36.3%) are exact repeats of another line on the same day for the same vendor, agency and amount.",
+    "The 10 largest vendors account for 4.4% of all payment value across 26,491 vendors.",
+    "Completed works are smaller than open recommendations (median \u20b9300,000 vs \u20b9400,000)."
+  ],
+  "potential_anomalies": {
+    "works_robust_z_above_threshold": 9154,
+    "works_above_district_p90": 10405,
+    "payment_lines_robust_z_above_threshold": 13281,
+    "repeated_payment_lines": 38598,
+    "repeated_payment_lines_above_5": 25479,
+    "mps_with_zero_completion": 109,
+    "mps_utilisation_over_100": 0,
+    "mps_published_vs_derived_gap_over_10pct": 0,
+    "note": "These are statistical signals only. None of them is evidence of fraud; they define the candidate population that the anomaly and risk layers score and explain."
+  },
+  "threshold_recommendations": {
+    "observed_extreme_rate_works": 0.0327,
+    "observed_extreme_rate_payments": 0.026,
+    "configured_iforest_contamination": 0.03,
+    "recommendation": "Isolation Forest contamination is configured at 0.03, which is deliberately close to the observed extreme-value rate (3.27% of works, 2.60% of payment lines) so the unsupervised detector does not manufacture more anomalies than the distribution actually contains. Amount distributions are log-normal-like and heavy tailed, so all amount features are log-transformed and compared within (state, category) peer groups rather than nationally."
+  },
+  "ml_recommendations": [
+    "Amounts are heavy-tailed and right-skewed \u2192 use log1p transforms and robust (median/MAD) statistics rather than mean/std for every amount feature.",
+    "No confirmed fraud labels exist in the official data \u2192 supervised fraud classification is impossible. Use unsupervised anomaly detection (Isolation Forest, LOF, DBSCAN) plus explicit rules, and present the output as risk, never as fraud.",
+    "Peer comparison must be done inside (state, category) and district groups; national comparison would flag whole states rather than individual works.",
+    "Work descriptions are short, repetitive and noisy \u2192 character n-gram TF-IDF with cosine similarity inside state blocks is more robust here than word-level embeddings.",
+    "Recommended and completed works share almost no work ids \u2192 do not attempt supervised completion-time regression at work level; model completion propensity at MP/district level instead.",
+    "Payment lines repeat exactly and carry no payment id \u2192 repetition count is a feature, and any financial aggregate must state whether duplicates were collapsed."
+  ]
+}

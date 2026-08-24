@@ -1,0 +1,72 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-mplads}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-change-me}
+      POSTGRES_DB: ${POSTGRES_DB:-mplads}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-mplads}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  pipeline:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    env_file: [.env]
+    environment:
+      MPLADS_DB_URL: postgresql+psycopg://${POSTGRES_USER:-mplads}:${POSTGRES_PASSWORD:-change-me}@postgres:5432/${POSTGRES_DB:-mplads}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./data:/app/data
+      - ./outputs:/app/outputs
+    # One full ingestion → risk-scoring cycle, then exit.
+    command: ["python", "scripts/run_pipeline.py"]
+
+  api:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    env_file: [.env]
+    environment:
+      MPLADS_DB_URL: postgresql+psycopg://${POSTGRES_USER:-mplads}:${POSTGRES_PASSWORD:-change-me}@postgres:5432/${POSTGRES_DB:-mplads}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+      - ./outputs:/app/outputs
+
+  scheduler:
+    # Automated refresh: re-runs the whole pipeline every night at 02:30.
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    env_file: [.env]
+    environment:
+      MPLADS_DB_URL: postgresql+psycopg://${POSTGRES_USER:-mplads}:${POSTGRES_PASSWORD:-change-me}@postgres:5432/${POSTGRES_DB:-mplads}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./data:/app/data
+      - ./outputs:/app/outputs
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        while true; do
+          target=$$(date -d 'tomorrow 02:30' +%s 2>/dev/null || date -v+1d -j -f '%H:%M' '02:30' +%s);
+          sleep $$(( target - $$(date +%s) ));
+          python scripts/run_pipeline.py || echo "pipeline run failed";
+        done
+
+volumes:
+  pgdata:

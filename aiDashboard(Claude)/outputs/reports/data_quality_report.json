@@ -1,0 +1,343 @@
+{
+  "run_id": "run_20260824T180321Z_5e3822",
+  "generated_at": "2026-08-24T18:05:53+00:00",
+  "source": "https://mplads.mospi.gov.in/digigov/dashboard.html",
+  "portal_reachable": false,
+  "snapshot_used": "20260822",
+  "totals": {
+    "records_received": 233821,
+    "records_valid": 233821,
+    "records_quarantined": 0,
+    "duplicate_records": 31950,
+    "missing_critical_field_cells": 43929
+  },
+  "scores": {
+    "validity_pct": 100.0,
+    "completeness_pct": 97.92,
+    "uniqueness_pct": 86.34,
+    "reconciliation_pct": 100.0,
+    "overall_data_quality_pct": 96.06
+  },
+  "datasets": [
+    {
+      "dataset": "recommended_works",
+      "records_received": 83621,
+      "records_valid": 83621,
+      "records_quarantined": 0,
+      "validity_rate_pct": 100.0,
+      "warned_records": 64,
+      "full_duplicate_rows": 0,
+      "missing_cell_pct": 0.0,
+      "columns_with_missing": [],
+      "top_issues": [
+        {
+          "rule": "text_too_short:work_description",
+          "severity": "WARN",
+          "count": 49
+        },
+        {
+          "rule": "duplicate_key:work_id",
+          "severity": "WARN",
+          "count": 15
+        }
+      ],
+      "duplicate_log": [
+        {
+          "dataset": "recommended_works",
+          "duplicate_type": "repeated_work_id",
+          "records": 15,
+          "reason": "the same work_id appears more than once in the source export",
+          "action": "first occurrence marked canonical; the rest retained and flagged"
+        }
+      ],
+      "standardisation": {
+        "state_values_merged": 0,
+        "mp_name_variants_collapsed": 1
+      },
+      "outlier_flags": {
+        "recommended_amount__is_statistical_outlier": 7121,
+        "recommended_amount__is_data_quality_issue": 0,
+        "recommended_amount__is_potential_anomaly": 3051
+      },
+      "notes": []
+    },
+    {
+      "dataset": "completed_works",
+      "records_received": 43173,
+      "records_valid": 43173,
+      "records_quarantined": 0,
+      "validity_rate_pct": 100.0,
+      "warned_records": 18,
+      "full_duplicate_rows": 0,
+      "missing_cell_pct": 8.3326,
+      "columns_with_missing": [
+        {
+          "dataset": "completed_works",
+          "column": "average_rating",
+          "missing_count": 43169,
+          "missing_pct": 99.9907,
+          "classification": "SOURCE_UNAVAILABLE",
+          "action": "left missing (no imputation)"
+        }
+      ],
+      "top_issues": [
+        {
+          "rule": "text_too_short:work_description",
+          "severity": "WARN",
+          "count": 18
+        }
+      ],
+      "duplicate_log": [],
+      "standardisation": {
+        "state_values_merged": 0,
+        "mp_name_variants_collapsed": 1
+      },
+      "outlier_flags": {
+        "final_amount__is_statistical_outlier": 3568,
+        "final_amount__is_data_quality_issue": 0,
+        "final_amount__is_potential_anomaly": 1506
+      },
+      "notes": []
+    },
+    {
+      "dataset": "expenditures",
+      "records_received": 106263,
+      "records_valid": 106263,
+      "records_quarantined": 0,
+      "validity_rate_pct": 100.0,
+      "warned_records": 31950,
+      "full_duplicate_rows": 31950,
+      "missing_cell_pct": 0.0,
+      "columns_with_missing": [],
+      "top_issues": [
+        {
+          "rule": "duplicate_row",
+          "severity": "WARN",
+          "count": 31950
+        }
+      ],
+      "duplicate_log": [
+        {
+          "dataset": "expenditures",
+          "duplicate_type": "exact_row",
+          "records": 25339,
+          "reason": "byte-identical record in the official export",
+          "action": "retained in the warehouse; collapsed for financial aggregation"
+        },
+        {
+          "dataset": "expenditures",
+          "duplicate_type": "identical_payment_line",
+          "records": 38598,
+          "reason": "identical (MP, vendor, agency, amount, date, description) payment lines; the portal publishes no payment identifier so a repeated export row and a genuinely repeated payment are indistinguishable",
+          "action": "all lines retained; repetition count carried forward as a risk signal"
+        }
+      ],
+      "standardisation": {
+        "state_values_merged": 0,
+        "mp_name_variants_collapsed": 1,
+        "vendor_variants_collapsed": 1005
+      },
+      "outlier_flags": {
+        "expenditure_amount__is_statistical_outlier": 6515,
+        "expenditure_amount__is_data_quality_issue": 0,
+        "expenditure_amount__is_potential_anomaly": 2768
+      },
+      "notes": [
+        "38,598 expenditure lines are exact repeats of another line. Because no payment id is published, they are preserved and surfaced as a risk signal rather than deleted."
+      ]
+    },
+    {
+      "dataset": "mp_summary",
+      "records_received": 764,
+      "records_valid": 764,
+      "records_quarantined": 0,
+      "validity_rate_pct": 100.0,
+      "warned_records": 79,
+      "full_duplicate_rows": 0,
+      "missing_cell_pct": 0.0,
+      "columns_with_missing": [
+        {
+          "dataset": "mp_summary",
+          "column": "average_rating",
+          "missing_count": 760,
+          "missing_pct": 99.4764,
+          "classification": "SOURCE_UNAVAILABLE",
+          "action": "left missing (no imputation)"
+        }
+      ],
+      "top_issues": [
+        {
+          "rule": "range_zero:total_expenditure",
+          "severity": "WARN",
+          "count": 66
+        },
+        {
+          "rule": "range_max:allocated_amount",
+          "severity": "WARN",
+          "count": 13
+        },
+        {
+          "rule": "range_max:unspent_amount",
+          "severity": "WARN",
+          "count": 3
+        },
+        {
+          "rule": "range_zero:allocated_amount",
+          "severity": "WARN",
+          "count": 1
+        },
+        {
+          "rule": "range_zero:unspent_amount",
+          "severity": "WARN",
+          "count": 1
+        }
+      ],
+      "duplicate_log": [],
+      "standardisation": {
+        "state_values_merged": 0,
+        "mp_name_variants_collapsed": 2
+      },
+      "outlier_flags": {
+        "allocated_amount__is_statistical_outlier": 202,
+        "allocated_amount__is_data_quality_issue": 14,
+        "allocated_amount__is_potential_anomaly": 0,
+        "total_expenditure__is_statistical_outlier": 25,
+        "total_expenditure__is_data_quality_issue": 66,
+        "total_expenditure__is_potential_anomaly": 0,
+        "unspent_amount__is_statistical_outlier": 10,
+        "unspent_amount__is_data_quality_issue": 4,
+        "unspent_amount__is_potential_anomaly": 1
+      },
+      "notes": []
+    }
+  ],
+  "linkage": {
+    "work_id_overlap_recommended_completed": 128,
+    "work_id_overlap_pct_of_completed": 0.296,
+    "expenditure_to_work_description_match_pct": 1.257,
+    "mp_key_coverage_recommended_pct": 100.0,
+    "mp_key_coverage_completed_pct": 100.0,
+    "mp_key_coverage_expenditures_pct": 100.0,
+    "mp_dimension_rows": 764,
+    "supported_joins": [
+      "mp_key (all datasets)",
+      "state / constituency / ida_district (all datasets)"
+    ],
+    "unsupported_joins": [
+      "recommended_work -> completed_work by work_id: only 128 ids are shared (0.296% of completed works). Per-work approval-to-completion duration is therefore NOT computable and is not estimated.",
+      "expenditure -> work: the portal publishes no work id on payment lines and only 1.257% of payment descriptions match a work description exactly. Payments are therefore analysed at MP / vendor / district level."
+    ]
+  },
+  "control_totals_check": {
+    "available": true,
+    "reconciliation_score_pct": 100.0,
+    "checks": [
+      {
+        "metric": "totalMPs",
+        "portal": 764.0,
+        "computed": 764.0,
+        "diff_pct": 0.0,
+        "match": true
+      },
+      {
+        "metric": "totalWorksRecommended",
+        "portal": 83621.0,
+        "computed": 83621.0,
+        "diff_pct": 0.0,
+        "match": true
+      },
+      {
+        "metric": "totalWorksCompleted",
+        "portal": 43173.0,
+        "computed": 43173.0,
+        "diff_pct": 0.0,
+        "match": true
+      },
+      {
+        "metric": "pendingWorks",
+        "portal": 40448.0,
+        "computed": 40448.0,
+        "diff_pct": 0.0,
+        "match": true
+      },
+      {
+        "metric": "totalTransactions",
+        "portal": 106263.0,
+        "computed": 106263.0,
+        "diff_pct": 0.0,
+        "match": true
+      },
+      {
+        "metric": "totalAllocated",
+        "portal": 116210588210.35,
+        "computed": 116210588210.35,
+        "diff_pct": 0.0,
+        "match": true
+      },
+      {
+        "metric": "totalExpenditure",
+        "portal": 39187346910.14,
+        "computed": 39187346910.14,
+        "diff_pct": 0.0,
+        "match": true
+      },
+      {
+        "metric": "completedWorksValue",
+        "portal": 23640220472.61,
+        "computed": 23640220472.61,
+        "diff_pct": 0.0,
+        "match": true
+      },
+      {
+        "metric": "inProgressPayments",
+        "portal": 15547126437.53,
+        "computed": 15547126437.529999,
+        "diff_pct": -0.0,
+        "match": true
+      },
+      {
+        "metric": "utilizationPercentage",
+        "portal": 33.720978022422464,
+        "computed": 33.720978022422464,
+        "diff_pct": 0.0,
+        "match": true
+      },
+      {
+        "metric": "completionRate",
+        "portal": 51.629375396132545,
+        "computed": 51.62937539613255,
+        "diff_pct": 0.0,
+        "match": true
+      },
+      {
+        "metric": "avgAllocation",
+        "portal": 152108099.751767,
+        "computed": 152108099.751767,
+        "diff_pct": 0.0,
+        "match": true
+      },
+      {
+        "metric": "paymentGap",
+        "portal": 39.673842868671144,
+        "computed": 39.67384286867114,
+        "diff_pct": -0.0,
+        "match": true
+      }
+    ],
+    "portal_totals": {
+      "totalAllocated": 116210588210.35,
+      "totalExpenditure": 39187346910.14,
+      "utilizationPercentage": 33.720978022422464,
+      "totalMPs": 764,
+      "totalWorksCompleted": 43173,
+      "totalWorksRecommended": 83621,
+      "completionRate": 51.629375396132545,
+      "totalTransactions": 106263,
+      "avgAllocation": 152108099.751767,
+      "pendingWorks": 40448,
+      "paymentGap": 39.673842868671144,
+      "completedWorksValue": 23640220472.61,
+      "inProgressPayments": 15547126437.53
+    }
+  }
+}

@@ -1,0 +1,156 @@
+# =============================================================================
+# MPLADS AI Monitor — central configuration
+# Every analytical threshold in the platform is read from this file.
+# Nothing is hard-coded in the detectors, the risk engine or the dashboard.
+# =============================================================================
+
+project:
+  name: "AI-Assisted MPLADS Anomaly, Risk & Inefficiency Detection System"
+  risk_engine_version: "1.0.0"
+  feature_version: "1.0.0"
+  model_version: "1.0.0"
+
+source:
+  official_portal: "https://mplads.mospi.gov.in/digigov/dashboard.html"
+  # Live API client configuration. The client is real and will be used whenever
+  # the host running the pipeline can reach the portal. When it cannot, the
+  # pipeline falls back to the most recent officially-extracted snapshot and
+  # records the blocker in the ingestion manifest (it never fabricates data).
+  api:
+    base_url: "https://mplads.mospi.gov.in"
+    candidate_endpoints:
+      - "/digigov/api/dashboard/summary"
+      - "/digigov/rest/dashboard/summary"
+      - "/api/dashboard/summary"
+    timeout_seconds: 8
+    max_retries: 2
+    backoff_seconds: 1
+    page_size: 1000
+    user_agent: "mplads-ai-monitor/1.0 (research; contact: data-team)"
+
+paths:
+  raw: "data/raw"
+  cleaned: "data/cleaned"
+  processed: "data/processed"
+  analytical: "data/analytical"
+  reports: "outputs/reports"
+  artifacts: "outputs/artifacts"
+
+database:
+  # SQLite by default so the whole platform runs with zero infrastructure.
+  # Set MPLADS_DB_URL=postgresql+psycopg://user:pass@host/db to use PostgreSQL.
+  url: "sqlite:///data/processed/mplads.db"
+
+validation:
+  amount_min: 0.0                 # rupees; below this a value is invalid
+  amount_max: 250000000.0         # 25 crore — above the largest legitimate single MPLADS work
+  min_valid_date: "2023-01-01"    # eSAKSHI portal went live 2023-04-01
+  max_future_days: 1              # dates further ahead than this are invalid
+  required_fields:
+    recommended_works: ["work_id", "mp_name", "state", "recommended_amount", "recommendation_date"]
+    completed_works:   ["work_id", "mp_name", "state", "final_amount", "completed_date"]
+    expenditures:      ["mp_name", "state", "vendor", "expenditure_amount", "expenditure_date"]
+    mp_summary:        ["mp_name", "state", "allocated_amount", "total_expenditure"]
+
+cleaning:
+  # Missing values are classified, never silently imputed.
+  min_description_length: 3
+  # Exact-duplicate expenditure lines are kept in the warehouse but collapsed
+  # for financial aggregation, and the repetition itself becomes a risk signal.
+  collapse_duplicate_payments: true
+
+analysis:
+  outlier_z_threshold: 3.0
+  robust_z_threshold: 3.5          # modified z-score (MAD based), Iglewicz & Hoaglin
+  iqr_multiplier: 1.5
+  extreme_iqr_multiplier: 3.0
+  min_group_size: 20               # smaller peer groups fall back to the parent group
+
+anomaly_detection:
+  isolation_forest:
+    contamination: 0.03            # set from the EDA extreme-value rate, see docs/EDA_REPORT.md
+    n_estimators: 300
+    max_samples: "auto"
+    random_state: 42
+  lof:
+    n_neighbors: 35
+    contamination: 0.03
+  dbscan:
+    eps: 0.6
+    min_samples: 15
+  vendor_concentration:
+    min_payments: 5                # vendors below this are not scored for concentration
+    hhi_high: 0.30                 # Herfindahl index above this = concentrated district/IDA
+    single_vendor_share_high: 0.60
+  duplicate_payments:
+    repeat_count_high: 5           # identical payment line repeated this many times
+  round_number:
+    moduli: [100000, 500000, 1000000]
+    min_share_for_flag: 0.60
+
+nlp:
+  tfidf:
+    ngram_range: [3, 5]
+    analyzer: "char_wb"
+    min_df: 1
+    max_features: 200000
+  similarity_threshold: 0.85       # cosine similarity above this = near-duplicate
+  exact_duplicate_threshold: 0.995
+  block_by: ["state"]              # candidate pairs are only compared within a block
+  max_block_size: 6000
+  top_k: 10
+
+risk_engine:
+  # Component weights for the composite 0-100 score. Must sum to 1.0.
+  weights:
+    cost_risk: 0.24
+    duplicate_risk: 0.22
+    vendor_risk: 0.20
+    delay_risk: 0.14
+    utilisation_risk: 0.12
+    data_quality_risk: 0.08
+  # How the six components combine. A pure weighted average buries a record that
+  # deviates severely on ONE well-evidenced dimension (a work costed 15x its
+  # peers) because the other five stay quiet. The composite is therefore a blend
+  # of the weighted average and the strongest single component.
+  severity_blend:
+    weighted_average: 0.60
+    strongest_component: 0.40
+  # How much the unsupervised ensemble may corroborate the explained components.
+  # It can lift a score, never create one on its own.
+  ensemble_corroboration: 0.15
+  bands:
+    low: [0, 24]
+    moderate: [25, 49]
+    high: [50, 74]
+    critical: [75, 100]
+  # A component only contributes an explanation line when it exceeds this value.
+  explanation_min_component: 40
+
+alerts:
+  min_risk_score: 60               # alerts are raised at or above this composite score
+  max_alerts_per_cycle: 500
+  states: ["OPEN", "UNDER_REVIEW", "VERIFIED", "FALSE_POSITIVE", "RESOLVED"]
+
+prediction:
+  min_training_rows: 2000
+  test_size: 0.25
+  random_state: 42
+  n_estimators: 300
+
+api:
+  host: "0.0.0.0"
+  port: 8000
+  rate_limit_per_minute: 120
+  # The NL->SQL assistant may only touch these tables and may only run SELECTs.
+  assistant_allowed_tables:
+    - "dim_mp"
+    - "fact_recommended_work"
+    - "fact_completed_work"
+    - "fact_expenditure"
+    - "analytics_mp_risk"
+    - "analytics_work_risk"
+    - "analytics_vendor_risk"
+    - "alerts"
+    - "data_quality_metric"
+  assistant_max_rows: 500
