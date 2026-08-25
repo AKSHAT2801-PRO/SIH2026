@@ -1,0 +1,507 @@
+{
+  "meta": {
+    "url": "https://empoweredindian.in/mplads",
+    "title": "Empowered Indian - Making Government Data Accessible",
+    "description": "Empowered Indian makes government data accessible through searchable public datasets, citizen-friendly dashboards, MP profiles, MPLADS spending, and state-wise development work.",
+    "language": "en",
+    "viewport": "width=device-width, initial-scale=1.0",
+    "themeColor": null,
+    "ogImage": "https://empoweredindian.in/og-image.jpg",
+    "ogTitle": "Empowered Indian - Making Government Data Accessible",
+    "ogDescription": "Search public datasets, understand government spending, and explore citizen-friendly dashboards built to make Indian government data accessible."
+  },
+  "theme": {
+    "mode": "light",
+    "bodyBackground": "#ffffff",
+    "isDark": false,
+    "confidence": 0.9
+  },
+  "brand": {
+    "name": "Empowered Indian",
+    "favicon": {
+      "href": "https://empoweredindian.in/favicon.svg",
+      "type": null
+    }
+  },
+  "colors": {
+    "dominant": [
+      {
+        "hex": "#e2e8f0",
+        "ratio": 0.689
+      },
+      {
+        "hex": "#000000",
+        "ratio": 0.146
+      },
+      {
+        "hex": "#0f172a",
+        "ratio": 0.045
+      },
+      {
+        "hex": "#ffffff",
+        "ratio": 0.022
+      },
+      {
+        "hex": "#1f2937",
+        "ratio": 0.013
+      },
+      {
+        "hex": "#4a5568",
+        "ratio": 0.01
+      },
+      {
+        "hex": "#020817",
+        "ratio": 0.009
+      },
+      {
+        "hex": "#2563eb",
+        "ratio": 0.008
+      },
+      {
+        "hex": "#64748b",
+        "ratio": 0.008
+      },
+      {
+        "hex": "#1e40af",
+        "ratio": 0.006
+      },
+      {
+        "hex": "#065f46",
+        "ratio": 0.004
+      },
+      {
+        "hex": "#f8fafc",
+        "ratio": 0.004
+      },
+      {
+        "hex": "#475569",
+        "ratio": 0.003
+      },
+      {
+        "hex": "#e5e7eb",
+        "ratio": 0.003
+      },
+      {
+        "hex": "#cbd5e1",
+        "ratio": 0.003
+      },
+      {
+        "hex": "#991b1b",
+        "ratio": 0.002
+      },
+      {
+        "hex": "#344256",
+        "ratio": 0.002
+      },
+      {
+        "hex": "#bfdbfe",
+        "ratio": 0.002
+      },
+      {
+        "hex": "#333333",
+        "ratio": 0.002
+      },
+      {
+        "hex": "#ea580c",
+        "ratio": 0.002
+      },
+      {
+        "hex": "#6b7280",
+        "ratio": 0.001
+      },
+      {
+        "hex": "#2c5282",
+        "ratio": 0.001
+      },
+      {
+        "hex": "#dbeafe",
+        "ratio": 0.001
+      },
+      {
+        "hex": "#d1fae5",
+        "ratio": 0.001
+      },
+      {
+        "hex": "#a7f3d0",
+        "ratio": 0.001
+      },
+      {
+        "hex": "#b45309",
+        "ratio": 0.001
+      },
+      {
+        "hex": "#111827",
+        "ratio": 0.001
+      },
+      {
+        "hex": "#4b5563",
+        "ratio": 0.001
+      },
+      {
+        "hex": "#3b82f6",
+        "ratio": 0.001
+      },
+      {
+        "hex": "#9d6607",
+        "ratio": 0.001
+      }
+    ],
+    "palette": [
+      {
+        "hex": "#ffffff",
+        "role": "background",
+        "source": "computed"
+      },
+      {
+        "hex": "#0f172a",
+        "role": "foreground",
+        "source": "computed"
+      },
+      {
+        "hex": "#bfdbfe",
+        "role": "primary",
+        "source": "heuristic"
+      },
+      {
+        "hex": "#9d6607",
+        "role": "secondary",
+        "source": "heuristic"
+      },
+      {
+        "hex": "#3b82f6",
+        "role": "accent",
+        "source": "heuristic"
+      }
+    ],
+    "cssVariables": {
+      "--bg-primary": "#ffffff",
+      "--primary-800": "#1e3a8a",
+      "--shadow-xs": "#000000",
+      "--civic-red-900": "#450a0a",
+      "--bg-overlay": "#0f172a",
+      "--civic-green-50": "#ecfdf5",
+      "--success-color": "#059669",
+      "--civic-red-500": "#dc2626",
+      "--shadow-md": "#000000",
+      "--slate-400": "#94a3b8",
+      "--civic-red-700": "#991b1b",
+      "--civic-gold-500": "#f59e0b",
+      "--slate-50": "#f8fafc",
+      "--primary-light": "#dbeafe",
+      "--civic-green-200": "#a7f3d0",
+      "--civic-red-100": "#fee2e2",
+      "--civic-green-100": "#d1fae5",
+      "--bg-secondary": "#f8fafc",
+      "--slate-800": "#1e293b",
+      "--civic-green-700": "#065f46",
+      "--text-disabled": "#94a3b8",
+      "--primary-700": "#1e40af",
+      "--error-color": "#dc2626",
+      "--bg-card": "#ffffff",
+      "--civic-green-800": "#064e3b",
+      "--shadow-card": "#000000",
+      "--shadow-glass": "#1f2687",
+      "--civic-red-800": "#7f1d1d",
+      "--tw-ring-offset-color": "#fff",
+      "--slate-700": "#334155",
+      "--slate-200": "#e2e8f0",
+      "--border-color-hover": "#cbd5e1",
+      "--bg-tertiary": "#f1f5f9",
+      "--primary-600": "#1d4ed8",
+      "--shadow-sm": "#000000",
+      "--primary-hover": "#1d4ed8",
+      "--shadow-lg": "#000000",
+      "--civic-gold-200": "#fde68a",
+      "--civic-red-50": "#fef2f2",
+      "--civic-red-600": "#b91c1c",
+      "--civic-red-200": "#fecaca",
+      "--civic-red-300": "#fca5a5",
+      "--primary-100": "#dbeafe",
+      "--shadow-card-elevated": "#000000",
+      "--slate-300": "#cbd5e1",
+      "--primary-50": "#eff6ff",
+      "--primary-200": "#bfdbfe",
+      "--slate-100": "#f1f5f9",
+      "--text-secondary": "#475569",
+      "--civic-green-600": "#047857",
+      "--primary-color": "#2563eb",
+      "--civic-gold-800": "#92400e",
+      "--shadow-2xl": "#000000",
+      "--secondary-color": "#f59e0b",
+      "--civic-gold-300": "#fcd34d",
+      "--text-tertiary": "#64748b",
+      "--civic-gold-100": "#fef3c7",
+      "--slate-500": "#64748b",
+      "--warning-color": "#f59e0b",
+      "--slate-900": "#0f172a",
+      "--slate-600": "#475569",
+      "--primary-500": "#2563eb",
+      "--border-color": "#e2e8f0",
+      "--civic-gold-900": "#78350f",
+      "--shadow-xl": "#000000",
+      "--civic-green-500": "#059669",
+      "--primary-900": "#1e293b",
+      "--border-color-focus": "#2563eb",
+      "--info-color": "#2563eb",
+      "--primary-300": "#93c5fd",
+      "--text-inverse": "#ffffff",
+      "--shadow-inner": "#000000",
+      "--bg-gradient-glass": "#ffffff",
+      "--civic-green-900": "#022c22",
+      "--shadow-base": "#000000",
+      "--text-primary": "#0f172a",
+      "--civic-gold-700": "#b45309",
+      "--civic-green-300": "#6ee7b7",
+      "--civic-gold-600": "#d97706",
+      "--shadow-card-hover": "#000000",
+      "--bg-card-elevated": "#ffffff",
+      "--civic-gold-50": "#fefce8"
+    },
+    "gradients": [
+      {
+        "css": "linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%)",
+        "sampleColors": [
+          "#ffffff",
+          "#f8fafc"
+        ]
+      },
+      {
+        "css": "linear-gradient(135deg, rgb(37, 99, 235) 0%, rgb(245, 158, 11) 100%)",
+        "sampleColors": [
+          "#2563eb",
+          "#f59e0b"
+        ]
+      },
+      {
+        "css": "linear-gradient(135deg, rgb(239, 246, 255) 0%, rgb(248, 250, 252) 100%)",
+        "sampleColors": [
+          "#eff6ff",
+          "#f8fafc"
+        ]
+      },
+      {
+        "css": "linear-gradient(135deg, rgb(30, 64, 175) 0%, rgb(217, 119, 6) 100%)",
+        "sampleColors": [
+          "#1e40af",
+          "#d97706"
+        ]
+      },
+      {
+        "css": "linear-gradient(145deg, rgb(255, 255, 255) 0%, rgb(248, 250, 252) 100%)",
+        "sampleColors": [
+          "#ffffff",
+          "#f8fafc"
+        ]
+      },
+      {
+        "css": "linear-gradient(135deg, rgb(219, 234, 254) 0%, rgb(191, 219, 254) 100%)",
+        "sampleColors": [
+          "#dbeafe",
+          "#bfdbfe"
+        ]
+      },
+      {
+        "css": "linear-gradient(135deg, rgb(209, 250, 229) 0%, rgb(167, 243, 208) 100%)",
+        "sampleColors": [
+          "#d1fae5",
+          "#a7f3d0"
+        ]
+      },
+      {
+        "css": "linear-gradient(135deg, rgb(254, 226, 226) 0%, rgb(254, 202, 202) 100%)",
+        "sampleColors": [
+          "#fee2e2",
+          "#fecaca"
+        ]
+      },
+      {
+        "css": "linear-gradient(135deg, rgb(254, 243, 199) 0%, rgb(253, 230, 138) 100%)",
+        "sampleColors": [
+          "#fef3c7",
+          "#fde68a"
+        ]
+      },
+      {
+        "css": "linear-gradient(135deg, rgb(254, 215, 170), rgb(253, 186, 116))",
+        "sampleColors": [
+          "#fed7aa",
+          "#fdba74"
+        ]
+      }
+    ]
+  },
+  "logo": {
+    "status": "unconfirmed",
+    "reason": "The header displays a text-based logo (\"MPLADS Dashboard / EMPOWERED INDIAN\") with no accompanying icon mark, while all candidates are generic navigation icons (people, home, map, pin, bars, feedback) rather than a brand mark.",
+    "best": null,
+    "candidates": [
+      {
+        "selector": "svg",
+        "href": null,
+        "type": "svg",
+        "width": 16,
+        "height": 16,
+        "svgContent": "<svg stroke=\"currentColor\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke-linecap=\"round\" stroke-linejoin=\"round\" height=\"1em\" width=\"1em\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2\"></path><circle cx=\"9\" cy=\"7\" r=\"4\"></circle><path d=\"M23 21v-2a4 4 0 0 0-3-3.87\"></path><path d=\"M16 3.13a4 4 0 0 1 0 7.75\"></path></svg>",
+        "colors": [
+          "#4a5568"
+        ],
+        "isLight": false,
+        "isDark": false,
+        "needsDarkBackground": false,
+        "needsLightBackground": false,
+        "ownership": "first-party",
+        "headerScoped": true
+      },
+      {
+        "selector": "svg",
+        "href": null,
+        "type": "svg",
+        "width": 16,
+        "height": 16,
+        "svgContent": "<svg stroke=\"currentColor\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke-linecap=\"round\" stroke-linejoin=\"round\" height=\"1em\" width=\"1em\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z\"></path><polyline points=\"9 22 9 12 15 12 15 22\"></polyline></svg>",
+        "colors": [
+          "#2563eb"
+        ],
+        "isLight": false,
+        "isDark": false,
+        "needsDarkBackground": false,
+        "needsLightBackground": false,
+        "ownership": "first-party",
+        "headerScoped": true
+      },
+      {
+        "selector": "svg",
+        "href": null,
+        "type": "svg",
+        "width": 16,
+        "height": 16,
+        "svgContent": "<svg stroke=\"currentColor\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke-linecap=\"round\" stroke-linejoin=\"round\" height=\"1em\" width=\"1em\" xmlns=\"http://www.w3.org/2000/svg\"><polygon points=\"1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6\"></polygon><line x1=\"8\" y1=\"2\" x2=\"8\" y2=\"18\"></line><line x1=\"16\" y1=\"6\" x2=\"16\" y2=\"22\"></line></svg>",
+        "colors": [
+          "#4a5568"
+        ],
+        "isLight": false,
+        "isDark": false,
+        "needsDarkBackground": false,
+        "needsLightBackground": false,
+        "ownership": "first-party",
+        "headerScoped": true
+      },
+      {
+        "selector": "svg",
+        "href": null,
+        "type": "svg",
+        "width": 16,
+        "height": 16,
+        "svgContent": "<svg stroke=\"currentColor\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke-linecap=\"round\" stroke-linejoin=\"round\" height=\"1em\" width=\"1em\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z\"></path><circle cx=\"12\" cy=\"10\" r=\"3\"></circle></svg>",
+        "colors": [
+          "#4a5568"
+        ],
+        "isLight": false,
+        "isDark": false,
+        "needsDarkBackground": false,
+        "needsLightBackground": false,
+        "ownership": "first-party",
+        "headerScoped": true
+      },
+      {
+        "selector": "svg",
+        "href": null,
+        "type": "svg",
+        "width": 16,
+        "height": 16,
+        "svgContent": "<svg stroke=\"currentColor\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke-linecap=\"round\" stroke-linejoin=\"round\" height=\"1em\" width=\"1em\" xmlns=\"http://www.w3.org/2000/svg\"><line x1=\"18\" y1=\"20\" x2=\"18\" y2=\"10\"></line><line x1=\"12\" y1=\"20\" x2=\"12\" y2=\"4\"></line><line x1=\"6\" y1=\"20\" x2=\"6\" y2=\"14\"></line></svg>",
+        "colors": [
+          "#4a5568"
+        ],
+        "isLight": false,
+        "isDark": false,
+        "needsDarkBackground": false,
+        "needsLightBackground": false,
+        "ownership": "first-party",
+        "headerScoped": true
+      },
+      {
+        "selector": "svg",
+        "href": null,
+        "type": "svg",
+        "width": 16,
+        "height": 16,
+        "svgContent": "<svg stroke=\"currentColor\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke-linecap=\"round\" stroke-linejoin=\"round\" height=\"1em\" width=\"1em\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z\"></path></svg>",
+        "colors": [
+          "#4A5568"
+        ],
+        "isLight": false,
+        "isDark": false,
+        "headerScoped": true,
+        "ownership": "first-party"
+      }
+    ]
+  },
+  "fonts": {
+    "computed": [
+      {
+        "family": "Outfit, -apple-system, BlinkMacSystemFont, \"Segoe UI\", system-ui, sans-serif",
+        "weights": [
+          "400",
+          "500",
+          "600"
+        ],
+        "source": "system"
+      },
+      {
+        "family": "\"Cormorant Garamond\", Georgia, \"Times New Roman\", serif",
+        "weights": [
+          "800",
+          "600",
+          "700",
+          "500"
+        ],
+        "source": "web"
+      },
+      {
+        "family": "\"JetBrains Mono\", \"Fira Code\", Monaco, Consolas, monospace",
+        "weights": [
+          "800"
+        ],
+        "source": "web"
+      },
+      {
+        "family": "Outfit, system-ui, -apple-system, sans-serif",
+        "weights": [
+          "400",
+          "500",
+          "600"
+        ],
+        "source": "system"
+      },
+      {
+        "family": "\"Cormorant Garamond\", Georgia, serif",
+        "weights": [
+          "600"
+        ],
+        "source": "web"
+      },
+      {
+        "family": "Outfit, sans-serif",
+        "weights": [
+          "600"
+        ],
+        "source": "web"
+      }
+    ],
+    "baseSizePx": 16
+  },
+  "confidence": {
+    "colorExtraction": 0.9,
+    "logoDetection": 0.2,
+    "fontDetection": 0.8
+  },
+  "screenshot": {
+    "url": "https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/brand/89708cdf-1b0f-4e8b-9655-459873a0c350/screenshot.png",
+    "width": 1920,
+    "height": 1080,
+    "sizeBytes": 232896,
+    "uploadedAt": "2026-08-25T08:32:36.462Z"
+  },
+  "assets": {}
+}

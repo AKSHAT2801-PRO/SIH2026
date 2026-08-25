@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Empowered Indian - MPLADS Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Outfit', sans-serif; background-color: #f8fafc; color: #0f172a; margin: 0; padding: 0; }
+    .garamond { font-family: 'Cormorant Garamond', serif; }
+  </style>
+</head>
+<body>
+  <div class="min-h-screen bg-slate-50 text-slate-900">
+    <!-- Top Eyebrow Header -->
+    <div class="bg-[#b45309] text-amber-100 px-8 py-1.5 text-xs font-bold uppercase tracking-wider flex justify-between items-center">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+        <span>EMPOWERED INDIAN • GOVERNMENT TRANSPARENCY PLATFORM</span>
+      </div>
+      <span>MAKING GOVERNMENT DATA ACCESSIBLE</span>
+    </div>
+
+    <!-- Main Header -->
+    <header class="bg-slate-900 text-white px-8 py-5 flex items-center justify-between border-b border-slate-800">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-amber-500 text-slate-950 font-black text-xl rounded-xl flex items-center justify-center shadow-lg">
+          EI
+        </div>
+        <div>
+          <span class="text-xl font-extrabold tracking-tight text-white">Empowered Indian</span>
+          <span class="text-xs text-amber-400 block">MPLADS Dashboard</span>
+        </div>
+      </div>
+
+      <nav class="flex items-center gap-2">
+        <a id="nav-overview-ei" href="#overview" class="bg-amber-500 text-slate-950 px-4 py-2 rounded-xl text-xs font-extrabold">MPLADS Overview</a>
+        <a id="nav-directory-ei" href="#directory" class="text-slate-300 hover:text-white px-4 py-2 rounded-xl text-xs font-bold">MP Directory</a>
+        <a id="nav-audit-ei" href="#audit" class="text-slate-300 hover:text-white px-4 py-2 rounded-xl text-xs font-bold">Audit Radar</a>
+        <a id="nav-reports-ei" href="#reports" class="text-slate-300 hover:text-white px-4 py-2 rounded-xl text-xs font-bold">Reports</a>
+      </nav>
+    </header>
+
+    <!-- Main Content Body -->
+    <main class="max-w-7xl mx-auto p-8 space-y-8">
+      <!-- Hero Banner -->
+      <div class="bg-gradient-to-r from-slate-950 via-slate-900 to-amber-950 text-white rounded-3xl p-8 border border-slate-800 space-y-3">
+        <span class="text-xs font-bold text-amber-400 uppercase tracking-widest border-b-2 border-amber-500 pb-1">EMPOWERED INDIAN</span>
+        <h1 class="text-4xl font-extrabold tracking-tight text-white mt-2">MPLADS Dashboard</h1>
+        <p class="text-sm text-slate-300 max-w-2xl">Overview of Member of Parliament Local Area Development Scheme. Search public datasets, understand MP spending, and explore development work across India.</p>
+      </div>
+
+      <!-- Stat Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-1">
+          <span class="text-xs font-bold text-slate-400 uppercase">Total Entitlement</span>
+          <p class="text-3xl font-extrabold text-slate-900">₹ 3,940 Cr</p>
+          <span class="text-xs text-slate-400">Across 788 MPs</span>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-1">
+          <span class="text-xs font-bold text-amber-600 uppercase">Amount Sanctioned</span>
+          <p class="text-3xl font-extrabold text-amber-600">₹ 3,330 Cr</p>
+          <span class="text-xs text-amber-600">84.5% Sanction Rate</span>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-1">
+          <span class="text-xs font-bold text-emerald-600 uppercase">Works Tracked</span>
+          <p class="text-3xl font-extrabold text-emerald-600">42,150</p>
+          <span class="text-xs text-emerald-600">35,800 Completed</span>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-1">
+          <span class="text-xs font-bold text-sky-600 uppercase">Avg Utilization</span>
+          <p class="text-3xl font-extrabold text-sky-600">89.4%</p>
+          <span class="text-xs text-sky-600">National Average</span>
+        </div>
+      </div>
+
+      <!-- MP Spending Preview Cards -->
+      <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-6">
+        <h2 class="text-lg font-extrabold text-slate-900">Member of Parliament Spending Profiles</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200 space-y-3">
+            <div class="flex justify-between items-center">
+              <span class="text-xs font-bold text-slate-900">Shri Supriya Sule</span>
+              <span class="bg-sky-600 text-white text-[10px] font-bold px-2 py-0.5 rounded">NCP</span>
+            </div>
+            <p class="text-xs text-slate-500">Baramati, Maharashtra</p>
+            <div class="border-t border-slate-200 pt-2 flex justify-between text-xs">
+              <span class="text-slate-500">Sanctioned: ₹ 23.5 Cr</span>
+              <span class="text-emerald-600 font-extrabold">90.2% Utilized</span>
+            </div>
+          </div>
+
+          <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200 space-y-3">
+            <div class="flex justify-between items-center">
+              <span class="text-xs font-bold text-slate-900">Shri Nitin Gadkari</span>
+              <span class="bg-amber-600 text-white text-[10px] font-bold px-2 py-0.5 rounded">BJP</span>
+            </div>
+            <p class="text-xs text-slate-500">Nagpur, Maharashtra</p>
+            <div class="border-t border-slate-200 pt-2 flex justify-between text-xs">
+              <span class="text-slate-500">Sanctioned: ₹ 24.9 Cr</span>
+              <span class="text-emerald-600 font-extrabold">98.4% Utilized</span>
+            </div>
+          </div>
+
+          <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200 space-y-3">
+            <div class="flex justify-between items-center">
+              <span class="text-xs font-bold text-slate-900">Shri Rahul Gandhi</span>
+              <span class="bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded">INC</span>
+            </div>
+            <p class="text-xs text-slate-500">Wayanad, Kerala</p>
+            <div class="border-t border-slate-200 pt-2 flex justify-between text-xs">
+              <span class="text-slate-500">Sanctioned: ₹ 21.8 Cr</span>
+              <span class="text-emerald-600 font-extrabold">86.7% Utilized</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

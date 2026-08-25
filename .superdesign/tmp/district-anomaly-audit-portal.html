@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>District Officer Anomaly Audit Portal | MPLADS Risk Analytics</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #0f172a; }
+  </style>
+</head>
+<body>
+  <div class="min-h-screen flex bg-slate-50">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-slate-800 text-white flex flex-col fixed inset-y-0 left-0 z-30 shadow-xl">
+      <div class="px-5 py-5 border-b border-slate-700 flex items-center gap-3">
+        <div class="w-9 h-9 bg-sky-500 rounded-lg flex items-center justify-center text-white shrink-0 shadow-md">
+          <iconify-icon icon="lucide:shield-alert" width="20" height="20"></iconify-icon>
+        </div>
+        <div>
+          <p class="text-xs font-bold text-sky-400 uppercase tracking-widest leading-none">MPLADS</p>
+          <p class="text-xs text-slate-300 font-medium leading-tight">Risk Analytics</p>
+        </div>
+      </div>
+
+      <div class="px-4 py-3 border-b border-slate-700 bg-slate-800/50">
+        <span class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider block mb-1">Viewing Mode</span>
+        <div class="bg-slate-700 text-slate-200 text-xs px-3 py-1.5 rounded-md flex items-center justify-between font-medium border border-slate-600">
+          <span>District Officer</span>
+          <iconify-icon icon="lucide:chevron-down" width="14" height="14" class="text-slate-400"></iconify-icon>
+        </div>
+      </div>
+
+      <nav class="flex-1 px-3 py-4 space-y-1">
+        <a id="nav-overview" href="#overview" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-slate-300 hover:bg-slate-700 hover:text-white transition-colors">
+          <iconify-icon icon="lucide:layout-dashboard" width="18" height="18"></iconify-icon>
+          <span>Overview</span>
+        </a>
+        <a id="nav-queue" href="#queue" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-slate-300 hover:bg-slate-700 hover:text-white transition-colors">
+          <iconify-icon icon="lucide:clipboard-list" width="18" height="18"></iconify-icon>
+          <span>Investigation Queue</span>
+        </a>
+        <a id="nav-audit" href="#audit-portal" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm bg-sky-600 text-white font-semibold shadow-sm">
+          <iconify-icon icon="lucide:user-check" width="18" height="18"></iconify-icon>
+          <span>District Audit Portal</span>
+        </a>
+        <a id="nav-map" href="#map" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-slate-300 hover:bg-slate-700 hover:text-white transition-colors">
+          <iconify-icon icon="lucide:map-pin" width="18" height="18"></iconify-icon>
+          <span>GIS Map View</span>
+        </a>
+        <a id="nav-reports" href="#reports" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-slate-300 hover:bg-slate-700 hover:text-white transition-colors">
+          <iconify-icon icon="lucide:file-bar-chart" width="18" height="18"></iconify-icon>
+          <span>Audit Reports</span>
+        </a>
+      </nav>
+
+      <div class="p-4 border-t border-slate-700 text-[11px] text-slate-400">
+        <p class="font-semibold text-slate-300">Pune District Audit Unit</p>
+        <p>Maharashtra Region #4</p>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="flex-1 ml-64 flex flex-col min-h-screen">
+      <!-- TopBar -->
+      <header class="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-8 sticky top-0 z-20 shadow-sm">
+        <div class="flex items-center gap-3 w-96">
+          <iconify-icon icon="lucide:search" width="18" height="18" class="text-slate-400"></iconify-icon>
+          <input type="text" placeholder="Search work ID, sanction number, vendor name..." class="w-full text-sm bg-slate-100 border border-slate-200 rounded-lg px-3 py-2 text-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:bg-white" />
+        </div>
+
+        <div class="flex items-center gap-4">
+          <div class="flex items-center gap-2 bg-amber-50 text-amber-700 text-xs font-semibold px-3 py-1.5 rounded-full border border-amber-200">
+            <iconify-icon icon="lucide:alert-circle" width="14" height="14"></iconify-icon>
+            <span>12 High-Priority Field Inspections Due</span>
+          </div>
+          <a id="btn-export-report" href="#export" class="flex items-center gap-2 bg-slate-900 text-white text-xs font-semibold px-4 py-2 rounded-lg hover:bg-slate-800 transition-colors shadow-sm">
+            <iconify-icon icon="lucide:download" width="14" height="14"></iconify-icon>
+            <span>Export District Summary</span>
+          </a>
+        </div>
+      </header>
+
+      <!-- Page Body -->
+      <main class="p-8 space-y-8 flex-1">
+        <!-- Header Title -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <h1 class="text-2xl font-extrabold text-slate-900 tracking-tight">District Field Inspection & Audit Portal</h1>
+            <p class="text-sm text-slate-500 mt-1">Review AI-flagged MPLADS works, conduct physical verification audits, and submit geotagged evidence.</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-xs text-slate-400 font-medium">Last Sync: Today, 12:45 PM</span>
+          </div>
+        </div>
+
+        <!-- Metrics Row -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
+          <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Total Flagged Works</span>
+              <span class="p-2 bg-slate-100 text-slate-700 rounded-lg"><iconify-icon icon="lucide:folder-search" width="18" height="18"></iconify-icon></span>
+            </div>
+            <p class="text-2xl font-extrabold text-slate-900">142</p>
+            <span class="text-xs text-slate-400 font-medium">In Pune District</span>
+          </div>
+
+          <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-amber-600 uppercase tracking-wider">Pending Inspections</span>
+              <span class="p-2 bg-amber-50 text-amber-600 rounded-lg"><iconify-icon icon="lucide:clock" width="18" height="18"></iconify-icon></span>
+            </div>
+            <p class="text-2xl font-extrabold text-amber-600">38</p>
+            <span class="text-xs text-amber-600/80 font-medium">Requires Site Visit</span>
+          </div>
+
+          <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-emerald-600 uppercase tracking-wider">Verification Rate</span>
+              <span class="p-2 bg-emerald-50 text-emerald-600 rounded-lg"><iconify-icon icon="lucide:check-circle" width="18" height="18"></iconify-icon></span>
+            </div>
+            <p class="text-2xl font-extrabold text-emerald-600">73.2%</p>
+            <span class="text-xs text-emerald-600/80 font-medium">+5.4% this month</span>
+          </div>
+
+          <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-red-600 uppercase tracking-wider">High-Risk Allocation</span>
+              <span class="p-2 bg-red-50 text-red-600 rounded-lg"><iconify-icon icon="lucide:alert-triangle" width="18" height="18"></iconify-icon></span>
+            </div>
+            <p class="text-2xl font-extrabold text-red-600">₹ 18.4 Cr</p>
+            <span class="text-xs text-red-600/80 font-medium">14 Critical Projects</span>
+          </div>
+        </div>
+
+        <!-- Filter Tabs & Main Work Cards -->
+        <div class="space-y-6">
+          <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+            <div class="flex items-center gap-2">
+              <a id="tab-all" href="#all" class="px-4 py-2 text-xs font-bold rounded-lg bg-slate-900 text-white shadow-sm">All Works (142)</a>
+              <a id="tab-pending" href="#pending" class="px-4 py-2 text-xs font-medium rounded-lg text-slate-600 hover:bg-slate-200 transition-colors">Pending Visit (38)</a>
+              <a id="tab-inspection" href="#inspection" class="px-4 py-2 text-xs font-medium rounded-lg text-slate-600 hover:bg-slate-200 transition-colors">Under Inspection (24)</a>
+              <a id="tab-escalated" href="#escalated" class="px-4 py-2 text-xs font-medium rounded-lg text-slate-600 hover:bg-slate-200 transition-colors">Escalated (14)</a>
+              <a id="tab-resolved" href="#resolved" class="px-4 py-2 text-xs font-medium rounded-lg text-slate-600 hover:bg-slate-200 transition-colors">Resolved (66)</a>
+            </div>
+          </div>
+
+          <!-- Active Work Detail Card (Expanded Audit View) -->
+          <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+            <div class="p-6 border-b border-slate-200 bg-slate-900 text-white flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div>
+                <div class="flex items-center gap-3">
+                  <span class="px-2.5 py-1 bg-red-500/20 text-red-300 border border-red-500/40 text-xs font-bold rounded-full">RISK SCORE: 88/100 (CRITICAL)</span>
+                  <span class="text-xs text-slate-400 font-mono">WORK-ID: MPLADS-MH-PN-2025-089</span>
+                </div>
+                <h2 class="text-xl font-bold mt-2 text-white">Construction of Community Multi-Purpose Hall</h2>
+                <p class="text-xs text-slate-400 mt-1">Location: Haveli Taluka, Baramati Constituency | Sanctioned: ₹ 45,00,000 | Implementing Agency: PWD Rural Pune</p>
+              </div>
+
+              <div class="flex items-center gap-3">
+                <a id="btn-verify-approve" href="#verify" class="px-4 py-2 bg-emerald-600 text-white text-xs font-bold rounded-lg hover:bg-emerald-500 transition-colors flex items-center gap-1.5">
+                  <iconify-icon icon="lucide:check-circle-2" width="16" height="16"></iconify-icon>
+                  <span>Approve & Verify</span>
+                </a>
+                <a id="btn-flag-escalate" href="#escalate" class="px-4 py-2 bg-red-600 text-white text-xs font-bold rounded-lg hover:bg-red-500 transition-colors flex items-center gap-1.5">
+                  <iconify-icon icon="lucide:shield-alert" width="16" height="16"></iconify-icon>
+                  <span>Escalate to Central Ministry</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-slate-200">
+              <!-- Left Column: AI Anomaly Findings -->
+              <div class="p-6 space-y-6 lg:col-span-2">
+                <div>
+                  <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wider mb-3">AI Flagged Anomalies & Evidence</h3>
+                  <div class="space-y-3">
+                    <div class="p-4 bg-red-50 rounded-xl border border-red-200 flex items-start gap-3">
+                      <iconify-icon icon="lucide:alert-octagon" width="20" height="20" class="text-red-600 shrink-0 mt-0.5"></iconify-icon>
+                      <div>
+                        <h4 class="text-xs font-bold text-red-900">Fund Disbursement Velocity Anomaly</h4>
+                        <p class="text-xs text-red-700 mt-1">92% of total sanctioned funds (₹ 41.4 Lakhs) were disbursed in 48 hours, despite only 15% reported physical progress on site.</p>
+                      </div>
+                    </div>
+
+                    <div class="p-4 bg-amber-50 rounded-xl border border-amber-200 flex items-start gap-3">
+                      <iconify-icon icon="lucide:map-pin-off" width="20" height="20" class="text-amber-600 shrink-0 mt-0.5"></iconify-icon>
+                      <div>
+                        <h4 class="text-xs font-bold text-amber-900">Geospatial Duplicate Work Collision</h4>
+                        <p class="text-xs text-amber-700 mt-1">GPS coordinates match an existing Zilla Parishad community center project funded under Gram Vikas Nidhi in 2023.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Evidence Upload & Field Inspection Panel -->
+                <div class="border-t border-slate-200 pt-6 space-y-4">
+                  <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wider">Field Inspection Evidence & Upload</h3>
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="p-4 bg-slate-50 border border-dashed border-slate-300 rounded-xl text-center flex flex-col items-center justify-center gap-2 cursor-pointer hover:bg-slate-100 transition-colors">
+                      <iconify-icon icon="lucide:camera" width="24" height="24" class="text-slate-400"></iconify-icon>
+                      <p class="text-xs font-semibold text-slate-700">Upload Geotagged Site Photos</p>
+                      <p class="text-[10px] text-slate-400">EXIF metadata (lat/long/timestamp) auto-verified</p>
+                    </div>
+
+                    <div class="p-4 bg-slate-50 border border-dashed border-slate-300 rounded-xl text-center flex flex-col items-center justify-center gap-2 cursor-pointer hover:bg-slate-100 transition-colors">
+                      <iconify-icon icon="lucide:file-text" width="24" height="24" class="text-slate-400"></iconify-icon>
+                      <p class="text-xs font-semibold text-slate-700">Attach Official Verification Certificate</p>
+                      <p class="text-[10px] text-slate-400">PDF, max 10MB (Signed by District Collector)</p>
+                    </div>
+                  </div>
+
+                  <div class="space-y-2">
+                    <label class="text-xs font-bold text-slate-700 uppercase tracking-wider block">District Officer Inspector Notes</label>
+                    <textarea rows="3" placeholder="Enter findings from physical site verification inspection..." class="w-full p-3 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500 focus:bg-white text-slate-800"></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Column: Audit Timeline & Metadata -->
+              <div class="p-6 bg-slate-50/50 space-y-6">
+                <div>
+                  <h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-4">Audit Action History</h3>
+                  <div class="space-y-4 relative pl-4 border-l-2 border-slate-200">
+                    <div class="relative">
+                      <div class="absolute -left-[21px] top-1 w-2.5 h-2.5 rounded-full bg-red-500 ring-4 ring-white"></div>
+                      <p class="text-xs font-bold text-slate-900">AI Risk Model Flagged Anomaly</p>
+                      <p class="text-[11px] text-slate-500">Aug 24, 2026 • 09:30 AM</p>
+                      <p class="text-xs text-slate-600 mt-1">Severity rating assigned: Critical (88/100)</p>
+                    </div>
+
+                    <div class="relative">
+                      <div class="absolute -left-[21px] top-1 w-2.5 h-2.5 rounded-full bg-amber-500 ring-4 ring-white"></div>
+                      <p class="text-xs font-bold text-slate-900">Assigned to District Officer</p>
+                      <p class="text-[11px] text-slate-500">Aug 24, 2026 • 11:15 AM</p>
+                      <p class="text-xs text-slate-600 mt-1">Assigned to Shri R. K. Sharma (Collectorate Pune)</p>
+                    </div>
+
+                    <div class="relative">
+                      <div class="absolute -left-[21px] top-1 w-2.5 h-2.5 rounded-full bg-sky-500 ring-4 ring-white"></div>
+                      <p class="text-xs font-bold text-slate-900">Field Site Visit Scheduled</p>
+                      <p class="text-[11px] text-slate-500">Aug 25, 2026 • 10:00 AM</p>
+                      <p class="text-xs text-slate-600 mt-1">Junior Engineer team deployed for site inspection</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="p-4 bg-white rounded-xl border border-slate-200 space-y-2">
+                  <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Implementing Contractor</span>
+                  <p class="text-xs font-bold text-slate-900">Apex Infrastructure Services Ltd.</p>
+                  <p class="text-[11px] text-slate-500">Vendor Risk Score: <span class="font-bold text-amber-600">64/100 (Medium)</span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

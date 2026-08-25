@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Sidebar from "@/components/layout/Sidebar";
 import TopBar from "@/components/layout/TopBar";
+import { AuthProvider } from "@/context/AuthContext";
+import LoginModal from "@/components/auth/LoginModal";
 
 export const metadata: Metadata = {
-  title: "MPLADS Intelligence & Risk Analytics",
+  title: "Empowered Indian | MPLADS Dashboard & Risk Analytics",
   description:
-    "AI-assisted risk flagging dashboard for MPLADS infrastructure works. For authorized government review only.",
+    "AI-assisted risk flagging dashboard and citizen transparency platform for MPLADS infrastructure works.",
 };
 
 export default function RootLayout({
@@ -16,12 +18,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-slate-50 text-slate-900 antialiased">
-        <Sidebar />
-        <TopBar />
-        <main className="ml-64 pt-14 min-h-screen">
-          <div className="p-6">{children}</div>
-        </main>
+      <body className="bg-[#f2f4f7] text-slate-900 antialiased min-h-screen">
+        <AuthProvider>
+          <Sidebar />
+          <TopBar />
+          <main className="pl-28 pt-24 pr-8 pb-12 min-h-screen">
+            <div className="max-w-7xl mx-auto">{children}</div>
+          </main>
+          <LoginModal />
+        </AuthProvider>
       </body>
     </html>
   );

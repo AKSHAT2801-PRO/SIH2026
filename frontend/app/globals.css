@@ -2,8 +2,11 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f8fafc;
+  --background: #f2f4f7;
   --foreground: #0f172a;
+  --card-bg: #ffffff;
+  --accent-lime: #a3e635;
+  --accent-lime-dark: #84cc16;
 }
 
 @theme inline {
@@ -13,24 +16,45 @@
 }
 
 body {
-  background: var(--background);
+  background-color: #f2f4f7;
   color: var(--foreground);
   font-family: 'Inter', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Leaflet CSS override — ensure map tiles display correctly */
+/* Custom Finexy theme styling utilities */
+.finexy-card {
+  background-color: #ffffff;
+  border-radius: 1.5rem;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.02), 0 1px 2px -1px rgba(0, 0, 0, 0.02);
+}
+
+.finexy-gradient-card {
+  background: linear-gradient(135deg, #449e13 0%, #15803d 50%, #064e3b 100%);
+  border-radius: 1.25rem;
+  color: #ffffff;
+}
+
+.finexy-pill-btn {
+  border-radius: 9999px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+/* Leaflet CSS override */
 .leaflet-container {
   height: 100%;
   width: 100%;
   z-index: 0;
+  border-radius: 1.5rem;
 }
 
 /* Focus ring for keyboard nav */
 :focus-visible {
-  outline: 2px solid #0284c7;
+  outline: 2px solid #84cc16;
   outline-offset: 2px;
-  border-radius: 4px;
+  border-radius: 9999px;
 }
 
 /* Skeleton pulse */
@@ -42,8 +66,7 @@ body {
   animation: skeleton-pulse 1.5s ease-in-out infinite;
 }
 
-/* Smooth row hover */
 .table-row-hover:hover {
-  background-color: #f1f5f9;
+  background-color: #f8fafc;
   cursor: pointer;
 }
