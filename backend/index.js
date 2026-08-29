@@ -1,6 +1,7 @@
 const express = require("express")
 const authRoute = require("./routes/auth")
 const { connectDb } = require("./config/dbconfig")
+const { addAllMps } = require("./repository/add_mp")
 const app = express()
 const port = 6005
 require("dotenv").config()
@@ -14,6 +15,7 @@ app.get("/",(req,res)=>{
 })
 app.use("/auth",authRoute)
 
+addAllMps()
 
 app.listen(port,(err)=>{
     console.log(err)
