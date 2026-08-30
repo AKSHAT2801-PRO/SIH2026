@@ -1,6 +1,5 @@
 const mps = require("../model/mp")
-const getAllMps = async (req,res)=>{
-
+const getMps = async (req,res)=>{
     try{
         const page = req.query.page
         const limit = req.query.limit
@@ -17,5 +16,4 @@ const getAllMps = async (req,res)=>{
     
 }
 
-
-module.exports = {getAllMps}
+module.exports = {getMps}
