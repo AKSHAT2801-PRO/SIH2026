@@ -9,12 +9,15 @@ import {
   Map,
   ChevronDown,
   Shield,
+  Contact,
 } from "lucide-react";
+import { icon } from "leaflet";
 
 const navItems = [
   { href: "/", label: "Overview", icon: LayoutDashboard },
   { href: "/queue", label: "Investigation Queue", icon: ClipboardList },
   { href: "/map", label: "Map View", icon: Map },
+  {href: "/mps",label: "MPs",icon: Contact }
 ];
 
 const roles = [

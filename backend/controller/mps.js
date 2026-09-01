@@ -4,6 +4,7 @@ const getMps = async (req,res)=>{
         const page = req.query.page
         const limit = req.query.limit
         const name = req.query.name
+        console.log(req.query)
         if (!name){
             const skip = (page - 1) * limit
             const data = await mps.find({})
