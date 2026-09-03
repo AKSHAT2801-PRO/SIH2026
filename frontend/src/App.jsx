@@ -1,8 +1,11 @@
 // App.jsx
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate,useParams } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import GovernmentDashboard from "./pages/GovernmentDashboard";
+import ProjectDetail from "./pages/ProjectDetail";
+
 const API_URL = "http://localhost:6005";
 function LandingPageWrapper() {
   const navigate = useNavigate();
@@ -43,8 +46,13 @@ function LoginWrapper() {
             
           }
           console.log("Login successful:", result.message);
-          navigate("/dashboard"); // redirect after success
-          
+          if (data.role === "government") {
+            navigate("/dashboard");
+          } else if (data.role === "mp") {
+            navigate("/mp-dashboard"); // build later
+          } else {
+            navigate("/citizen-dashboard"); // build later
+          } // redirect after success
         } catch (error){
             console.error("Login error: ", error);
         }
@@ -86,6 +94,44 @@ function RegisterWrapper() {
   );
 }
 
+function GovernmentDashboardWrapper() {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    navigate("/login");
+  };
+
+  return (
+    <GovernmentDashboard
+      onNavigateToProject={(workId) => navigate(`/project/${workId}`)}
+      onLogout={handleLogout}
+    />
+  );
+}
+
+function ProjectDetailWrapper() {
+  const { workId } = useParams();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    navigate("/login");
+  };
+
+  return (
+    <ProjectDetail
+      workId={workId}
+      onBack={() => navigate("/dashboard")}
+      onLogout={handleLogout}
+    />
+  );
+}
+
+
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -93,6 +139,8 @@ export default function App() {
         <Route path="/" element={<LandingPageWrapper />} />
         <Route path="/login" element={<LoginWrapper />} />
         <Route path="/register" element={<RegisterWrapper />} />
+        <Route path="/dashboard" element={<GovernmentDashboardWrapper />} />
+        <Route path="/project/:workId" element={<ProjectDetailWrapper />} />
       </Routes>
     </BrowserRouter>
   );
