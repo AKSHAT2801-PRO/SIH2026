@@ -1,13 +1,11 @@
-const User = require("../model/user")
+const authService = require ("../service/auth")
 
 const register = async (req,res)=>{
 
     try{
         const body = await req.body
-        newUser = new User(body)
-        const result = await newUser.save()
-        console.log("User added successfully",result);
-        
+        const token = await authService.setUser(body)
+        res.cookie("uid",token)
         res.json({message : "Fetch Successful"})
     }
     catch(e){
