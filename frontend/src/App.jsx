@@ -26,8 +26,27 @@ function LoginWrapper() {
       onNavigateRegister={() => navigate("/register")}
       onSubmit={async (data) => {
         // TODO: call your auth API here
+        try {
+          const response = await fetch(`${API_URL}/auth/login`, {
+            method: "POST",
+            headers: {
+            "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          })
+
+          const result = await response.json();
+
+          if (!response.ok) {
+            throw new Error(result.message || "Login failed");
+          }
+          console.log("Login successful:", result.message);
+          navigate("/dashboard"); // redirect after success
+          
+        } catch (error){
+            console.error("Login error: ", error);
+        }
         console.log("login", data);
-        navigate("/dashboard"); // redirect after success
       }}
     />
   );
