@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-
+const API_URL = "http://localhost:6005";
 function LandingPageWrapper() {
   const navigate = useNavigate();
   return (
@@ -39,10 +39,29 @@ function RegisterWrapper() {
     <Register
       onNavigateLogin={() => navigate("/login")}
       onSubmit={async (data) => {
-        // TODO: call your auth API here
-        console.log("register", data);
-        navigate("/dashboard"); // or wherever makes sense
-      }}
+      try {
+        const response = await fetch(`${API_URL}/auth/register`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+      
+        const result = await response.json();
+      
+        if (!response.ok) {
+          throw new Error(result.message || "Registration failed");
+        }
+      
+        console.log("Registration successful:", result.message);
+      
+        // Example:
+        // navigate("/login");
+      } catch (error) {
+        console.error("Registration error:", error);
+      }
+}}
     />
   );
 }

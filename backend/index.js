@@ -7,12 +7,10 @@ const { connectDb } = require("./config/dbconfig")
 const app = express()
 const port = 6005
 require("dotenv").config()
-
+app.use(express.urlencoded({extended : false}))
+app.use(express.json());
 app.use(cors({
-  origin: ["http://localhost:3000",
-      "http://127.0.0.1:3000",
-      "http://192.168.1.100:3000",
-      "http://0.0.0.0:3000"],
+  origin: ["http://localhost:5173"],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
