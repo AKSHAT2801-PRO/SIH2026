@@ -3,17 +3,22 @@ const cors = require("cors")
 const authRoute = require("./routes/auth")
 const mpsRoute = require("./routes/mps")
 const { connectDb } = require("./config/dbconfig")
+const cookieParser = require("cookie-parser")
+const { authenticate } = require("./middleware/authJwt")
 // const { addAllMps } = require("./repository/add_mp")
 const app = express()
 const port = 6005
 require("dotenv").config()
+app.use(cookieParser())
 app.use(express.urlencoded({extended : false}))
 app.use(express.json());
 app.use(cors({
-  origin: ["http://localhost:5173","http://192.168.1.23:5173"],
+  origin: "http://localhost:5173",
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
+app.use(authenticate);
+
 
 // Database connection (MONGO DB)
 connectDb(process.env.MongoDB_URL)

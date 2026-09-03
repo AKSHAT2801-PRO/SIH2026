@@ -4,9 +4,14 @@ const repo = require("../repository/user")
 const setUser = async (data) => {
     const result = await repo.setUser(data)
     console.log("User added successfully",result);
-    const payload = {role: data.role, id:result._id.toString(),email : data.email}
+    const payload = {role: data.role, id:result._id.toString(),email : data.email, password:data.password}
     const token = jwt.sign(payload,process.env.JWT_Secret)
     return token
+}
+
+const verifyToken = async (token) =>{
+    const decoded = await jwt.verify(token,process.env.JWT_Secret)
+    return decoded
 }
 
 const validateUser = async (data) => {
@@ -23,4 +28,4 @@ const validateUser = async (data) => {
 
 }
 
-module.exports = {setUser, validateUser}
+module.exports = {setUser, validateUser,verifyToken}
