@@ -9,4 +9,18 @@ const setUser = async (data) => {
     return token
 }
 
-module.exports = {setUser}
+const validateUser = async (data) => {
+    try{
+        const user = await repo.getUser(data)
+        if (!user) {
+            return false;
+        }
+        return true;
+        
+    } catch (e){
+        console.log("Error: ",e);
+    }
+
+}
+
+module.exports = {setUser, validateUser}

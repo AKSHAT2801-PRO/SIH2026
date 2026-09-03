@@ -7,4 +7,12 @@ const setUser = async (data) =>{
     return result;
 }
 
-module.exports = {setUser}
+const getUser = async (data) =>{
+    const user = await User.findOne({
+        email: data.email,
+        password: data.password
+    });
+    return user;
+}
+
+module.exports = {setUser, getUser}

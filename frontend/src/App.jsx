@@ -39,6 +39,7 @@ function LoginWrapper() {
 
           if (!response.ok) {
             throw new Error(result.message || "Login failed");
+            
           }
           console.log("Login successful:", result.message);
           navigate("/dashboard"); // redirect after success
