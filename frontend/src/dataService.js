@@ -5,6 +5,13 @@
 // Set DEMO_MODE to false and implement each function's fetch call.
 // Every function already returns the exact shape the UI expects, so
 // no component needs to change when you swap this over.
+//
+// MP DATA SHAPE (matches your backend's /mps response):
+//   _id, mpName, constituency, state, house,
+//   allocatedAmount, totalExpenditure, utilizationPercentage,
+//   completedWorks, recommendedWorks, completionRatePercentage,
+//   unspentAmount, transactionCount, successfulPayments,
+//   pendingPayments, averageRating, createdAt, updatedAt
 // -----------------------------------------------------------------------
 
 export const DEMO_MODE = false;
@@ -15,12 +22,60 @@ const API_BASE_URL = "http://localhost:6005"; // <- change to your backend
 // ---------------------------------------------------------------------
 
 const DEMO_MPS = [
-  { id: "mp-01", name: "R. Chaturvedi", constituency: "Sitapur", state: "Uttar Pradesh", party: "Independent", worksCount: 14, totalFunds: "₹6.2 Cr", photoInitials: "RC" },
-  { id: "mp-02", name: "K. Reddy", constituency: "Warangal", state: "Telangana", party: "Party A", worksCount: 9, totalFunds: "₹4.8 Cr", photoInitials: "KR" },
-  { id: "mp-03", name: "S. Pillai", constituency: "Kollam", state: "Kerala", party: "Party B", worksCount: 11, totalFunds: "₹5.1 Cr", photoInitials: "SP" },
-  { id: "mp-04", name: "A. Deshmukh", constituency: "Nagpur", state: "Maharashtra", party: "Party A", worksCount: 17, totalFunds: "₹7.9 Cr", photoInitials: "AD" },
-  { id: "mp-05", name: "V. Singh", constituency: "Bikaner", state: "Rajasthan", party: "Party C", worksCount: 8, totalFunds: "₹3.6 Cr", photoInitials: "VS" },
-  { id: "mp-06", name: "P. Bora", constituency: "Guwahati", state: "Assam", party: "Party B", worksCount: 12, totalFunds: "₹5.5 Cr", photoInitials: "PB" },
+  {
+    _id: "6a92a8580323b3ef3ff3bbc6",
+    mpName: "Shri B.L. Verma (2020-26)",
+    constituency: "Sitting Rajya Sabha",
+    state: "Uttar Pradesh",
+    house: "Rajya Sabha",
+    allocatedAmount: 196063957.11,
+    totalExpenditure: 168937264.09,
+    utilizationPercentage: 86.16,
+    completedWorks: 349,
+    recommendedWorks: 65,
+    completionRatePercentage: 84.3,
+    unspentAmount: 27126693.02,
+    transactionCount: 804,
+    successfulPayments: 803,
+    pendingPayments: 1,
+    averageRating: null,
+  },
+  {
+    _id: "6a92a8580323b3ef3ff3bbc7",
+    mpName: "Shrimati K. Reddy (2019-24)",
+    constituency: "Warangal",
+    state: "Telangana",
+    house: "Lok Sabha",
+    allocatedAmount: 175000000,
+    totalExpenditure: 92000000,
+    utilizationPercentage: 52.57,
+    completedWorks: 140,
+    recommendedWorks: 210,
+    completionRatePercentage: 66.7,
+    unspentAmount: 83000000,
+    transactionCount: 410,
+    successfulPayments: 395,
+    pendingPayments: 15,
+    averageRating: 3.4,
+  },
+  {
+    _id: "6a92a8580323b3ef3ff3bbc8",
+    mpName: "Shri S. Pillai (2019-24)",
+    constituency: "Kollam",
+    state: "Kerala",
+    house: "Lok Sabha",
+    allocatedAmount: 155000000,
+    totalExpenditure: 148000000,
+    utilizationPercentage: 95.48,
+    completedWorks: 310,
+    recommendedWorks: 330,
+    completionRatePercentage: 93.9,
+    unspentAmount: 7000000,
+    transactionCount: 720,
+    successfulPayments: 718,
+    pendingPayments: 2,
+    averageRating: 4.5,
+  },
 ];
 
 const DEMO_WORKS = [
@@ -28,8 +83,8 @@ const DEMO_WORKS = [
     id: "w-1042",
     title: "Community Health Sub-Centre Upgrade",
     location: "Sitapur, Uttar Pradesh",
-    mpId: "mp-01",
-    mp: "R. Chaturvedi",
+    mpId: "6a92a8580323b3ef3ff3bbc6",
+    mp: "Shri B.L. Verma (2020-26)",
     status: "In Progress",
     progressPct: 62,
     riskScore: 78,
@@ -52,8 +107,8 @@ const DEMO_WORKS = [
     id: "w-1039",
     title: "Rural Link Road — Phase II",
     location: "Warangal, Telangana",
-    mpId: "mp-02",
-    mp: "K. Reddy",
+    mpId: "6a92a8580323b3ef3ff3bbc7",
+    mp: "Shrimati K. Reddy (2019-24)",
     status: "In Progress",
     progressPct: 41,
     riskScore: 34,
@@ -75,15 +130,13 @@ const DEMO_WORKS = [
     id: "w-1031",
     title: "Government School Sanitation Block",
     location: "Kollam, Kerala",
-    mpId: "mp-03",
-    mp: "S. Pillai",
+    mpId: "6a92a8580323b3ef3ff3bbc8",
+    mp: "Shri S. Pillai (2019-24)",
     status: "Completed",
     progressPct: 100,
     riskScore: 12,
     riskBand: "low",
-    riskFactors: [
-      { label: "Timeline slippage", weight: "None", detail: "Completed on schedule" },
-    ],
+    riskFactors: [{ label: "Timeline slippage", weight: "None", detail: "Completed on schedule" }],
     budgetAllocated: 1820000,
     expenditure: 1795000,
     timeAllottedMonths: 4,
@@ -94,34 +147,11 @@ const DEMO_WORKS = [
     lastInspection: { outcome: "Pass", date: "2025-11-20", notes: "Work matches spec, no discrepancies found." },
   },
   {
-    id: "w-1027",
-    title: "Solar Street Lighting — Ward 14",
-    location: "Nagpur, Maharashtra",
-    mpId: "mp-04",
-    mp: "A. Deshmukh",
-    status: "In Progress",
-    progressPct: 55,
-    riskScore: 61,
-    riskBand: "medium",
-    riskFactors: [
-      { label: "Fund utilisation mismatch", weight: "High", detail: "70% funds used, 55% work completed" },
-      { label: "Citizen complaints", weight: "Medium", detail: "4 delay reports filed this month" },
-    ],
-    budgetAllocated: 2780000,
-    expenditure: 1946000,
-    timeAllottedMonths: 6,
-    startDate: "2026-02-01",
-    dueDate: "2026-08-01",
-    contractor: { name: "Vidarbha Solar Systems", contact: "+91 90909 12345", pastProjects: 4, avgRiskScore: 47 },
-    inspectionStatus: "scheduled",
-    lastInspection: null,
-  },
-  {
     id: "w-1019",
     title: "Drinking Water Pipeline Extension",
     location: "Bikaner, Rajasthan",
-    mpId: "mp-05",
-    mp: "V. Singh",
+    mpId: "6a92a8580323b3ef3ff3bbc6",
+    mp: "Shri B.L. Verma (2020-26)",
     status: "In Progress",
     progressPct: 28,
     riskScore: 85,
@@ -140,103 +170,57 @@ const DEMO_WORKS = [
     inspectionStatus: "flagged",
     lastInspection: null,
   },
-  {
-    id: "w-1004",
-    title: "Public Library Renovation",
-    location: "Guwahati, Assam",
-    mpId: "mp-06",
-    mp: "P. Bora",
-    status: "Completed",
-    progressPct: 100,
-    riskScore: 8,
-    riskBand: "low",
-    riskFactors: [
-      { label: "Timeline slippage", weight: "None", detail: "Completed 5 days early" },
-    ],
-    budgetAllocated: 960000,
-    expenditure: 941000,
-    timeAllottedMonths: 3,
-    startDate: "2025-09-01",
-    dueDate: "2025-12-01",
-    contractor: { name: "Brahmaputra Builders", contact: "+91 98123 45670", pastProjects: 15, avgRiskScore: 11 },
-    inspectionStatus: "completed",
-    lastInspection: { outcome: "Pass", date: "2025-11-28", notes: "Renovation matches approved plan." },
-  },
-  {
-    id: "w-1051",
-    title: "Anganwadi Centre Construction",
-    location: "Sitapur, Uttar Pradesh",
-    mpId: "mp-01",
-    mp: "R. Chaturvedi",
-    status: "In Progress",
-    progressPct: 33,
-    riskScore: 66,
-    riskBand: "medium",
-    riskFactors: [
-      { label: "Fund utilisation mismatch", weight: "Medium", detail: "48% funds used, 33% work completed" },
-      { label: "Site visit gap", weight: "Low", detail: "1 of 4 scheduled visits logged" },
-    ],
-    budgetAllocated: 1540000,
-    expenditure: 739000,
-    timeAllottedMonths: 5,
-    startDate: "2026-03-01",
-    dueDate: "2026-08-01",
-    contractor: { name: "Shivam Infra Builders", contact: "+91 98765 43210", pastProjects: 6, avgRiskScore: 54 },
-    inspectionStatus: "none",
-    lastInspection: null,
-  },
 ];
 
 const DEMO_REVIEWS = [
   { id: "r-1", workId: "w-1042", author: "Resident, Sitapur", text: "Construction has been paused for over two weeks with no update from the contractor.", sentiment: "negative", date: "2026-08-28" },
   { id: "r-2", workId: "w-1019", author: "Resident, Bikaner", text: "Pipeline work near our street hasn't progressed in a month. Workers rarely show up.", sentiment: "negative", date: "2026-08-30" },
-  { id: "r-3", workId: "w-1027", author: "Resident, Nagpur", text: "Half the streetlights installed are already flickering. Quality seems questionable.", sentiment: "negative", date: "2026-08-25" },
-  { id: "r-4", workId: "w-1031", author: "Resident, Kollam", text: "Sanitation block looks solid and well finished. Good work overall.", sentiment: "positive", date: "2026-08-15" },
-  { id: "r-5", workId: "w-1042", author: "Resident, Sitapur", text: "No visible activity at the site this week either.", sentiment: "negative", date: "2026-09-01" },
-  { id: "r-6", workId: "w-1004", author: "Resident, Guwahati", text: "Library renovation turned out great, finished ahead of time.", sentiment: "positive", date: "2026-08-10" },
+  { id: "r-3", workId: "w-1031", author: "Resident, Kollam", text: "Sanitation block looks solid and well finished. Good work overall.", sentiment: "positive", date: "2026-08-15" },
 ];
 
 // ---------------------------------------------------------------------
-// COMPOSITE MP PERFORMANCE SCORE
-// Higher score = more suspicious. Combines: avg risk score, fund
-// utilisation mismatch, delay frequency, and citizen complaint volume.
-// This logic is a placeholder — replace with your backend's computed
+// COMPOSITE MP PERFORMANCE / SUSPICION SCORE
+//
+// Higher score = more suspicious. Built entirely from real MP fields
+// now (no more reliance on demo "works" join):
+//   - low utilization vs allocation (money sitting unspent)
+//   - low completion rate vs recommended works
+//   - pending/failed payment ratio (financial irregularity signal)
+//   - low citizen rating
+//
+// This is a placeholder formula — replace with your backend's computed
 // score once available (see fetchMPPerformance below).
 // ---------------------------------------------------------------------
-function computeMPPerformance(mp, works, reviews) {
-  const mpWorks = works.filter((w) => w.mpId === mp.id);
-  if (mpWorks.length === 0) {
-    return { ...mp, suspicionScore: 0, avgRiskScore: 0, delayedWorks: 0, complaintCount: 0 };
-  }
+function computeMPPerformance(mp) {
+  const utilization = mp.utilizationPercentage ?? 0;
+  const completionRate = mp.completionRatePercentage ?? 0;
+  const pendingRatio =
+    mp.transactionCount > 0 ? (mp.pendingPayments / mp.transactionCount) * 100 : 0;
+  const rating = mp.averageRating ?? 3; // treat missing rating as neutral, not a red flag
 
-  const avgRiskScore = Math.round(
-    mpWorks.reduce((sum, w) => sum + w.riskScore, 0) / mpWorks.length
-  );
+  // Each sub-score: 0 (good) to 100 (bad)
+  const utilizationRisk = Math.max(0, 100 - utilization);
+  const completionRisk = Math.max(0, 100 - completionRate);
+  const paymentRisk = Math.min(100, pendingRatio * 10);
+  const ratingRisk = Math.max(0, (5 - rating) * 20);
 
-  const delayedWorks = mpWorks.filter((w) =>
-    w.riskFactors.some((f) => f.label === "Timeline slippage" && f.weight !== "None" && f.weight !== "Low")
-  ).length;
-
-  const complaintCount = reviews.filter(
-    (r) => mpWorks.some((w) => w.id === r.workId) && r.sentiment === "negative"
-  ).length;
-
-  const utilisationMismatchCount = mpWorks.filter((w) =>
-    w.riskFactors.some((f) => f.label === "Fund utilisation mismatch")
-  ).length;
-
-  // Weighted composite, 0-100 scale
   const suspicionScore = Math.min(
     100,
     Math.round(
-      avgRiskScore * 0.45 +
-      delayedWorks * 8 +
-      complaintCount * 5 +
-      utilisationMismatchCount * 6
+      utilizationRisk * 0.35 +
+      completionRisk * 0.35 +
+      paymentRisk * 0.2 +
+      ratingRisk * 0.1
     )
   );
 
-  return { ...mp, suspicionScore, avgRiskScore, delayedWorks, complaintCount };
+  return {
+    ...mp,
+    suspicionScore,
+    utilizationRisk: Math.round(utilizationRisk),
+    completionRisk: Math.round(completionRisk),
+    pendingPaymentsCount: mp.pendingPayments,
+  };
 }
 
 // ---------------------------------------------------------------------
@@ -286,27 +270,40 @@ export async function fetchWorkById(workId) {
   return res.json();
 }
 
-/** All MPs with basic info. */
+/**
+ * All MPs, in the real backend schema (mpName, constituency, state,
+ * house, allocatedAmount, totalExpenditure, etc.)
+ */
 export async function fetchAllMPs() {
   if (DEMO_MODE) {
     return Promise.resolve(DEMO_MPS);
   }
   const res = await fetch(`${API_BASE_URL}/mps?page=1&limit=30`);
   if (!res.ok) throw new Error("Failed to load MPs.");
-  return res.json();
+  const data = await res.json();
+  console.log(data)
+  return data;
 }
 
-/** MPs with composite performance/suspicion score, sorted worst-first. */
+/**
+ * MPs with composite performance/suspicion score, sorted worst-first.
+ * Computed client-side from real MP fields via computeMPPerformance()
+ * until your backend returns a pre-computed score.
+ */
 export async function fetchMPPerformance() {
   if (DEMO_MODE) {
-    const scored = DEMO_MPS.map((mp) => computeMPPerformance(mp, DEMO_WORKS, DEMO_REVIEWS));
+    const scored = DEMO_MPS.map((mp) => computeMPPerformance(mp));
     scored.sort((a, b) => b.suspicionScore - a.suspicionScore);
     return Promise.resolve(scored);
   }
-  // Expect backend to return pre-computed scores in the same shape.
-  const res = await fetch(`${API_BASE_URL}/government/mp-performance`);
-  if (!res.ok) throw new Error("Failed to load MP performance.");
-  return res.json();
+  // If/when your backend computes this itself, swap to a direct fetch:
+  //   const res = await fetch(`${API_BASE_URL}/government/mp-performance`);
+  //   return res.json();
+  const mps = await fetchAllMPs();
+  const list = Array.isArray(mps) ? mps : mps.data || [];
+  const scored = list.map((mp) => computeMPPerformance(mp));
+  scored.sort((a, b) => b.suspicionScore - a.suspicionScore);
+  return scored;
 }
 
 /** Citizen reviews, optionally filtered to one work. */

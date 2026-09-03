@@ -36,6 +36,18 @@ import {
 
 const CHART_COLORS = { completed: "#4A7C59", inProgress: "#1C2B4A", flagged: "#B3453B" };
 
+function getInitials(name) {
+  if (!name) return "—";
+  // Strip parenthetical term info like "(2020-26)" and honorifics before taking initials
+  const cleaned = name
+    .replace(/\(.*?\)/g, "")
+    .replace(/^(Shri|Shrimati|Dr\.?|Smt\.?)\s+/i, "")
+    .trim();
+  const parts = cleaned.split(/\s+/).filter(Boolean);
+  if (parts.length === 0) return "—";
+  return (parts[0][0] + (parts[1]?.[0] || "")).toUpperCase();
+}
+
 function StatCard({ label, value, icon: Icon }) {
   return (
     <div className="border border-[#D8D3C7] bg-white p-5">
@@ -89,20 +101,28 @@ export default function GovernmentDashboard({ onNavigateToProject, onLogout }) {
     setLoading(true);
     setError("");
 
+// sb comment kiya hai koi haath bhi mt lagana-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x--x-x-x-x-x-x-x-x-x-x
+
     Promise.all([
-      fetchDashboardStats(),
-      fetchAllWorks({ sortByRisk: true }),
+      // fetchDashboardStats(),
+      // fetchAllWorks({ sortByRisk: true }),
       fetchAllMPs(),
-      fetchMPPerformance(),
-      fetchReviews(),
+      // fetchMPPerformance(),
+      // fetchReviews(),
     ])
-      .then(([statsData, worksData, mpsData, perfData, reviewsData]) => {
+      .then(([
+        // statsData,
+        //  worksData,
+          mpsData
+          //  perfData,
+            // reviewsData
+          ]) => {
         if (cancelled) return;
-        setStats(statsData);
-        setWorks(worksData);
-        setMPs(mpsData);
-        setMPPerformance(perfData);
-        setReviews(reviewsData);
+        // setStats(statsData);
+        // setWorks(worksData);
+        setMPs(Array.isArray(mpsData) ? mpsData : mpsData?.data || []);
+        // setMPPerformance(perfData);
+        // setReviews(reviewsData);
       })
       .catch((err) => {
         if (!cancelled) setError(err.message || "Failed to load dashboard data.");
@@ -110,6 +130,7 @@ export default function GovernmentDashboard({ onNavigateToProject, onLogout }) {
       .finally(() => {
         if (!cancelled) setLoading(false);
       });
+// sb comment kiya hai koi haath bhi mt lagana-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x--x-x-x-x-x-x-x-x-x-x
 
     return () => {
       cancelled = true;
@@ -299,31 +320,35 @@ export default function GovernmentDashboard({ onNavigateToProject, onLogout }) {
           <div className="border border-[#D8D3C7] bg-white">
             {mpPerformance.map((mp, i) => (
               <div
-                key={mp.id}
+                key={mp._id}
                 className={`flex items-center gap-4 px-5 py-4 ${i !== 0 ? "border-t border-[#EFECE3]" : ""}`}
               >
                 <span className="w-6 text-[12px] text-[#8993A8] shrink-0">{i + 1}</span>
                 <div className="w-9 h-9 rounded-full bg-[#1C2B4A] text-[#FAF9F6] text-[12px] flex items-center justify-center shrink-0">
-                  {mp.photoInitials}
+                  {getInitials(mp.mpName)}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="text-[#1C2B4A] text-[13.5px]">{mp.name}</div>
+                  <div className="text-[#1C2B4A] text-[13.5px] truncate">{mp.mpName}</div>
                   <div className="text-[#8993A8] text-[11.5px] mt-0.5">
-                    {mp.constituency}, {mp.state} · {mp.worksCount} works
+                    {mp.constituency}, {mp.state} · {mp.house}
                   </div>
                 </div>
-                <div className="hidden sm:flex items-center gap-5 text-[11.5px] text-[#5A6478] shrink-0">
+                <div className="hidden md:flex items-center gap-5 text-[11.5px] text-[#5A6478] shrink-0">
                   <div className="text-center">
-                    <div className="text-[#1C2B4A] text-[13px]">{mp.avgRiskScore}</div>
-                    <div className="text-[10px] text-[#8993A8]">avg risk</div>
+                    <div className="text-[#1C2B4A] text-[13px]">
+                      {mp.utilizationPercentage != null ? `${mp.utilizationPercentage.toFixed(1)}%` : "—"}
+                    </div>
+                    <div className="text-[10px] text-[#8993A8]">utilised</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-[#1C2B4A] text-[13px]">{mp.delayedWorks}</div>
-                    <div className="text-[10px] text-[#8993A8]">delayed</div>
+                    <div className="text-[#1C2B4A] text-[13px]">
+                      {mp.completionRatePercentage != null ? `${mp.completionRatePercentage.toFixed(1)}%` : "—"}
+                    </div>
+                    <div className="text-[10px] text-[#8993A8]">completion</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-[#1C2B4A] text-[13px]">{mp.complaintCount}</div>
-                    <div className="text-[10px] text-[#8993A8]">complaints</div>
+                    <div className="text-[#1C2B4A] text-[13px]">{mp.pendingPaymentsCount ?? mp.pendingPayments ?? 0}</div>
+                    <div className="text-[10px] text-[#8993A8]">pending pay.</div>
                   </div>
                 </div>
                 <div
@@ -346,26 +371,34 @@ export default function GovernmentDashboard({ onNavigateToProject, onLogout }) {
         <section className="mb-14">
           <SectionHeader eyebrow="Directory" title="All MPs" />
           <div className="border border-[#D8D3C7] bg-white overflow-x-auto">
-            <table className="w-full text-left border-collapse min-w-[640px]">
+            <table className="w-full text-left border-collapse min-w-[780px]">
               <thead>
                 <tr className="border-b border-[#D8D3C7] bg-[#F3F1EB]">
                   <th className="px-5 py-3 text-[11px] text-[#8993A8] font-normal">Name</th>
                   <th className="px-5 py-3 text-[11px] text-[#8993A8] font-normal">Constituency</th>
-                  <th className="px-5 py-3 text-[11px] text-[#8993A8] font-normal">Party</th>
-                  <th className="px-5 py-3 text-[11px] text-[#8993A8] font-normal">Works</th>
-                  <th className="px-5 py-3 text-[11px] text-[#8993A8] font-normal">Total funds</th>
+                  <th className="px-5 py-3 text-[11px] text-[#8993A8] font-normal">House</th>
+                  <th className="px-5 py-3 text-[11px] text-[#8993A8] font-normal">Allocated</th>
+                  <th className="px-5 py-3 text-[11px] text-[#8993A8] font-normal">Spent</th>
+                  <th className="px-5 py-3 text-[11px] text-[#8993A8] font-normal">Completed works</th>
+                  <th className="px-5 py-3 text-[11px] text-[#8993A8] font-normal">Rating</th>
                 </tr>
               </thead>
               <tbody>
                 {mps.map((mp, i) => (
-                  <tr key={mp.id} className={i !== 0 ? "border-t border-[#EFECE3]" : ""}>
-                    <td className="px-5 py-3.5 text-[13px] text-[#1C2B4A]">{mp.name}</td>
+                  <tr key={mp._id} className={i !== 0 ? "border-t border-[#EFECE3]" : ""}>
+                    <td className="px-5 py-3.5 text-[13px] text-[#1C2B4A]">{mp.mpName}</td>
                     <td className="px-5 py-3.5 text-[13px] text-[#5A6478]">
                       {mp.constituency}, {mp.state}
                     </td>
-                    <td className="px-5 py-3.5 text-[13px] text-[#5A6478]">{mp.party}</td>
-                    <td className="px-5 py-3.5 text-[13px] text-[#5A6478]">{mp.worksCount}</td>
-                    <td className="px-5 py-3.5 text-[13px] text-[#5A6478]">{mp.totalFunds}</td>
+                    <td className="px-5 py-3.5 text-[13px] text-[#5A6478]">{mp.house}</td>
+                    <td className="px-5 py-3.5 text-[13px] text-[#5A6478]">{formatINR(mp.allocatedAmount)}</td>
+                    <td className="px-5 py-3.5 text-[13px] text-[#5A6478]">{formatINR(mp.totalExpenditure)}</td>
+                    <td className="px-5 py-3.5 text-[13px] text-[#5A6478]">
+                      {mp.completedWorks}
+                    </td>
+                    <td className="px-5 py-3.5 text-[13px] text-[#5A6478]">
+                      {mp.averageRating != null ? mp.averageRating.toFixed(1) : "—"}
+                    </td>
                   </tr>
                 ))}
               </tbody>
