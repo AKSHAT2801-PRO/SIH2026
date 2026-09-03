@@ -55,9 +55,7 @@ function RegisterWrapper() {
         }
       
         console.log("Registration successful:", result.message);
-      
-        // Example:
-        // navigate("/login");
+        navigate("/login");
       } catch (error) {
         console.error("Registration error:", error);
       }
