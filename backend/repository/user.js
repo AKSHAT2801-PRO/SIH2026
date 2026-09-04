@@ -9,6 +9,7 @@ const setUser = async (data) =>{
 
 const getUser = async (data) =>{
     const user = await User.findOne({
+        role:data.role,
         email: data.email,
         password: data.password
     });

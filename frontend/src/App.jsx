@@ -29,33 +29,29 @@ function LoginWrapper() {
       onNavigateRegister={() => navigate("/register")}
       onSubmit={async (data) => {
         // TODO: call your auth API here
-        try {
-          const response = await fetch(`${API_URL}/auth/login`, {
-            method: "POST",
-            headers: {
-            "Content-Type": "application/json",
-            },
-            credentials: "include",
-            body: JSON.stringify(data),
-          })
-
-          const result = await response.json();
-
-          if (!response.ok) {
-            throw new Error(result.message || "Login failed");
-            
-          }
-          console.log("Login successful:", result.message);
-          if (data.role === "government") {
-            navigate("/dashboard");
-          } else if (data.role === "mp") {
-            navigate("/mp-dashboard"); // build later
-          } else {
-            navigate("/citizen-dashboard"); // build later
-          } // redirect after success
-        } catch (error){
-            console.error("Login error: ", error);
+        const response = await fetch(`${API_URL}/auth/login`, {
+          method: "POST",
+          headers: {
+          "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify(data),
+        })
+        const result = await response.json();
+        console.log(response)
+        if (!response.ok) {
+          throw new Error(result.message || "Login failed");
         }
+        localStorage.setItem("role",data.role)
+        localStorage.setItem("email",data.email)
+        console.log("Login successful:", result.message);
+        if (data.role === "government") {
+          navigate("/dashboard");
+        } else if (data.role === "mp") {
+          navigate("/mp-dashboard"); // build later
+        } else {
+          navigate("/citizen-dashboard"); // build later
+        } // redirect after success
         console.log("login", data);
       }}
     />
@@ -98,9 +94,10 @@ function GovernmentDashboardWrapper() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    cookieStore.delete("ticket");
     localStorage.removeItem("role");
-    navigate("/login");
+    localStorage.removeItem("email");
+    navigate("/");
   };
 
   return (
@@ -116,8 +113,9 @@ function ProjectDetailWrapper() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    cookieStore.delete("ticket");
     localStorage.removeItem("role");
+    localStorage.removeItem("email");
     navigate("/login");
   };
 

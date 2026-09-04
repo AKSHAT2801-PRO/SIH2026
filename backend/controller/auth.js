@@ -23,17 +23,21 @@ const login = async (req,res)=>{
             const result = await authService.validateUser(body);
 
             if(!result){
-                res.status(400).json({message:"No user found"})
+                return res.status(400).json({message:"No user found"})
             }
             else{
-                res.status(200).json({message:"Login Successful"})
+                const token = await authService.getUserToken(body)
+                res.cookie("ticket",token)
+                return res.status(200).json({message:"Login Successful"})
             }
         } catch (e){
             console.log("Error: ", e);
             res.status(500).json({message: "Login failed"});
         };
     }
-    res.status(200).json({message:"Login Successful"})
+    else{
+        return res.status(200).json({message:"Login Successful"})
+    }
     
 } 
 

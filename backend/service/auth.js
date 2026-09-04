@@ -14,6 +14,19 @@ const verifyToken = async (token) =>{
     return decoded
 }
 
+const getUserToken = async (data) => {
+    const user = await repo.getUser(data)
+    if(user){
+        const payload = {role: user.role, id:user._id.toString(),email : user.email, password:user.password}
+        const token = jwt.sign(payload,process.env.JWT_Secret)
+        return token;
+    }
+    else{
+        return null;
+    }
+
+}
+
 const validateUser = async (data) => {
     try{
         const user = await repo.getUser(data)
@@ -28,4 +41,4 @@ const validateUser = async (data) => {
 
 }
 
-module.exports = {setUser, validateUser,verifyToken}
+module.exports = {setUser, validateUser,verifyToken,getUserToken}
