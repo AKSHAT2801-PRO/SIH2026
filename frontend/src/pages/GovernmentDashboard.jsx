@@ -6,6 +6,7 @@ import {
   MessageSquare,
   MapPin,
   ChevronRight,
+  ChevronLeft,
   Loader2,
   AlertTriangle,
 } from "lucide-react";
@@ -86,6 +87,10 @@ export default function GovernmentDashboard({ onNavigateToProject, onLogout }) {
   const [stats, setStats] = useState(null);
   const [works, setWorks] = useState([]);
   const [mps, setMPs] = useState([]);
+  const [mpPage, setMPPage] = useState(1);
+  const [mpLimit,setMpLimit] = useState(30);
+  const [mpsLoading, setMPsLoading] = useState(true);
+  const [mpsError, setMPsError] = useState("");
   const [mpPerformance, setMPPerformance] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -106,21 +111,18 @@ export default function GovernmentDashboard({ onNavigateToProject, onLogout }) {
     Promise.all([
       // fetchDashboardStats(),
       // fetchAllWorks({ sortByRisk: true }),
-      fetchAllMPs(),
       // fetchMPPerformance(),
       // fetchReviews(),
     ])
       .then(([
         // statsData,
         //  worksData,
-          mpsData
           //  perfData,
             // reviewsData
           ]) => {
         if (cancelled) return;
         // setStats(statsData);
         // setWorks(worksData);
-        setMPs(Array.isArray(mpsData) ? mpsData : mpsData?.data || []);
         // setMPPerformance(perfData);
         // setReviews(reviewsData);
       })
@@ -136,6 +138,32 @@ export default function GovernmentDashboard({ onNavigateToProject, onLogout }) {
       cancelled = true;
     };
   }, []);
+
+  // All MPs table — paginated separately from the block above, since
+  // fetchAllMPs is the one thing currently uncommented/live.
+  useEffect(() => {
+    let cancelled = false;
+    setMPsLoading(true);
+    setMPsError("");
+
+    fetchAllMPs({ page: mpPage, limit: mpLimit })
+      .then((items) => {
+        if (cancelled) return;
+        console.log(items);
+        
+        setMPs(items);
+      })
+      .catch((err) => {
+        if (!cancelled) setMPsError(err.message || "Failed to load MPs.");
+      })
+      .finally(() => {
+        if (!cancelled) setMPsLoading(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [mpPage, mpLimit]);
 
   const pieData = useMemo(() => {
     if (!stats) return [];
@@ -369,8 +397,28 @@ export default function GovernmentDashboard({ onNavigateToProject, onLogout }) {
 
         {/* ALL MPS TABLE */}
         <section className="mb-14">
-          <SectionHeader eyebrow="Directory" title="All MPs" />
-          <div className="border border-[#D8D3C7] bg-white overflow-x-auto">
+          <SectionHeader
+            eyebrow="Directory"
+            title="All MPs"
+            action={<span className="text-[12px] text-[#8993A8]">Page {mpPage}</span>}
+          />
+
+          {mpsError && (
+            <div
+              role="alert"
+              className="mb-4 border border-[#B3453B]/30 bg-[#B3453B]/5 px-4 py-3 text-[#B3453B] text-[13px] flex items-center gap-2"
+            >
+              <AlertTriangle size={14} />
+              {mpsError}
+            </div>
+          )}
+
+          <div className="border border-[#D8D3C7] bg-white overflow-x-auto relative">
+            {mpsLoading && (
+              <div className="absolute inset-0 bg-white/70 flex items-center justify-center z-10">
+                <Loader2 size={18} className="animate-spin text-[#5A6478]" />
+              </div>
+            )}
             <table className="w-full text-left border-collapse min-w-[780px]">
               <thead>
                 <tr className="border-b border-[#D8D3C7] bg-[#F3F1EB]">
@@ -384,25 +432,54 @@ export default function GovernmentDashboard({ onNavigateToProject, onLogout }) {
                 </tr>
               </thead>
               <tbody>
-                {mps.map((mp, i) => (
-                  <tr key={mp._id} className={i !== 0 ? "border-t border-[#EFECE3]" : ""}>
-                    <td className="px-5 py-3.5 text-[13px] text-[#1C2B4A]">{mp.mpName}</td>
-                    <td className="px-5 py-3.5 text-[13px] text-[#5A6478]">
-                      {mp.constituency}, {mp.state}
-                    </td>
-                    <td className="px-5 py-3.5 text-[13px] text-[#5A6478]">{mp.house}</td>
-                    <td className="px-5 py-3.5 text-[13px] text-[#5A6478]">{formatINR(mp.allocatedAmount)}</td>
-                    <td className="px-5 py-3.5 text-[13px] text-[#5A6478]">{formatINR(mp.totalExpenditure)}</td>
-                    <td className="px-5 py-3.5 text-[13px] text-[#5A6478]">
-                      {mp.completedWorks}
-                    </td>
-                    <td className="px-5 py-3.5 text-[13px] text-[#5A6478]">
-                      {mp.averageRating != null ? mp.averageRating.toFixed(1) : "—"}
+                {mps.length === 0 && !mpsLoading ? (
+                  <tr>
+                    <td colSpan={7} className="px-5 py-8 text-center text-[#8993A8] text-[13px]">
+                      No MPs found.
                     </td>
                   </tr>
-                ))}
+                ) : (
+                  mps.map((mp, i) => (
+                    <tr key={mp._id} className={i !== 0 ? "border-t border-[#EFECE3]" : ""}>
+                      <td className="px-5 py-3.5 text-[13px] text-[#1C2B4A]">{mp.mpName}</td>
+                      <td className="px-5 py-3.5 text-[13px] text-[#5A6478]">
+                        {mp.constituency}, {mp.state}
+                      </td>
+                      <td className="px-5 py-3.5 text-[13px] text-[#5A6478]">{mp.house}</td>
+                      <td className="px-5 py-3.5 text-[13px] text-[#5A6478]">{formatINR(mp.allocatedAmount)}</td>
+                      <td className="px-5 py-3.5 text-[13px] text-[#5A6478]">{formatINR(mp.totalExpenditure)}</td>
+                      <td className="px-5 py-3.5 text-[13px] text-[#5A6478]">{mp.completedWorks}</td>
+                      <td className="px-5 py-3.5 text-[13px] text-[#5A6478]">
+                        {mp.averageRating != null ? mp.averageRating.toFixed(1) : "—"}
+                      </td>
+                    </tr>
+                  ))
+                )}
               </tbody>
             </table>
+          </div>
+
+          {/* PAGINATION CONTROLS */}
+          <div className="flex items-center justify-between mt-4">
+            <button
+              onClick={() => setMPPage((p) => Math.max(1, p - 1))}
+              disabled={mpPage <= 1 || mpsLoading}
+              className="inline-flex items-center gap-1.5 px-4 py-2 text-[13px] text-[#1C2B4A] border border-[#D8D3C7] hover:border-[#1C2B4A] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:border-[#D8D3C7] transition-colors"
+            >
+              <ChevronLeft size={14} />
+              Previous
+            </button>
+
+            <span className="text-[12.5px] text-[#8993A8]">Page {mpPage}</span>
+
+            <button
+              onClick={() => setMPPage((p) => p + 1)}
+              disabled={mpsLoading || mps.length < mpLimit}
+              className="inline-flex items-center gap-1.5 px-4 py-2 text-[13px] text-[#1C2B4A] border border-[#D8D3C7] hover:border-[#1C2B4A] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:border-[#D8D3C7] transition-colors"
+            >
+              Next
+              <ChevronRight size={14} />
+            </button>
           </div>
         </section>
 

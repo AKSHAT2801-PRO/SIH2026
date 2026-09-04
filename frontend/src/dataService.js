@@ -274,11 +274,11 @@ export async function fetchWorkById(workId) {
  * All MPs, in the real backend schema (mpName, constituency, state,
  * house, allocatedAmount, totalExpenditure, etc.)
  */
-export async function fetchAllMPs() {
+export async function fetchAllMPs(filter) {
   if (DEMO_MODE) {
     return Promise.resolve(DEMO_MPS);
   }
-  const res = await fetch(`${API_BASE_URL}/mps?page=1&limit=30`);
+  const res = await fetch(`${API_BASE_URL}/mps?page=${filter.page}&limit=${filter.limit}`);
   if (!res.ok) throw new Error("Failed to load MPs.");
   const data = await res.json();
   console.log(data)
