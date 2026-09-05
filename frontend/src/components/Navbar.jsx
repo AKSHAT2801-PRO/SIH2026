@@ -4,9 +4,11 @@ import { Menu, X } from "lucide-react";
 const NAV_LINKS = [
   { key: "home", label: "Home" },
   { key: "how-it-works", label: "How it Works" },
+  { key: "citizen", label: "Citizen View" },
+  { key: "mp", label: "MP / MLA Portal" },
+  { key: "civil-servant", label: "Civil Servant Oversight" },
   { key: "public-works", label: "Public Works" },
-  { key: "feedback-board", label: "Feedback Board" },
-  { key: "about", label: "About" },
+  { key: "feedback-board", label: "Feedback" },
 ];
 
 export default function Navbar({

@@ -95,7 +95,7 @@ function WorkCard({ work }) {
   );
 }
 
-export default function LandingPage({ onLogin, onRegister, onNavigate }) {
+export default function LandingPage({ onLogin, onRegister, onNavigate, onOpenPortal }) {
   const [stats, setStats] = useState(null);
   const [works, setWorks] = useState([]);
   const [loadingWorks, setLoadingWorks] = useState(true);
@@ -107,6 +107,14 @@ export default function LandingPage({ onLogin, onRegister, onNavigate }) {
       .catch(() => setWorks([]))
       .finally(() => setLoadingWorks(false));
   }, []);
+
+  const handlePortalClick = (roleKey) => {
+    if (onOpenPortal) {
+      onOpenPortal(roleKey);
+    } else if (onNavigate) {
+      onNavigate(roleKey);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-[#FAF9F6]">
@@ -144,6 +152,39 @@ export default function LandingPage({ onLogin, onRegister, onNavigate }) {
             >
               See how it works
             </button>
+          </div>
+
+          {/* Direct Portal Quick Access */}
+          <div className="pt-6 mt-8 border-t border-[#D8D3C7]">
+            <div className="text-[11.5px] uppercase tracking-wider text-[#8993A8] font-medium mb-3">
+              Direct Portal Access (Click to open)
+            </div>
+            <div className="flex flex-wrap gap-2.5">
+              <button
+                onClick={() => handlePortalClick("citizen")}
+                className="inline-flex items-center gap-2 px-3.5 py-2 bg-white border border-[#D8D3C7] text-[#1C2B4A] text-[13px] hover:border-[#4A7C59] hover:text-[#4A7C59] transition-colors shadow-sm"
+              >
+                <Eye size={14} className="text-[#4A7C59]" />
+                Citizen Portal
+                <ArrowRight size={12} />
+              </button>
+              <button
+                onClick={() => handlePortalClick("mp")}
+                className="inline-flex items-center gap-2 px-3.5 py-2 bg-white border border-[#D8D3C7] text-[#1C2B4A] text-[13px] hover:border-[#B8863F] hover:text-[#B8863F] transition-colors shadow-sm"
+              >
+                <Users size={14} className="text-[#B8863F]" />
+                MP / MLA Portal
+                <ArrowRight size={12} />
+              </button>
+              <button
+                onClick={() => handlePortalClick("civil-servant")}
+                className="inline-flex items-center gap-2 px-3.5 py-2 bg-white border border-[#D8D3C7] text-[#1C2B4A] text-[13px] hover:border-[#1C2B4A] hover:bg-[#1C2B4A] hover:text-white transition-colors shadow-sm"
+              >
+                <Landmark size={14} className="text-[#1C2B4A]" />
+                Civil Servant Oversight
+                <ArrowRight size={12} />
+              </button>
+            </div>
           </div>
         </div>
 
@@ -243,6 +284,13 @@ export default function LandingPage({ onLogin, onRegister, onNavigate }) {
                     </li>
                   ))}
                 </ul>
+                <button
+                  onClick={() => handlePortalClick(role.key === "government" ? "civil-servant" : role.key)}
+                  className="mt-6 w-full inline-flex items-center justify-between px-3.5 py-2.5 text-[13px] border border-[#D8D3C7] text-[#1C2B4A] bg-[#FAF9F6] hover:bg-[#1C2B4A] hover:text-white transition-colors"
+                >
+                  <span>Open {role.label} Portal</span>
+                  <ArrowRight size={14} />
+                </button>
               </div>
             );
           })}
