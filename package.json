@@ -1,0 +1,23 @@
+{
+  "name": "sih2026",
+  "version": "1.0.0",
+  "private": true,
+  "description": "SIH 2026 MERN Project",
+  "scripts": {
+    "dev": "concurrently \"npm run dev --prefix frontend\" \"npm start --prefix backend\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AKSHAT2801-PRO/SIH2026.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AKSHAT2801-PRO/SIH2026/issues"
+  },
+  "homepage": "https://github.com/AKSHAT2801-PRO/SIH2026#readme",
+  "devDependencies": {
+    "concurrently": "^9.2.4"
+  }
+}

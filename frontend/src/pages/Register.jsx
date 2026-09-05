@@ -64,7 +64,7 @@ export default function Register({ onSubmit, onNavigateLogin }) {
     setLoading(true);
     try {
       if (onSubmit) {
-        await onSubmit({ role, name, email, password });
+        await onSubmit({ role:role, name:name, email:email, password:password });
       }
     } catch (err) {
       setFormError(

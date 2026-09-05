@@ -52,6 +52,7 @@ export default function Login({ onSubmit, onNavigateRegister }) {
         await onSubmit({ role, email, password });
       }
     } catch (err) {
+      console.log("HANDLE SUBMIT CATCH:", err);
       setFormError(
         err?.message || "Could not sign in. Check your details and try again."
       );
