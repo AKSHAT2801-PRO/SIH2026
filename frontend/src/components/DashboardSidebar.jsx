@@ -46,21 +46,6 @@ const ROLE_CONFIG = {
       { key: "contractors", label: "Contractors", icon: Briefcase },
     ],
   },
-  "civil-servant": {
-    label: "Civil Servant",
-    icon: Landmark,
-    color: "text-[#1C2B4A]",
-    bg: "bg-[#1C2B4A]/10",
-    sections: [
-      { key: "overview", label: "Overview", icon: LayoutDashboard },
-      { key: "works", label: "All Works", icon: ClipboardList },
-      { key: "daily-report", label: "Daily Reports", icon: FileText },
-      { key: "inspections", label: "Inspections", icon: Calendar },
-      { key: "risk", label: "Risk Dashboard", icon: AlertTriangle },
-      { key: "fund-audit", label: "Fund Audit", icon: IndianRupee },
-      { key: "archive", label: "Reports Archive", icon: Search },
-    ],
-  },
 };
 
 export default function DashboardSidebar({

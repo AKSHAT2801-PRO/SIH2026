@@ -29,7 +29,7 @@ export default function DashboardHeader({
   const roleLabels = {
     citizen: "Citizen Dashboard",
     mp: "MP / MLA Dashboard",
-    "civil-servant": "Civil Servant Dashboard",
+    government: "Government Dashboard",
   };
 
   return (
@@ -83,14 +83,14 @@ export default function DashboardHeader({
             MP / MLA
           </button>
           <button
-            onClick={() => navigate("/civil-servant")}
+            onClick={() => navigate("/dashboard")}
             className={`px-2.5 py-1 transition-colors ${
-              role === "civil-servant"
+              role === "government"
                 ? "bg-white text-[#1C2B4A] font-medium shadow-xs"
                 : "text-[#5A6478] hover:text-[#1C2B4A]"
             }`}
           >
-            Civil Servant
+            Government
           </button>
         </div>
 

@@ -7,13 +7,22 @@ const setUser = async (data) =>{
     return result;
 }
 
-const getUser = async (data) =>{
-    const user = await User.findOne({
-        role:data.role,
-        email: data.email,
-        password: data.password
-    });
+const getUser = async (data) => {
+    let user = null;
+    if (data.role) {
+        user = await User.findOne({
+            role: data.role,
+            email: data.email,
+            password: data.password,
+        });
+    }
+    if (!user) {
+        user = await User.findOne({
+            email: data.email,
+            password: data.password,
+        });
+    }
     return user;
-}
+};
 
 module.exports = {setUser, getUser}

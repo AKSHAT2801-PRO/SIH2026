@@ -16,14 +16,14 @@ function LandingPageWrapper() {
       onRegister={() => navigate("/register")}
       onOpenPortal={(role) => {
         if (role === "mp") navigate("/mp");
-        else if (role === "government" || role === "civil-servant") navigate("/civil-servant");
+        else if (role === "government") navigate("/dashboard");
         else navigate("/citizen");
       }}
       onNavigate={(key) => {
         if (key === "home") navigate("/");
         else if (key === "citizen") navigate("/citizen");
         else if (key === "mp") navigate("/mp");
-        else if (key === "government" || key === "civil-servant") navigate("/civil-servant");
+        else if (key === "government") navigate("/dashboard");
         else if (key.startsWith("/")) navigate(key);
         else {
           const el = document.getElementById(key);
@@ -41,31 +41,31 @@ function LoginWrapper() {
     <Login
       onNavigateRegister={() => navigate("/register")}
       onSubmit={async (data) => {
-        // TODO: call your auth API here
         const response = await fetch(`${API_URL}/auth/login`, {
           method: "POST",
           headers: {
-          "Content-Type": "application/json",
+            "Content-Type": "application/json",
           },
           credentials: "include",
           body: JSON.stringify(data),
-        })
+        });
         const result = await response.json();
-        console.log(response)
+        console.log(response);
         if (!response.ok) {
           throw new Error(result.message || "Login failed");
         }
-        localStorage.setItem("role",data.role)
-        localStorage.setItem("email",data.email)
+        const activeRole = result.role || data.role;
+        localStorage.setItem("role", activeRole);
+        localStorage.setItem("email", result.email || data.email);
+        if (result.name) localStorage.setItem("name", result.name);
         console.log("Login successful:", result.message);
-        if (data.role === "government") {
+        if (activeRole === "government") {
           navigate("/dashboard");
-        } else if (data.role === "mp") {
-          navigate("/mp-dashboard"); // build later
+        } else if (activeRole === "mp") {
+          navigate("/mp");
         } else {
-          navigate("/citizen-dashboard"); // build later
-        } // redirect after success
-        console.log("login", data);
+          navigate("/citizen");
+        }
       }}
     />
   );
@@ -77,28 +77,29 @@ function RegisterWrapper() {
     <Register
       onNavigateLogin={() => navigate("/login")}
       onSubmit={async (data) => {
-      try {
-        const response = await fetch(`${API_URL}/auth/register`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-          body: JSON.stringify(data),
-        });
-      
-        const result = await response.json();
-      
-        if (!response.ok) {
-          throw new Error(result.message || "Registration failed");
+        try {
+          const response = await fetch(`${API_URL}/auth/register`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: "include",
+            body: JSON.stringify(data),
+          });
+
+          const result = await response.json();
+
+          if (!response.ok) {
+            throw new Error(result.message || "Registration failed");
+          }
+
+          console.log("Registration successful:", result.message);
+          navigate("/login");
+        } catch (error) {
+          console.error("Registration error:", error);
+          throw error;
         }
-      
-        console.log("Registration successful:", result.message);
-        navigate("/login");
-      } catch (error) {
-        console.error("Registration error:", error);
-      }
-}}
+      }}
     />
   );
 }
@@ -106,10 +107,15 @@ function RegisterWrapper() {
 function GovernmentDashboardWrapper() {
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    cookieStore.delete("ticket");
+  const handleLogout = async () => {
+    try {
+      await fetch(`${API_URL}/auth/logout`, { method: "POST", credentials: "include" });
+    } catch (e) {
+      console.error(e);
+    }
     localStorage.removeItem("role");
     localStorage.removeItem("email");
+    localStorage.removeItem("name");
     navigate("/");
   };
 
@@ -121,14 +127,55 @@ function GovernmentDashboardWrapper() {
   );
 }
 
+function CitizenWrapper() {
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await fetch(`${API_URL}/auth/logout`, { method: "POST", credentials: "include" });
+    } catch (e) {
+      console.error(e);
+    }
+    localStorage.removeItem("role");
+    localStorage.removeItem("email");
+    localStorage.removeItem("name");
+    navigate("/");
+  };
+
+  return <CitizenDashboard onLogout={handleLogout} />;
+}
+
+function MpWrapper() {
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await fetch(`${API_URL}/auth/logout`, { method: "POST", credentials: "include" });
+    } catch (e) {
+      console.error(e);
+    }
+    localStorage.removeItem("role");
+    localStorage.removeItem("email");
+    localStorage.removeItem("name");
+    navigate("/");
+  };
+
+  return <MpDashboard onLogout={handleLogout} />;
+}
+
 function ProjectDetailWrapper() {
   const { workId } = useParams();
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    cookieStore.delete("ticket");
+  const handleLogout = async () => {
+    try {
+      await fetch(`${API_URL}/auth/logout`, { method: "POST", credentials: "include" });
+    } catch (e) {
+      console.error(e);
+    }
     localStorage.removeItem("role");
     localStorage.removeItem("email");
+    localStorage.removeItem("name");
     navigate("/login");
   };
 
@@ -141,8 +188,6 @@ function ProjectDetailWrapper() {
   );
 }
 
-
-
 export default function App() {
   return (
     <BrowserRouter>
@@ -152,6 +197,10 @@ export default function App() {
         <Route path="/register" element={<RegisterWrapper />} />
         <Route path="/dashboard" element={<GovernmentDashboardWrapper />} />
         <Route path="/project/:workId" element={<ProjectDetailWrapper />} />
+        <Route path="/citizen" element={<CitizenWrapper />} />
+        <Route path="/citizen-dashboard" element={<CitizenWrapper />} />
+        <Route path="/mp" element={<MpWrapper />} />
+        <Route path="/mp-dashboard" element={<MpWrapper />} />
       </Routes>
     </BrowserRouter>
   );

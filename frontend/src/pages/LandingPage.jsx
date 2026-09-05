@@ -177,11 +177,11 @@ export default function LandingPage({ onLogin, onRegister, onNavigate, onOpenPor
                 <ArrowRight size={12} />
               </button>
               <button
-                onClick={() => handlePortalClick("civil-servant")}
+                onClick={() => handlePortalClick("government")}
                 className="inline-flex items-center gap-2 px-3.5 py-2 bg-white border border-[#D8D3C7] text-[#1C2B4A] text-[13px] hover:border-[#1C2B4A] hover:bg-[#1C2B4A] hover:text-white transition-colors shadow-sm"
               >
                 <Landmark size={14} className="text-[#1C2B4A]" />
-                Civil Servant Oversight
+                Government Portal
                 <ArrowRight size={12} />
               </button>
             </div>
@@ -285,7 +285,7 @@ export default function LandingPage({ onLogin, onRegister, onNavigate, onOpenPor
                   ))}
                 </ul>
                 <button
-                  onClick={() => handlePortalClick(role.key === "government" ? "civil-servant" : role.key)}
+                  onClick={() => handlePortalClick(role.key)}
                   className="mt-6 w-full inline-flex items-center justify-between px-3.5 py-2.5 text-[13px] border border-[#D8D3C7] text-[#1C2B4A] bg-[#FAF9F6] hover:bg-[#1C2B4A] hover:text-white transition-colors"
                 >
                   <span>Open {role.label} Portal</span>

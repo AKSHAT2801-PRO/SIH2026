@@ -15,30 +15,35 @@ const register = async (req,res)=>{
     
 }
 
-const login = async (req,res)=>{
-    if (!req.user){
-        try{
-        
-            const body = await req.body
-            const result = await authService.validateUser(body);
+const login = async (req, res) => {
+    try {
+        const body = req.body;
+        const user = await authService.validateUser(body);
 
-            if(!result){
-                return res.status(400).json({message:"No user found"})
-            }
-            else{
-                const token = await authService.getUserToken(body)
-                res.cookie("ticket",token)
-                return res.status(200).json({message:"Login Successful"})
-            }
-        } catch (e){
-            console.log("Error: ", e);
-            res.status(500).json({message: "Login failed"});
-        };
+        if (!user) {
+            return res.status(400).json({ message: "Invalid email, password, or role" });
+        } else {
+            const token = await authService.getUserToken(user);
+            res.cookie("ticket", token, {
+                httpOnly: false,
+                sameSite: "lax",
+            });
+            return res.status(200).json({
+                message: "Login Successful",
+                role: user.role,
+                name: user.name,
+                email: user.email,
+            });
+        }
+    } catch (e) {
+        console.log("Error: ", e);
+        return res.status(500).json({ message: "Login failed" });
     }
-    else{
-        return res.status(200).json({message:"Login Successful"})
-    }
-    
-} 
+};
 
-module.exports = {register, login}
+const logout = async (req, res) => {
+    res.clearCookie("ticket");
+    return res.status(200).json({ message: "Logged out successfully" });
+};
+
+module.exports = { register, login, logout };

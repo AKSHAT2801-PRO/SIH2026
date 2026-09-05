@@ -14,31 +14,24 @@ const verifyToken = async (token) =>{
     return decoded
 }
 
-const getUserToken = async (data) => {
-    const user = await repo.getUser(data)
-    if(user){
-        const payload = {role: user.role, id:user._id.toString(),email : user.email, password:user.password}
-        const token = jwt.sign(payload,process.env.JWT_Secret)
+const getUserToken = async (dataOrUser) => {
+    let user = dataOrUser._id ? dataOrUser : await repo.getUser(dataOrUser);
+    if (user) {
+        const payload = { role: user.role, id: user._id.toString(), email: user.email };
+        const token = jwt.sign(payload, process.env.JWT_Secret);
         return token;
     }
-    else{
-        return null;
-    }
-
-}
+    return null;
+};
 
 const validateUser = async (data) => {
-    try{
-        const user = await repo.getUser(data)
-        if (!user) {
-            return false;
-        }
-        return true;
-        
-    } catch (e){
-        console.log("Error: ",e);
+    try {
+        const user = await repo.getUser(data);
+        return user || null;
+    } catch (e) {
+        console.log("Error: ", e);
+        return null;
     }
-
-}
+};
 
 module.exports = {setUser, validateUser,verifyToken,getUserToken}

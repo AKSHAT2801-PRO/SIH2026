@@ -6,7 +6,6 @@ const PUBLIC_NAV_LINKS = [
   { key: "how-it-works", label: "How it Works" },
   { key: "citizen", label: "Citizen View" },
   { key: "mp", label: "MP / MLA Portal" },
-  { key: "civil-servant", label: "Civil Servant Oversight" },
   { key: "public-works", label: "Public Works" },
   { key: "feedback-board", label: "Feedback" },
 ];
