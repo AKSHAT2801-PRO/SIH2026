@@ -5,7 +5,8 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import GovernmentDashboard from "./pages/GovernmentDashboard";
 import ProjectDetail from "./pages/ProjectDetail";
-
+import CitizenDashboard from "./pages/CitizenDashboard";
+import MpDashboard from "./pages/MpDashboard";
 const API_URL = "http://localhost:6005";
 function LandingPageWrapper() {
   const navigate = useNavigate();
@@ -13,10 +14,22 @@ function LandingPageWrapper() {
     <LandingPage
       onLogin={() => navigate("/login")}
       onRegister={() => navigate("/register")}
+      onOpenPortal={(role) => {
+        if (role === "mp") navigate("/mp");
+        else if (role === "government" || role === "civil-servant") navigate("/civil-servant");
+        else navigate("/citizen");
+      }}
       onNavigate={(key) => {
-        // maps nav tab keys to routes/anchors — see note below
         if (key === "home") navigate("/");
-        else navigate(`/#${key}`);
+        else if (key === "citizen") navigate("/citizen");
+        else if (key === "mp") navigate("/mp");
+        else if (key === "government" || key === "civil-servant") navigate("/civil-servant");
+        else if (key.startsWith("/")) navigate(key);
+        else {
+          const el = document.getElementById(key);
+          if (el) el.scrollIntoView({ behavior: "smooth" });
+          else navigate(`/#${key}`);
+        }
       }}
     />
   );
