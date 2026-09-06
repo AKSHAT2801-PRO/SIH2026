@@ -2,6 +2,7 @@ const express = require("express")
 const cors = require("cors")
 const authRoute = require("./routes/auth")
 const mpsRoute = require("./routes/mps")
+const mlRoute = require("./routes/ml")
 const { connectDb } = require("./config/dbconfig")
 const cookieParser = require("cookie-parser")
 const { authenticate } = require("./middleware/authJwt")
@@ -28,6 +29,7 @@ app.get("/",(req,res)=>{
 })
 app.use("/auth",authRoute)
 app.use("/mps",mpsRoute)
+app.use("/api/ml",mlRoute)
 
 app.listen(port,(err)=>{
     console.log(err)

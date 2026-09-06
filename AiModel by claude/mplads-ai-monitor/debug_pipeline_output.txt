@@ -1,0 +1,26 @@
+
+=== recommended_works ===
+Raw shape: (83621, 11)
+Raw columns: ['Work ID', 'Work Description', 'Category', 'MP Name', 'Constituency', 'State', 'House', 'Recommended Amount (?)', 'Recommendation Date', 'Has Images', 'IDA']
+Canonical shape: (83621, 11)
+Canonical columns: ['work_id', 'work_description', 'category', 'mp_name', 'constituency', 'state', 'house', 'recommended_amount', 'recommendation_date', 'has_images', 'ida']
+work_id in canonical: True
+Cleaned shape: (83621, 29)
+Cleaned columns: ['work_id', 'work_description', 'category', 'mp_name', 'constituency', 'state', 'house', 'recommended_amount', 'recommendation_date', 'has_images', 'ida', 'recommended_amount__num', 'recommendation_date__ts', 'validation_fatal', 'validation_warn', 'is_quarantined', 'mp_name_raw', 'mp_name_norm', 'ida_district', 'description_norm', 'mp_key', 'missing_data_ratio', 'structurally_unavailable_fields', 'is_exact_duplicate_row', 'is_duplicate_work_id', 'recommended_amount__is_statistical_outlier', 'recommended_amount__is_data_quality_issue', 'recommended_amount__is_potential_anomaly', 'recommended_amount__robust_z']
+work_id in cleaned: True
+work_id sample: ['175556', '175559', '175561', '183102', '187484', '188526', '188528', '212474', '224538', '224539']
+work_id nunique: 83606
+work_id duplicates: 15
+
+=== completed_works ===
+Raw shape: (43173, 12)
+Raw columns: ['Work ID', 'Work Description', 'Category', 'MP Name', 'Constituency', 'State', 'House', 'Final Amount (?)', 'Completed Date', 'Has Images', 'Average Rating', 'IDA']
+Canonical shape: (43173, 12)
+Canonical columns: ['work_id', 'work_description', 'category', 'mp_name', 'constituency', 'state', 'house', 'final_amount', 'completed_date', 'has_images', 'average_rating', 'ida']
+work_id in canonical: True
+Cleaned shape: (43173, 30)
+Cleaned columns: ['work_id', 'work_description', 'category', 'mp_name', 'constituency', 'state', 'house', 'final_amount', 'completed_date', 'has_images', 'average_rating', 'ida', 'final_amount__num', 'completed_date__ts', 'validation_fatal', 'validation_warn', 'is_quarantined', 'mp_name_raw', 'mp_name_norm', 'ida_district', 'description_norm', 'mp_key', 'missing_data_ratio', 'structurally_unavailable_fields', 'is_exact_duplicate_row', 'is_duplicate_work_id', 'final_amount__is_statistical_outlier', 'final_amount__is_data_quality_issue', 'final_amount__is_potential_anomaly', 'final_amount__robust_z']
+work_id in cleaned: True
+work_id sample: ['134703', '135593', '135595', '135639', '135640', '135641', '135642', '135643', '135645', '135646']
+work_id nunique: 43173
+work_id duplicates: 0

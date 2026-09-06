@@ -1,0 +1,19 @@
+Total works: 126794
+Recommended: 83621
+Completed: 43173
+Unique work_uids: 126794
+Duplicate work_uids: 0
+Work columns: ['work_id', 'work_description', 'description_norm', 'category', 'mp_name', 'mp_name_norm', 'mp_key', 'constituency', 'state', 'house', 'amount', 'event_date', 'has_images', 'ida', 'ida_district', 'work_stage', 'missing_data_ratio', 'fy', 'quarter', 'month', 'days_since', 'amount_lakh', 'is_round_amount', 'amount_last_digits_zero', 'state_category_peer_median', 'state_category_peer_count', 'state_category_group_thin', 'state_category_ratio_to_peer', 'state_category_robust_z', 'state_category_above_p90', 'district_peer_median', 'district_peer_count', 'district_group_thin', 'district_ratio_to_peer', 'district_robust_z', 'district_above_p90', 'category_peer_median', 'category_peer_count', 'category_group_thin', 'category_ratio_to_peer', 'category_robust_z', 'category_above_p90', 'age_days', 'is_open_beyond_median_cycle', 'work_id_occurrence', 'is_repeated_work_id', 'work_uid']
+No duplicates in work_uid!
+
+Recommended works subset:
+  Rows: 83621
+  Unique work_uids: 83621
+  Duplicate work_uids: 0
+  work_uid nulls: 0
+
+Completed works subset:
+  Rows: 43173
+  Unique work_uids: 43173
+  Duplicate work_uids: 0
+  work_uid nulls: 0

@@ -356,3 +356,75 @@ export async function submitInspectionResult(workId, { outcome, notes, photoFile
   if (!res.ok) throw new Error("Failed to submit inspection result.");
   return res.json();
 }
+
+/**
+ * Map frontend work data to ML API WorkRecord format.
+ * Uses available fields; provides safe defaults for required fields.
+ */
+function mapWorkToMLRecord(work) {
+  const state = work.state || work.location?.split(",").pop()?.trim() || "Unknown";
+  const amount = work.budgetAllocated || work.expenditure || 0;
+  const work_description = work.title || work.work_description || "";
+  const mp_name = work.mp || work.mpName || "";
+  const event_date = work.startDate || work.event_date || new Date().toISOString().slice(0, 10);
+  const work_id = work.id || work.work_id || work._id || "";
+  const work_stage = work.status === "Completed" ? "COMPLETED" : "RECOMMENDED";
+
+  return {
+    state,
+    amount,
+    work_description,
+    category: work.category || "Unspecified",
+    mp_name,
+    mp_key: work.mpId || work.mp_key || undefined,
+    house: work.house || "Lok Sabha",
+    constituency: work.constituency || work.location?.split(",")[0]?.trim() || "",
+    ida: work.ida || work.implementingAgency || "",
+    ida_district: work.ida_district || work.district || state,
+    event_date,
+    as_of: new Date().toISOString().slice(0, 10),
+    work_stage,
+    work_id,
+    has_images: work.hasImages || work.has_images || false,
+  };
+}
+
+/**
+ * Fetch ML risk prediction for a work via Node.js backend proxy.
+ * Calls POST /api/ml/predict which forwards to FastAPI /api/score.
+ */
+export async function fetchMLPrediction(workData) {
+  if (DEMO_MODE) {
+    const mlRecord = mapWorkToMLRecord(workData);
+    console.log("[DEMO] ML prediction request:", mlRecord);
+    return Promise.resolve({
+      composite_risk: workData.riskScore || 50,
+      risk_band: workData.riskBand || "moderate",
+      components: {
+        cost_risk: 45,
+        duplicate_risk: 20,
+        delay_risk: 60,
+        vendor_risk: 35,
+        utilisation_risk: 25,
+        data_quality_risk: 15,
+      },
+      explanation: "Demo ML prediction — replace with real API call.",
+      alert: { would_raise_alert: (workData.riskScore || 50) >= 60 },
+      data_quality: { warnings: ["Demo mode — not a real ML score"] },
+    });
+  }
+
+  const mlRecord = mapWorkToMLRecord(workData);
+  const res = await fetch(`${API_BASE_URL}/api/ml/predict`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(mlRecord),
+  });
+
+  if (!res.ok) {
+    const error = await res.json().catch(() => ({ error: "ML prediction failed" }));
+    throw new Error(error.error || `ML request failed: ${res.status}`);
+  }
+
+  return res.json();
+}

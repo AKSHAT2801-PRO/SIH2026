@@ -1,8 +1,8 @@
 ==============================================================================
 MPLADS DATA QUALITY REPORT
 ==============================================================================
-Run id            : run_20260824T180321Z_5e3822
-Generated         : 2026-08-24T18:05:53+00:00
+Run id            : run_20260905T173016Z_cba6a6
+Generated         : 2026-09-05T17:32:32+00:00
 Official source   : https://mplads.mospi.gov.in/digigov/dashboard.html
 Portal reachable  : False
 Snapshot used     : 20260822

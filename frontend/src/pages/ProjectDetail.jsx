@@ -22,6 +22,7 @@ import {
   fetchReviews,
   markForInspection,
   submitInspectionResult,
+  fetchMLPrediction,
 } from "../dataService";
 
 function InfoCard({ label, value, sub }) {
@@ -167,6 +168,9 @@ export default function ProjectDetail({ workId, onBack, onLogout }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [marking, setMarking] = useState(false);
+  const [mlData, setMlData] = useState(null);
+  const [mlLoading, setMlLoading] = useState(false);
+  const [mlError, setMlError] = useState("");
 
   const loadData = () => {
     setLoading(true);
@@ -180,10 +184,30 @@ export default function ProjectDetail({ workId, onBack, onLogout }) {
       .finally(() => setLoading(false));
   };
 
+  const loadMLPrediction = async (workData) => {
+    setMlLoading(true);
+    setMlError("");
+    try {
+      const prediction = await fetchMLPrediction(workData);
+      setMlData(prediction);
+    } catch (err) {
+      setMlError(err.message || "ML analysis unavailable");
+      console.warn("ML prediction failed:", err);
+    } finally {
+      setMlLoading(false);
+    }
+  };
+
   useEffect(() => {
     loadData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [workId]);
+
+  useEffect(() => {
+    if (work) {
+      loadMLPrediction(work);
+    }
+  }, [work]);
 
   const handleMarkForInspection = async () => {
     setMarking(true);
@@ -338,21 +362,79 @@ export default function ProjectDetail({ workId, onBack, onLogout }) {
               <span className="text-[11px] text-[#8993A8]">(via ML model)</span>
             </div>
             <div className="border border-[#D8D3C7] bg-white p-5">
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-[13px] text-[#5A6478]">Overall score</span>
-                <RiskBadge score={work.riskScore} band={work.riskBand} />
-              </div>
-              <div className="space-y-3">
-                {work.riskFactors.map((f, i) => (
-                  <div key={i} className="border-l-2 border-[#D8D3C7] pl-3 py-0.5">
-                    <div className="flex items-center justify-between">
-                      <span className="text-[12.5px] text-[#1C2B4A]">{f.label}</span>
-                      <span className="text-[10.5px] text-[#8993A8]">{f.weight}</span>
+              {mlLoading && (
+                <div className="flex items-center justify-center py-8 text-[#5A6478]">
+                  <Loader2 size={20} className="animate-spin mr-2" />
+                  Loading ML risk analysis...
+                </div>
+              )}
+              {mlError && !mlLoading && (
+                <div className="border border-[#C48A3F]/30 bg-[#C48A3F]/5 px-4 py-3 text-[#C48A3F] text-[13px] flex items-center gap-2 mb-4">
+                  <AlertTriangle size={14} />
+                  <span>{mlError}</span>
+                  <span className="text-[11px] text-[#8993A8]">Showing fallback risk data below.</span>
+                </div>
+              )}
+              {!mlLoading && (
+                <>
+                  {mlData && (
+                    <div className="mb-4">
+                      <div className="flex items-center justify-between mb-3">
+                        <span className="text-[13px] text-[#5A6478]">ML Composite Risk</span>
+                        <RiskBadge score={Math.round(mlData.composite_risk)} band={mlData.risk_band?.toLowerCase()} />
+                      </div>
+                      {mlData.explanation && (
+                        <p className="text-[12.5px] text-[#5A6478] mb-4 italic">{mlData.explanation}</p>
+                      )}
+                      {mlData.alert?.would_raise_alert && (
+                        <div className="mb-4 border-l-4 border-[#B3453B] pl-3 bg-[#B3453B]/5 py-2">
+                          <div className="flex items-center gap-2 text-[#B3453B] text-[12.5px]">
+                            <AlertTriangle size={14} />
+                            <span><strong>Alert:</strong> {mlData.alert.recommended_action || "High risk detected — review recommended."}</span>
+                          </div>
+                        </div>
+                      )}
                     </div>
-                    <p className="text-[11.5px] text-[#8993A8] mt-0.5">{f.detail}</p>
+                  )}
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-[13px] text-[#5A6478]">Overall score</span>
+                    <RiskBadge score={work.riskScore} band={work.riskBand} />
                   </div>
-                ))}
-              </div>
+                  <div className="space-y-3">
+                    {mlData?.components && (
+                      <>
+                        {Object.entries(mlData.components).map(([key, value], i) => (
+                          <div key={key} className="border-l-2 border-[#D8D3C7] pl-3 py-1.5">
+                            <div className="flex items-center justify-between">
+                              <span className="text-[12.5px] text-[#1C2B4A] capitalize">{key.replace("_risk", "").replace("_", " ")}</span>
+                              <span className="text-[12.5px] text-[#1C2B4A] font-medium">{Math.round(value)}</span>
+                            </div>
+                          </div>
+                        ))}
+                      </>
+                    )}
+                    {work.riskFactors.map((f, i) => (
+                      <div key={i} className="border-l-2 border-[#D8D3C7] pl-3 py-0.5">
+                        <div className="flex items-center justify-between">
+                          <span className="text-[12.5px] text-[#1C2B4A]">{f.label}</span>
+                          <span className="text-[10.5px] text-[#8993A8]">{f.weight}</span>
+                        </div>
+                        <p className="text-[11.5px] text-[#8993A8] mt-0.5">{f.detail}</p>
+                      </div>
+                    ))}
+                  </div>
+                  {mlData?.data_quality?.warnings?.length && (
+                    <div className="mt-4 pt-4 border-t border-[#EFECE3]">
+                      <div className="text-[11px] text-[#8993A8] mb-2">Data quality notes:</div>
+                      <ul className="text-[11px] text-[#8993A8] list-disc list-inside space-y-1">
+                        {mlData.data_quality.warnings.map((w, i) => (
+                          <li key={i}>{w}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </>
+              )}
             </div>
           </div>
         </div>

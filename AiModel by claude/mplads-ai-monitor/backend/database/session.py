@@ -63,7 +63,9 @@ def bulk_load(df: pd.DataFrame, table: str, replace: bool = True, chunksize: int
             conn.execute(text(f"DELETE FROM {table}"))
     if "id" in cols and frame["id"].isna().all():
         frame = frame.drop(columns=["id"])
-    frame.to_sql(table, engine, if_exists="append", index=False, chunksize=chunksize, method="multi")
+    url = get_config().db_url
+    method = "multi" if not url.startswith("sqlite") else None
+    frame.to_sql(table, engine, if_exists="append", index=False, chunksize=chunksize, method=method)
     log.info("Loaded %-26s %7d rows", table, len(frame))
     return len(frame)
 
