@@ -109,22 +109,22 @@ export default function GovernmentDashboard({ onNavigateToProject, onLogout }) {
 // sb comment kiya hai koi haath bhi mt lagana-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x--x-x-x-x-x-x-x-x-x-x
 
     Promise.all([
-      // fetchDashboardStats(),
-      // fetchAllWorks({ sortByRisk: true }),
-      // fetchMPPerformance(),
-      // fetchReviews(),
+      fetchDashboardStats(),
+      fetchAllWorks({ sortByRisk: true }),
+      fetchMPPerformance(),
+      fetchReviews(),
     ])
       .then(([
-        // statsData,
-        //  worksData,
-          //  perfData,
-            // reviewsData
+        statsData,
+         worksData,
+           perfData,
+            reviewsData
           ]) => {
         if (cancelled) return;
-        // setStats(statsData);
-        // setWorks(worksData);
-        // setMPPerformance(perfData);
-        // setReviews(reviewsData);
+        setStats(statsData);
+        setWorks(worksData);
+        setMPPerformance(perfData);
+        setReviews(reviewsData);
       })
       .catch((err) => {
         if (!cancelled) setError(err.message || "Failed to load dashboard data.");

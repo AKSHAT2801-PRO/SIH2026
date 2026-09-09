@@ -109,11 +109,16 @@ export default function LandingPage({ onLogin, onRegister, onNavigate, onOpenPor
   }, []);
 
   const handlePortalClick = (roleKey) => {
-    if (onOpenPortal) {
-      onOpenPortal(roleKey);
-    } else if (onNavigate) {
-      onNavigate(roleKey);
+    if(localStorage.getItem("role") != roleKey){
+      onLogin()
     }
+    else{
+      if (onOpenPortal) {
+        onOpenPortal(roleKey);
+      } else if (onNavigate) {
+          onNavigate(roleKey);
+      }
+    }   
   };
 
   return (

@@ -3,6 +3,7 @@ const MPLADS_API_KEY = process.env.MPLADS_API_KEY;
 
 async function predict(req, res) {
     try {
+        return res.json({status: "success"})
         const workData = req.body;
 
         if (!MPLADS_API_KEY) {

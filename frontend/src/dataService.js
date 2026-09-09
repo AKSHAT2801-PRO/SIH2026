@@ -14,7 +14,7 @@
 //   pendingPayments, averageRating, createdAt, updatedAt
 // -----------------------------------------------------------------------
 
-export const DEMO_MODE = false;
+export const DEMO_MODE = true;
 const API_BASE_URL = "http://localhost:6005"; // <- change to your backend
 
 // ---------------------------------------------------------------------
@@ -275,9 +275,9 @@ export async function fetchWorkById(workId) {
  * house, allocatedAmount, totalExpenditure, etc.)
  */
 export async function fetchAllMPs(filter) {
-  if (DEMO_MODE) {
-    return Promise.resolve(DEMO_MPS);
-  }
+  // if (DEMO_MODE) {
+  //   return Promise.resolve(DEMO_MPS);
+  // }
   const res = await fetch(`${API_BASE_URL}/mps?page=${filter.page}&limit=${filter.limit}`);
   if (!res.ok) throw new Error("Failed to load MPs.");
   const data = await res.json();
