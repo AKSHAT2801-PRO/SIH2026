@@ -25,4 +25,6 @@ const getUser = async (data) => {
     return user;
 };
 
-module.exports = {setUser, getUser}
+const getUserById = async (id) => User.findById(id).select("-password");
+
+module.exports = {setUser, getUser, getUserById}

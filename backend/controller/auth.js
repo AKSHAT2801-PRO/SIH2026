@@ -3,7 +3,10 @@ const authService = require ("../service/auth")
 const register = async (req,res)=>{
 
     try{
-        const body = await req.body
+        const body = req.body
+        if (body.role === "citizen" && (!body.place?.region || !body.place?.district)) {
+            return res.status(400).json({ message: "Citizens must select a region and district" });
+        }
         if (body.role === "mp" && !/^[^\s@]+@(?:[^\s@.]+\.)?mplad\.ac\.in$/i.test(body.email || "")) {
             return res.status(400).json({ message: "MP email must use the mplad.ac.in domain" });
         }
@@ -39,6 +42,7 @@ const login = async (req, res) => {
                 role: user.role,
                 name: user.name,
                 email: user.email,
+                place: user.role === "citizen" ? user.place : undefined,
             });
         }
     } catch (e) {
@@ -52,4 +56,17 @@ const logout = async (req, res) => {
     return res.status(200).json({ message: "Logged out successfully" });
 };
 
-module.exports = { register, login, logout };
+const me = async (req, res) => {
+    if (!req.user?.id) return res.status(401).json({ message: "Authentication required" });
+    const user = await authService.getUserProfile(req.user.id);
+    if (!user) return res.status(404).json({ message: "User not found" });
+    return res.json({
+        id: user._id,
+        role: user.role,
+        name: user.name,
+        email: user.email,
+        place: user.place,
+    });
+};
+
+module.exports = { register, login, logout, me };

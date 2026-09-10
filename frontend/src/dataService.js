@@ -19,6 +19,12 @@ const API_BASE_URL = "http://localhost:6005"; // <- change to your backend
 const MODEL_BASE_URL = "http://localhost:8000/api"; // <- change to your backend
 const MODEL_HEADERS = { "X-API-Key": "dev-admin-key", role: "admin" };
 
+export async function fetchCurrentUser() {
+  const res = await fetch(`${API_BASE_URL}/auth/me`, { credentials: "include" });
+  if (!res.ok) throw new Error("Failed to load your account details.");
+  return res.json();
+}
+
 // ---------------------------------------------------------------------
 // DEMO DATA
 // ---------------------------------------------------------------------
@@ -368,6 +374,42 @@ export async function fetchModelMPs(search = "") {
   return query
     ? options.filter((mp) => mp.mp_name?.toLowerCase().includes(query))
     : options;
+}
+
+export async function fetchModelRegions() {
+  const res = await fetch(`${MODEL_BASE_URL}/states`, { headers: MODEL_HEADERS });
+  if (!res.ok) throw new Error("Failed to load regions.");
+  const data = await res.json();
+  return data.map((item) => item.state).filter(Boolean).sort();
+}
+
+export async function fetchModelDistricts(region) {
+  const params = new URLSearchParams({ state: region, limit: "1000" });
+  const res = await fetch(`${MODEL_BASE_URL}/districts?${params}`, { headers: MODEL_HEADERS });
+  if (!res.ok) throw new Error("Failed to load districts.");
+  const data = await res.json();
+  return data.map((item) => item.ida_district).filter(Boolean).sort();
+}
+
+export async function fetchCitizenWorks({ region, district }) {
+  const params = new URLSearchParams({ state: region, district, limit: "100" });
+  const res = await fetch(`${MODEL_BASE_URL}/works?${params}`, { headers: MODEL_HEADERS });
+  if (!res.ok) throw new Error("Failed to load nearby works.");
+  return (await res.json()).map((raw) => {
+    const work = normalizeWork(raw);
+    const amount = Number(work.budgetAllocated || 0);
+    return {
+      ...work,
+      description: work.title,
+      fundsAllocated: amount ? `Rs ${amount.toLocaleString("en-IN")}` : "Not available",
+      fundsSpent: "Not available",
+      fundUtilisation: work.status === "Completed" ? 100 : 0,
+      expectedCompletion: "Not available",
+      lastUpdated: work.startDate || "Not available",
+      siteVisits: { completed: 0, total: 0 },
+      milestones: [],
+    };
+  });
 }
 
 export async function fetchMPDashboardData(mpName) {

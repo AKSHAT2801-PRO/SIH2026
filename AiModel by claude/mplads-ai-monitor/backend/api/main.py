@@ -188,7 +188,7 @@ def works(state: str | None = None, district: str | None = None, band: str | Non
     if mp_name:
         clauses.append("LOWER(w.mp_name) LIKE :mp_name")
         params["mp_name"] = f"%{mp_name.lower()}%"
-        return rows(f"""SELECT w.work_uid, w.work_stage, w.work_description, w.category, w.mp_name, w.constituency,
+    return rows(f"""SELECT w.work_uid, w.work_stage, w.work_description, w.category, w.mp_name, w.constituency,
                       w.state, w.ida_district, w.amount, w.event_date, w.composite_risk, w.risk_band,
                       w.cost_risk, w.duplicate_risk, w.delay_risk, w.vendor_risk, w.utilisation_risk,
                       w.data_quality_risk,
@@ -201,8 +201,8 @@ def works(state: str | None = None, district: str | None = None, band: str | Non
                                                      END AS mp_utilisation_pct
                   FROM analytics_work_risk AS w
                   LEFT JOIN analytics_mp_risk AS mp ON mp.mp_key = w.mp_key
-                  WHERE {' AND '.join(clauses)}
-                    ORDER BY w.composite_risk DESC LIMIT :limit OFFSET :offset""", params)
+                            WHERE {' AND '.join(clauses)}
+                                ORDER BY w.composite_risk DESC LIMIT :limit OFFSET :offset""", params)
 
 
 @app.get("/api/works/{work_uid}")

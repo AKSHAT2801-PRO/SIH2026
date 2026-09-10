@@ -99,6 +99,7 @@ export default function LandingPage({ onLogin, onRegister, onNavigate, onOpenPor
   const [stats, setStats] = useState(null);
   const [works, setWorks] = useState([]);
   const [loadingWorks, setLoadingWorks] = useState(true);
+  const [activeTab, setActiveTab] = useState("home");
 
   useEffect(() => {
     fetchStats().then(setStats).catch(() => setStats(null));
@@ -121,9 +122,18 @@ export default function LandingPage({ onLogin, onRegister, onNavigate, onOpenPor
     }   
   };
 
+  const handleLandingNavigation = (key) => {
+    setActiveTab(key);
+    if (key === "home") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+    onNavigate && onNavigate(key);
+  };
+
   return (
     <div className="min-h-screen bg-[#FAF9F6]">
-      <Navbar activeTab="home" onNavigate={onNavigate} onLogin={onLogin} onRegister={onRegister} />
+      <Navbar activeTab={activeTab} onNavigate={handleLandingNavigation} onLogin={onLogin} onRegister={onRegister} logoSize="xl" />
 
       {/* HERO */}
       <section className="max-w-[1200px] mx-auto px-6 pt-16 pb-20 grid lg:grid-cols-[1.1fr_0.9fr] gap-14 items-center">

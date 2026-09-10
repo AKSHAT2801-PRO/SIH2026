@@ -34,4 +34,6 @@ const validateUser = async (data) => {
     }
 };
 
-module.exports = {setUser, validateUser,verifyToken,getUserToken}
+const getUserProfile = async (id) => repo.getUserById(id);
+
+module.exports = {setUser, validateUser, verifyToken, getUserToken, getUserProfile}

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Landmark, Users, Eye, ChevronRight, Loader2, Check } from "lucide-react";
-import { fetchModelMPs } from "../dataService";
+import { Landmark, Users, Eye, ChevronRight, Loader2, Check, Search, MapPin } from "lucide-react";
+import { fetchModelMPs, fetchModelRegions, fetchModelDistricts } from "../dataService";
 import AppLogo from "../components/AppLogo";
 
 const ROLES = [
@@ -52,6 +52,11 @@ export default function Register({ onSubmit, onNavigateLogin }) {
   const [mpOptions, setMpOptions] = useState([]);
   const [mpSearch, setMpSearch] = useState("");
   const [selectedMP, setSelectedMP] = useState("");
+  const [region, setRegion] = useState("");
+  const [district, setDistrict] = useState("");
+  const [locationSearch, setLocationSearch] = useState("");
+  const [regions, setRegions] = useState([]);
+  const [districtOptions, setDistrictOptions] = useState([]);
 
   useEffect(() => {
     if (role !== "mp") return;
@@ -60,11 +65,26 @@ export default function Register({ onSubmit, onNavigateLogin }) {
       .catch((error) => setFormError(error.message));
   }, [role, mpSearch]);
 
+  useEffect(() => {
+    if (role !== "citizen") return;
+    fetchModelRegions().then(setRegions).catch((error) => setFormError(error.message));
+  }, [role]);
+
+  useEffect(() => {
+    if (role !== "citizen" || !region) {
+      setDistrictOptions([]);
+      return;
+    }
+    fetchModelDistricts(region).then(setDistrictOptions).catch((error) => setFormError(error.message));
+  }, [role, region]);
+
   const activeRole = ROLES.find((r) => r.key === role);
 
   const validate = () => {
     const next = {};
     if (!name.trim()) next.name = "Enter your full name.";
+    if (role === "citizen" && !region) next.region = "Select your region.";
+    if (role === "citizen" && !district) next.district = "Select your district.";
     if (role === "mp" && !selectedMP) next.mpName = "Select your official MP name.";
     if (!email.trim()) next.email = "Enter your email address.";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
@@ -88,7 +108,7 @@ export default function Register({ onSubmit, onNavigateLogin }) {
     setLoading(true);
     try {
       if (onSubmit) {
-        await onSubmit({ role, name: role === "mp" ? selectedMP : name, mpName: selectedMP, email, password });
+        await onSubmit({ role, name: role === "mp" ? selectedMP : name, mpName: selectedMP, email, password, ...(role === "citizen" ? { place: { region, district } } : {}) });
       }
     } catch (err) {
       setFormError(
@@ -264,6 +284,26 @@ export default function Register({ onSubmit, onNavigateLogin }) {
                 ))}
               </select>
               {errors.mpName && <p className="text-[#B3453B] text-xs mt-1.5">{errors.mpName}</p>}
+            </div>
+          )}
+
+          {role === "citizen" && (
+            <div className="mb-6 border border-[#D8D3C7] bg-white p-4">
+              <div className="flex items-center gap-2 text-[#1C2B4A] text-[13px] mb-1.5"><MapPin size={15} className="text-[#B8863F]" />Your location</div>
+              <p className="text-[#8993A8] text-xs mb-3">We use this to show works near you.</p>
+              <div className="relative mb-2">
+                <Search size={14} className="absolute left-3 top-3 text-[#8993A8]" />
+                <input value={locationSearch} onChange={(event) => setLocationSearch(event.target.value)} placeholder="Search region or district" className="w-full pl-9 pr-3.5 py-2.5 text-sm border border-[#D8D3C7] text-[#1C2B4A] focus:outline-none focus:border-[#1C2B4A]" />
+              </div>
+              <select value={region} onChange={(event) => { setRegion(event.target.value); setDistrict(""); }} className="w-full px-3.5 py-2.5 text-sm border border-[#D8D3C7] text-[#1C2B4A] focus:outline-none focus:border-[#1C2B4A]" aria-invalid={!!errors.region}>
+                <option value="">Select region / state</option>
+                {regions.filter((item) => item.toLowerCase().includes(locationSearch.toLowerCase())).map((item) => <option key={item} value={item}>{item}</option>)}
+              </select>
+              <select value={district} onChange={(event) => setDistrict(event.target.value)} disabled={!region} className="w-full mt-2 px-3.5 py-2.5 text-sm border border-[#D8D3C7] text-[#1C2B4A] disabled:bg-[#F3F1EB] focus:outline-none focus:border-[#1C2B4A]" aria-invalid={!!errors.district}>
+                <option value="">Select district</option>
+                {districtOptions.filter((item) => item.toLowerCase().includes(locationSearch.toLowerCase())).map((item) => <option key={item} value={item}>{item}</option>)}
+              </select>
+              {(errors.region || errors.district) && <p className="text-[#B3453B] text-xs mt-1.5">{errors.region || errors.district}</p>}
             </div>
           )}
 
