@@ -4,6 +4,9 @@ const register = async (req,res)=>{
 
     try{
         const body = await req.body
+        if (body.role === "mp" && !/^[^\s@]+@(?:[^\s@.]+\.)?mplad\.ac\.in$/i.test(body.email || "")) {
+            return res.status(400).json({ message: "MP email must use the mplad.ac.in domain" });
+        }
         const token = await authService.setUser(body)
         res.cookie("ticket",token)
         res.json({message : "Fetch Successful"})
@@ -18,6 +21,9 @@ const register = async (req,res)=>{
 const login = async (req, res) => {
     try {
         const body = req.body;
+        if (body.role === "mp" && !/^[^\s@]+@(?:[^\s@.]+\.)?mplad\.ac\.in$/i.test(body.email || "")) {
+            return res.status(400).json({ message: "MP email must use the mplad.ac.in domain" });
+        }
         const user = await authService.validateUser(body);
 
         if (!user) {

@@ -22,6 +22,7 @@ export default function DashboardHeader({
   section = "overview",
   role = "citizen",
   unreadCount = 0,
+  userName = "",
 }) {
   const navigate = useNavigate();
   const title = SECTION_TITLES[section] || "Dashboard";
@@ -31,6 +32,19 @@ export default function DashboardHeader({
     mp: "MP / MLA Dashboard",
     government: "Government Dashboard",
   };
+  const avatarName = userName || (role === "citizen" ? "Citizen" : role === "mp" ? "MP" : "Government");
+  const avatarInitials = avatarName
+    .replace(/\([^)]*\)/g, "")
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0])
+    .join("")
+    .toUpperCase();
+  const avatarHue = [...avatarName].reduce((sum, char) => sum + char.charCodeAt(0), 0) % 360;
+  const avatarImage = `data:image/svg+xml,${encodeURIComponent(
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96"><rect width="96" height="96" fill="hsl(${avatarHue} 28% 28%)"/><circle cx="48" cy="34" r="17" fill="hsl(${avatarHue} 42% 72%)"/><path d="M18 88c3-21 15-31 30-31s27 10 30 31" fill="hsl(${avatarHue} 42% 72%)"/><text x="48" y="91" text-anchor="middle" font-family="Georgia,serif" font-size="13" fill="white">${avatarInitials}</text></svg>`
+  )}`;
 
   return (
     <header className="sticky top-0 z-30 bg-[#FAF9F6]/95 backdrop-blur border-b border-[#D8D3C7]">
@@ -112,9 +126,12 @@ export default function DashboardHeader({
           </button>
 
           {/* Avatar */}
-          <div className="w-8 h-8 bg-[#1C2B4A] text-[#FAF9F6] text-[11px] flex items-center justify-center shrink-0">
-            {role === "citizen" ? "C" : role === "mp" ? "MP" : "CS"}
-          </div>
+          <img
+            src={avatarImage}
+            alt={`${avatarName} profile avatar`}
+            title={avatarName}
+            className="w-8 h-8 object-cover shrink-0 border border-[#D8D3C7]"
+          />
         </div>
       </div>
     </header>

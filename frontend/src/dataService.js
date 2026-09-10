@@ -284,7 +284,9 @@ function normalizeWork(raw) {
       detail: `${Number(value).toFixed(1)} risk score`,
     })),
     budgetAllocated: raw.amount ?? 0,
-    expenditure: 0,
+    expenditure: raw.mp_derived_expenditure ?? 0,
+    mpAllocatedAmount: raw.mp_allocated_amount ?? 0,
+    mpUtilisationPct: raw.mp_utilisation_pct,
     timeAllottedMonths: null,
     startDate: raw.event_date ? String(raw.event_date).slice(0, 10) : null,
     dueDate: null,
@@ -353,6 +355,56 @@ export async function fetchStateSummaries() {
   const res = await fetch(`${MODEL_BASE_URL}/states`, { headers: MODEL_HEADERS });
   if (!res.ok) throw new Error("Failed to load state summaries.");
   return res.json();
+}
+
+export async function fetchModelMPs(search = "") {
+  const params = new URLSearchParams({ limit: "1000" });
+  if (search.trim()) params.set("mp_name", search.trim());
+  const res = await fetch(`${MODEL_BASE_URL}/mps?${params}`, { headers: MODEL_HEADERS });
+  if (!res.ok) throw new Error("Failed to load MP names.");
+  const data = await res.json();
+  const options = Array.isArray(data) ? data : data.data || [];
+  const query = search.trim().toLowerCase();
+  return query
+    ? options.filter((mp) => mp.mp_name?.toLowerCase().includes(query))
+    : options;
+}
+
+export async function fetchMPDashboardData(mpName) {
+  const params = new URLSearchParams({ limit: "1000", mp_name: mpName });
+  const [mpResponse, worksResponse] = await Promise.all([
+    fetch(`${MODEL_BASE_URL}/mps?limit=1000`, { headers: MODEL_HEADERS }),
+    fetch(`${MODEL_BASE_URL}/works?${params}`, { headers: MODEL_HEADERS }),
+  ]);
+  if (!mpResponse.ok || !worksResponse.ok) throw new Error("Failed to load MP dashboard data.");
+  const mps = await mpResponse.json();
+  const works = await worksResponse.json();
+  const mp = mps.find((item) => item.mp_name?.toLowerCase() === mpName.toLowerCase())
+    || mps.find((item) => item.mp_name?.toLowerCase().includes(mpName.toLowerCase()));
+  return {
+    mp,
+    works: works.map((raw) => {
+      const work = normalizeWork(raw);
+      return {
+        ...work,
+        description: work.title,
+        fundsAllocated: work.mpAllocatedAmount || work.budgetAllocated,
+        fundsSpent: work.expenditure,
+        fundUtilisation: work.mpUtilisationPct ?? (
+          work.mpAllocatedAmount > 0
+            ? (work.expenditure / work.mpAllocatedAmount) * 100
+            : 0
+        ),
+        timelineSlippage: "Not available",
+        siteVisits: { completed: 0, total: 0 },
+        startDate: work.startDate || "Not available",
+        expectedCompletion: "Not available",
+        contractor: "Not available",
+        contractorContact: "",
+        milestones: [],
+      };
+    }),
+  };
 }
 
 /** Single work by id — used by Project Detail page. */

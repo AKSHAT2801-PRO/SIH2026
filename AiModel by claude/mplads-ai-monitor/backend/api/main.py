@@ -178,22 +178,31 @@ def works(state: str | None = None, district: str | None = None, band: str | Non
           mp_name: str | None = None, min_risk: float = 0, stage: str | None = None,
           limit: int = Query(100, le=1000),
           offset: int = 0, user: dict = Depends(principal)) -> list[dict]:
-    clauses, params = ["composite_risk >= :min_risk"], {"min_risk": min_risk,
+    clauses, params = ["w.composite_risk >= :min_risk"], {"min_risk": min_risk,
                                                         "limit": limit, "offset": offset}
-    for field, value, column in (("state", state, "state"), ("district", district, "ida_district"),
-                                 ("band", band, "risk_band"), ("stage", stage, "work_stage")):
+    for field, value, column in (("state", state, "w.state"), ("district", district, "w.ida_district"),
+                                 ("band", band, "w.risk_band"), ("stage", stage, "w.work_stage")):
         if value:
             clauses.append(f"{column} = :{field}")
             params[field] = value
     if mp_name:
-        clauses.append("LOWER(mp_name) LIKE :mp_name")
+        clauses.append("LOWER(w.mp_name) LIKE :mp_name")
         params["mp_name"] = f"%{mp_name.lower()}%"
-    return rows(f"""SELECT work_uid, work_stage, work_description, category, mp_name, constituency,
-                           state, ida_district, amount, event_date, composite_risk, risk_band,
-                           cost_risk, duplicate_risk, delay_risk, vendor_risk, utilisation_risk,
-                           data_quality_risk
-                    FROM analytics_work_risk WHERE {' AND '.join(clauses)}
-                    ORDER BY composite_risk DESC LIMIT :limit OFFSET :offset""", params)
+        return rows(f"""SELECT w.work_uid, w.work_stage, w.work_description, w.category, w.mp_name, w.constituency,
+                      w.state, w.ida_district, w.amount, w.event_date, w.composite_risk, w.risk_band,
+                      w.cost_risk, w.duplicate_risk, w.delay_risk, w.vendor_risk, w.utilisation_risk,
+                      w.data_quality_risk,
+                      mp.allocated_amount AS mp_allocated_amount,
+                      mp.derived_expenditure AS mp_derived_expenditure,
+                                                     CASE
+                                                         WHEN mp.allocated_amount > 0
+                                                         THEN ROUND(100.0 * mp.derived_expenditure / mp.allocated_amount, 2)
+                                                         ELSE mp.utilisation_pct
+                                                     END AS mp_utilisation_pct
+                  FROM analytics_work_risk AS w
+                  LEFT JOIN analytics_mp_risk AS mp ON mp.mp_key = w.mp_key
+                  WHERE {' AND '.join(clauses)}
+                    ORDER BY w.composite_risk DESC LIMIT :limit OFFSET :offset""", params)
 
 
 @app.get("/api/works/{work_uid}")
@@ -221,7 +230,8 @@ def work_detail(work_uid: str, user: dict = Depends(principal)) -> dict:
 
 
 @app.get("/api/mps")
-def mps(state: str | None = None, band: str | None = None, limit: int = Query(200, le=1000),
+def mps(state: str | None = None, band: str | None = None, mp_name: str | None = None,
+    limit: int = Query(200, le=1000),
         user: dict = Depends(principal)) -> list[dict]:
     clauses, params = ["1=1"], {"limit": limit}
     if state:
@@ -230,6 +240,9 @@ def mps(state: str | None = None, band: str | None = None, limit: int = Query(20
     if band:
         clauses.append("risk_band = :band")
         params["band"] = band
+    if mp_name:
+        clauses.append("LOWER(mp_name) LIKE :mp_name")
+        params["mp_name"] = f"%{mp_name.lower()}%"
     return rows(f"""SELECT mp_key, mp_name, constituency, state, house, allocated_amount,
                            derived_expenditure, utilisation_pct, completion_rate_pct,
                       works_total, high_risk_works, composite_risk, risk_band

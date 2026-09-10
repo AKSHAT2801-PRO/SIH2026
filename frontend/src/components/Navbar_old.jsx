@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Menu, X } from "lucide-react";
+import AppLogo from "./AppLogo";
 
 const NAV_LINKS = [
   { key: "home", label: "Home" },
@@ -30,14 +31,7 @@ export default function Navbar({
           onClick={() => handleNav("home")}
           className="flex items-center gap-2.5 shrink-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1C2B4A]"
         >
-          <div className="w-8 h-8 border border-[#B8863F] flex items-center justify-center">
-            <span
-              className="text-[#B8863F] text-sm"
-              style={{ fontFamily: "'Source Serif 4', Georgia, serif" }}
-            >
-              M
-            </span>
-          </div>
+          <AppLogo />
           <span className="text-[#1C2B4A] text-[15px] tracking-wide hidden sm:inline">
             MPLAD Works Tracker
           </span>

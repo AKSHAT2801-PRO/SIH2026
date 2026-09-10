@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
   MapPin,
   Clock,
@@ -28,6 +28,17 @@ import {
   MP_STATS,
   WORK_CATEGORIES,
 } from "../assets/dashboardData";
+import { fetchMPDashboardData } from "../dataService";
+import { MapOfSvg } from "india-map-svg";
+import "india-map-svg/style.css";
+import {
+  Cell,
+  Legend,
+  Pie,
+  PieChart,
+  ResponsiveContainer,
+  Tooltip,
+} from "recharts";
 
 /* ——— Helpers ——— */
 const RISK_STYLES = {
@@ -54,6 +65,68 @@ const PRIORITY_STYLES = {
   Low: "text-[#4A7C59] bg-[#4A7C59]/10",
 };
 
+const STATE_MAP_NAMES = {
+  "Andhra Pradesh": "AndhraPradesh",
+  "Arunachal Pradesh": "ArunachalPradesh",
+  Assam: "Assam",
+  Bihar: "Bihar",
+  Chhattisgarh: "Chhattisgarh",
+  Goa: "Goa",
+  Gujarat: "Gujarat",
+  Haryana: "Haryana",
+  "Himachal Pradesh": "HimachalPradesh",
+  Jharkhand: "Jharkhand",
+  Karnataka: "Karnataka",
+  Kerala: "Kerala",
+  "Madhya Pradesh": "MadhyaPradesh",
+  Maharashtra: "Maharashtra",
+  Manipur: "Manipur",
+  Meghalaya: "Meghalaya",
+  Mizoram: "Mizoram",
+  Nagaland: "Nagaland",
+  Odisha: "Odisha",
+  Punjab: "Punjab",
+  Rajasthan: "Rajasthan",
+  Sikkim: "Sikkim",
+  "Tamil Nadu": "TamilNadu",
+  Telangana: "Telangana",
+  Tripura: "Tripura",
+  "Uttar Pradesh": "UttarPradesh",
+  Uttarakhand: "Uttarakhand",
+  "West Bengal": "WestBengal",
+};
+
+const STATE_VIEWPORTS = {
+  AndhraPradesh: 2400,
+  ArunachalPradesh: 1700,
+  Assam: 1500,
+  Bihar: 2900,
+  Chhattisgarh: 1400,
+  Goa: 1000,
+  Gujarat: 2300,
+  Haryana: 2500,
+  HimachalPradesh: 2500,
+  Jharkhand: 850,
+  Karnataka: 2400,
+  Kerala: 2300,
+  MadhyaPradesh: 500,
+  Maharashtra: 2400,
+  Manipur: 750,
+  Meghalaya: 1250,
+  Mizoram: 2400,
+  Nagaland: 1000,
+  Odisha: 1250,
+  Punjab: 1000,
+  Rajasthan: 1250,
+  Sikkim: 800,
+  TamilNadu: 2100,
+  Telangana: 2400,
+  Tripura: 2200,
+  UttarPradesh: 1050,
+  Uttarakhand: 1200,
+  WestBengal: 1250,
+};
+
 
 export default function MpDashboard({ onLogout }) {
   const [section, setSection] = useState("overview");
@@ -64,6 +137,80 @@ export default function MpDashboard({ onLogout }) {
     estimatedCost: "", expectedTimeline: "",
   });
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [mpData, setMpData] = useState(null);
+  const [dashboardLoading, setDashboardLoading] = useState(true);
+  const [dashboardError, setDashboardError] = useState("");
+  const [mpImage, setMpImage] = useState("");
+
+  useEffect(() => {
+    const mpName = localStorage.getItem("name");
+    if (!mpName) {
+      setDashboardError("No MP identity is saved. Please sign in again.");
+      setDashboardLoading(false);
+      return;
+    }
+    fetchMPDashboardData(mpName)
+      .then(setMpData)
+      .catch((error) => setDashboardError(error.message || "Failed to load MP dashboard."))
+      .finally(() => setDashboardLoading(false));
+  }, []);
+
+  useEffect(() => {
+    const rawName = mpData?.mp?.mp_name || localStorage.getItem("name");
+    if (!rawName) return;
+    const wikipediaName = rawName
+      .replace(/^(Shri|Smt\.?|Shrimati|Dr\.?)\s+/i, "")
+      .replace(/\s*\([^)]*\)/g, "")
+      .trim();
+    fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(wikipediaName)}`)
+      .then((response) => (response.ok ? response.json() : null))
+      .then((data) => setMpImage(data?.thumbnail?.source || ""))
+      .catch(() => setMpImage(""));
+  }, [mpData?.mp?.mp_name]);
+
+  const liveWorks = mpData?.works || [];
+  const liveMP = mpData?.mp;
+  const displayStats = liveMP ? {
+    totalWorks: liveMP.works_total ?? liveWorks.length,
+    fundsAllocated: `₹${Number(liveMP.allocated_amount || 0).toLocaleString("en-IN")}`,
+    fundsUtilized: `₹${Number(liveMP.derived_expenditure || 0).toLocaleString("en-IN")}`,
+    worksInProgress: liveMP.works_total || 0,
+    worksDelayed: liveMP.high_risk_works || 0,
+    worksCompleted: liveMP.works_total || 0,
+    completionRate: `${Number(liveMP.completion_rate_pct || 0).toFixed(1)}%`,
+    pendingInspections: liveMP.high_risk_works || 0,
+    citizenMessages: 0,
+  } : MP_STATS;
+
+  const workStatusData = useMemo(() => {
+    const completed = liveWorks.filter((work) => work.status === "Completed").length;
+    return [
+      { name: "Pending works", value: liveWorks.length - completed, color: "#B8863F" },
+      { name: "Completed works", value: completed, color: "#4A7C59" },
+    ].filter((item) => item.value > 0);
+  }, [liveWorks]);
+
+  const riskData = useMemo(() => {
+    const counts = { low: 0, medium: 0, high: 0, critical: 0 };
+    liveWorks.forEach((work) => {
+      const band = String(work.riskBand || "low").toLowerCase();
+      counts[band] = (counts[band] || 0) + 1;
+    });
+    return [
+      { name: "Low", value: counts.low, color: "#4A7C59" },
+      { name: "Medium", value: counts.medium, color: "#C48A3F" },
+      { name: "High", value: counts.high, color: "#B3453B" },
+      { name: "Critical", value: counts.critical, color: "#7F1D1D" },
+    ].filter((item) => item.value > 0);
+  }, [liveWorks]);
+
+  const mapName = STATE_MAP_NAMES[liveMP?.state] || "";
+  const mapViewport = STATE_VIEWPORTS[mapName] || 2500;
+  const constituency = liveMP?.constituency || "Constituency unavailable";
+  const constituencyId = constituency
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "_")
+    .replace(/^_|_$/g, "");
 
   const unread = CITIZEN_MESSAGES.filter(m => m.status === "unread").length;
 
@@ -71,16 +218,17 @@ export default function MpDashboard({ onLogout }) {
   const renderOverview = () => (
     <div>
       {/* KPI Cards */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+      <div className="grid lg:grid-cols-[minmax(0,1fr)_210px] gap-4 mb-8">
+        <div className="grid grid-cols-2 xl:grid-cols-4 gap-4">
         {[
-          { label: "Total works", value: MP_STATS.totalWorks, accent: false },
-          { label: "Funds allocated", value: MP_STATS.fundsAllocated, accent: false },
-          { label: "In progress", value: MP_STATS.worksInProgress, accent: false },
-          { label: "Delayed", value: MP_STATS.worksDelayed, accent: true },
-          { label: "Completed", value: MP_STATS.worksCompleted, accent: false },
-          { label: "Completion rate", value: MP_STATS.completionRate, accent: false },
-          { label: "Pending inspections", value: MP_STATS.pendingInspections, accent: true },
-          { label: "Citizen messages", value: MP_STATS.citizenMessages, accent: false },
+          { label: "Total works", value: displayStats.totalWorks, accent: false },
+          { label: "Funds allocated", value: displayStats.fundsAllocated, accent: false },
+          { label: "In progress", value: displayStats.worksInProgress, accent: false },
+          { label: "High-risk works", value: displayStats.worksDelayed, accent: true },
+          { label: "Works scored", value: displayStats.worksCompleted, accent: false },
+          { label: "Completion rate", value: displayStats.completionRate, accent: false },
+          { label: "Funds utilized", value: displayStats.fundsUtilized, accent: false },
+          { label: "Citizen messages", value: displayStats.citizenMessages, accent: false },
         ].map((s) => (
           <div key={s.label} className={`border bg-white p-5 ${s.accent ? "border-[#B3453B]/30" : "border-[#D8D3C7]"}`}>
             <div
@@ -92,6 +240,110 @@ export default function MpDashboard({ onLogout }) {
             <div className="text-[#8993A8] text-[12px] mt-1">{s.label}</div>
           </div>
         ))}
+        </div>
+        <div className="border border-[#D8D3C7] bg-white p-3 flex flex-col justify-between">
+          <div className="text-[11px] uppercase tracking-wide text-[#B8863F] mb-2">MP profile</div>
+          {mpImage ? (
+            <img
+              src={mpImage}
+              alt={`${liveMP?.mp_name || "MP"} official profile`}
+              className="w-full h-[150px] object-cover object-top"
+            />
+          ) : (
+            <div className="w-full h-[150px] bg-[#1C2B4A] text-[#FAF9F6] flex items-center justify-center text-3xl" style={{ fontFamily: "'Source Serif 4', Georgia, serif" }}>
+              {(liveMP?.mp_name || "MP").split(/\s+/).slice(0, 2).map((part) => part[0]).join("").toUpperCase()}
+            </div>
+          )}
+          <div className="text-[#1C2B4A] text-[12px] mt-2 truncate" title={liveMP?.mp_name || "MP"}>
+            {liveMP?.mp_name || localStorage.getItem("name") || "MP"}
+          </div>
+        </div>
+      </div>
+
+      {/* MP state location */}
+      <div className="border border-[#D8D3C7] bg-white p-5 mb-8">
+        <div className="mb-1 text-[#1C2B4A] text-[15px]" style={{ fontFamily: "'Source Serif 4', Georgia, serif" }}>
+          MP region
+        </div>
+        <p className="text-[#8993A8] text-[12px] mb-3">
+          {liveMP?.mp_name || localStorage.getItem("name") || "Selected MP"} is associated with {liveMP?.state || "an unavailable state"} and {constituency}.
+        </p>
+        <div className="grid md:grid-cols-[1fr_220px] items-center gap-4">
+          {mapName ? (
+            <div className="w-full h-[300px]" role="img" aria-label={`${liveMP?.state} map highlighting ${constituency}`}>
+              <MapOfSvg
+                name={mapName}
+                width="100%"
+                height="100%"
+                autoFit
+                viewportConfig={{ x: 0, y: 0, width: mapViewport, height: mapViewport }}
+                enableZoomPan={false}
+                pathFillColor="#DCE1EC"
+                hoverPathColor="#C48A3F"
+                strokeColor="#1C2B4A"
+                strokeWidth={1}
+                fillById={{ [constituencyId]: "#B3453B" }}
+              />
+            </div>
+          ) : (
+            <div className="h-[300px] flex items-center justify-center border border-dashed border-[#D8D3C7] text-center text-[#8993A8] text-[13px] px-6">
+              Detailed district map is not available for {liveMP?.state || "this state"} yet.
+            </div>
+          )}
+          <div className="border-l border-[#EFECE3] pl-5">
+            <div className="text-[11px] uppercase tracking-wide text-[#B8863F] mb-2">Selected constituency</div>
+            <div className="text-[#1C2B4A] text-[20px] mb-2" style={{ fontFamily: "'Source Serif 4', Georgia, serif" }}>
+              {constituency}
+            </div>
+            <div className="text-[#5A6478] text-[13px]">{liveMP?.state || "State unavailable"}</div>
+            <div className="mt-4 flex items-center gap-2 text-[12px] text-[#5A6478]">
+              <span className="w-3 h-3 rounded-full bg-[#B3453B]" /> Constituency marker
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Work health visualizations */}
+      <div className="grid lg:grid-cols-2 gap-4 mb-8">
+        <div className="border border-[#D8D3C7] bg-white p-5">
+          <div className="mb-1 text-[#1C2B4A] text-[15px]" style={{ fontFamily: "'Source Serif 4', Georgia, serif" }}>
+            Work completion status
+          </div>
+          <p className="text-[#8993A8] text-[12px] mb-2">Pending works still need monitoring or completion.</p>
+          {workStatusData.length ? (
+            <ResponsiveContainer width="100%" height={230}>
+              <PieChart>
+                <Pie data={workStatusData} dataKey="value" nameKey="name" innerRadius={58} outerRadius={82} paddingAngle={3}>
+                  {workStatusData.map((entry) => <Cell key={entry.name} fill={entry.color} />)}
+                </Pie>
+                <Tooltip contentStyle={{ fontSize: "12px", border: "1px solid #D8D3C7", borderRadius: 0 }} />
+                <Legend verticalAlign="bottom" iconType="circle" iconSize={8} wrapperStyle={{ fontSize: "12px" }} />
+              </PieChart>
+            </ResponsiveContainer>
+          ) : (
+            <div className="h-[230px] flex items-center justify-center text-[#8993A8] text-[13px]">No works available.</div>
+          )}
+        </div>
+
+        <div className="border border-[#D8D3C7] bg-white p-5">
+          <div className="mb-1 text-[#1C2B4A] text-[15px]" style={{ fontFamily: "'Source Serif 4', Georgia, serif" }}>
+            Risk distribution
+          </div>
+          <p className="text-[#8993A8] text-[12px] mb-2">Use this view to prioritise follow-up on higher-risk works.</p>
+          {riskData.length ? (
+            <ResponsiveContainer width="100%" height={230}>
+              <PieChart>
+                <Pie data={riskData} dataKey="value" nameKey="name" innerRadius={58} outerRadius={82} paddingAngle={3}>
+                  {riskData.map((entry) => <Cell key={entry.name} fill={entry.color} />)}
+                </Pie>
+                <Tooltip contentStyle={{ fontSize: "12px", border: "1px solid #D8D3C7", borderRadius: 0 }} />
+                <Legend verticalAlign="bottom" iconType="circle" iconSize={8} wrapperStyle={{ fontSize: "12px" }} />
+              </PieChart>
+            </ResponsiveContainer>
+          ) : (
+            <div className="h-[230px] flex items-center justify-center text-[#8993A8] text-[13px]">No risk data available.</div>
+          )}
+        </div>
       </div>
 
       {/* Quick actions */}
@@ -123,7 +375,7 @@ export default function MpDashboard({ onLogout }) {
         Recent works
       </h3>
       <div className="space-y-3">
-        {WORKS.slice(0, 3).map((w) => renderWorkRow(w))}
+        {liveWorks.slice(0, 3).map((w) => renderWorkRow(w))}
       </div>
       <button
         onClick={() => setSection("works")}
@@ -197,8 +449,8 @@ export default function MpDashboard({ onLogout }) {
     if (selectedWork) return renderWorkDetail();
 
     const filteredWorks = statusFilter === "All"
-      ? WORKS
-      : WORKS.filter(w => w.status === statusFilter);
+      ? liveWorks
+      : liveWorks.filter(w => w.status === statusFilter);
 
     return (
       <div>
@@ -441,7 +693,7 @@ export default function MpDashboard({ onLogout }) {
         </div>
 
         <div className="space-y-4">
-          {WORKS.map((w) => (
+          {liveWorks.map((w) => (
             <div key={w.id}>
               <div className="flex items-center justify-between text-[13px] mb-1.5">
                 <span className="text-[#1C2B4A] truncate max-w-[60%]">{w.title}</span>
@@ -546,7 +798,7 @@ export default function MpDashboard({ onLogout }) {
 
   /* ——— Contractors ——— */
   const renderContractors = () => {
-    const contractors = WORKS.map((w) => ({
+    const contractors = liveWorks.map((w) => ({
       name: w.contractor,
       contact: w.contractorContact,
       work: w.title,
@@ -609,6 +861,10 @@ export default function MpDashboard({ onLogout }) {
     }
   };
 
+  if (dashboardLoading) {
+    return <div className="min-h-screen bg-[#FAF9F6] flex items-center justify-center text-sm text-[#5A6478]">Loading MP dashboard...</div>;
+  }
+
   return (
     <div className="flex min-h-screen bg-[#FAF9F6]">
       <DashboardSidebar
@@ -619,11 +875,17 @@ export default function MpDashboard({ onLogout }) {
           setSelectedWork(null);
         }}
         onLogout={onLogout}
-        userName="R. Chaturvedi, MP"
+        userName={`${localStorage.getItem("name") || "MP"}`}
       />
       <div className="flex-1 flex flex-col min-w-0">
-        <DashboardHeader section={section} role="mp" unreadCount={unread} />
+        <DashboardHeader
+          section={section}
+          role="mp"
+          unreadCount={unread}
+          userName={liveMP?.mp_name || localStorage.getItem("name") || "MP"}
+        />
         <main className="flex-1 p-6 max-w-[1040px]">
+          {dashboardError && <div className="mb-5 border border-[#B3453B]/30 bg-[#B3453B]/5 px-4 py-3 text-[#B3453B] text-[13px]">{dashboardError}</div>}
           {renderContent()}
         </main>
       </div>

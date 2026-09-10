@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@svg-maps/india": "^2.0.0",
+    "india-map-svg": "^1.1.4",
     "jsonwebtoken": "^9.0.3",
     "lucide-react": "^1.39.0",
     "react": "^19.2.8",

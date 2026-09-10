@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Landmark, Users, Eye, ChevronRight, Loader2, Check } from "lucide-react";
+import { fetchModelMPs } from "../dataService";
+import AppLogo from "../components/AppLogo";
 
 const ROLES = [
   {
@@ -28,6 +30,15 @@ const PASSWORD_RULES = [
   { key: "number", label: "One number", test: (v) => /\d/.test(v) },
 ];
 
+function mpEmail(mpName) {
+  const slug = mpName
+    .toLowerCase()
+    .replace(/\([^)]*\)/g, "")
+    .replace(/[^a-z0-9]+/g, ".")
+    .replace(/^\.|\.$/g, "");
+  return `${slug}@mplad.ac.in`;
+}
+
 export default function Register({ onSubmit, onNavigateLogin }) {
   const [role, setRole] = useState("citizen");
   const [name, setName] = useState("");
@@ -38,15 +49,28 @@ export default function Register({ onSubmit, onNavigateLogin }) {
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [formError, setFormError] = useState("");
+  const [mpOptions, setMpOptions] = useState([]);
+  const [mpSearch, setMpSearch] = useState("");
+  const [selectedMP, setSelectedMP] = useState("");
+
+  useEffect(() => {
+    if (role !== "mp") return;
+    fetchModelMPs(mpSearch)
+      .then(setMpOptions)
+      .catch((error) => setFormError(error.message));
+  }, [role, mpSearch]);
 
   const activeRole = ROLES.find((r) => r.key === role);
 
   const validate = () => {
     const next = {};
     if (!name.trim()) next.name = "Enter your full name.";
+    if (role === "mp" && !selectedMP) next.mpName = "Select your official MP name.";
     if (!email.trim()) next.email = "Enter your email address.";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
       next.email = "Enter a valid email address.";
+    else if (role === "mp" && !/^[^\s@]+@(?:[^\s@.]+\.)?mplad\.ac\.in$/i.test(email))
+      next.email = "MP email must use the mplad.ac.in domain.";
     if (!password) next.password = "Create a password.";
     else if (!PASSWORD_RULES.every((r) => r.test(password)))
       next.password = "Password doesn't meet the requirements below.";
@@ -64,7 +88,7 @@ export default function Register({ onSubmit, onNavigateLogin }) {
     setLoading(true);
     try {
       if (onSubmit) {
-        await onSubmit({ role:role, name:name, email:email, password:password });
+        await onSubmit({ role, name: role === "mp" ? selectedMP : name, mpName: selectedMP, email, password });
       }
     } catch (err) {
       setFormError(
@@ -90,14 +114,7 @@ export default function Register({ onSubmit, onNavigateLogin }) {
 
         <div className="relative">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 border border-[#B8863F] flex items-center justify-center shrink-0">
-              <span
-                className="text-[#B8863F] text-sm"
-                style={{ fontFamily: "'Source Serif 4', Georgia, serif" }}
-              >
-                M
-              </span>
-            </div>
+            <AppLogo size="lg" dark />
             <span className="text-[#DCE1EC] text-sm tracking-wide">
               MPLAD Works Tracker
             </span>
@@ -145,14 +162,7 @@ export default function Register({ onSubmit, onNavigateLogin }) {
       <div className="flex-1 flex items-center justify-center px-6 py-12">
         <div className="w-full max-w-[440px]">
           <div className="lg:hidden flex items-center gap-3 mb-10">
-            <div className="w-8 h-8 border border-[#B8863F] flex items-center justify-center shrink-0">
-              <span
-                className="text-[#B8863F] text-sm"
-                style={{ fontFamily: "'Source Serif 4', Georgia, serif" }}
-              >
-                M
-              </span>
-            </div>
+            <AppLogo dark />
             <span className="text-[#1C2B4A] text-sm tracking-wide">
               MPLAD Works Tracker
             </span>
@@ -212,6 +222,51 @@ export default function Register({ onSubmit, onNavigateLogin }) {
             )}
           </div>
 
+          {role === "mp" && (
+            <div className="mb-6 border border-[#D8D3C7] bg-white p-4">
+              <label htmlFor="mp-search" className="block text-[13px] text-[#1C2B4A] mb-1.5">
+                Search official MP name
+              </label>
+              <input
+                id="mp-search"
+                list="register-mp-options"
+                value={mpSearch}
+                onChange={(event) => {
+                  const value = event.target.value;
+                  setMpSearch(value);
+                  const match = mpOptions.find((mp) => mp.mp_name === value);
+                  if (match) {
+                    setSelectedMP(match.mp_name);
+                    setName(match.mp_name);
+                    setEmail(mpEmail(match.mp_name));
+                  }
+                }}
+                placeholder="Type an MP name"
+                className="w-full px-3.5 py-2.5 text-sm border border-[#D8D3C7] text-[#1C2B4A] focus:outline-none focus:border-[#1C2B4A]"
+              />
+              <datalist id="register-mp-options">
+                {mpOptions.map((mp) => <option key={mp.mp_key} value={mp.mp_name} />)}
+              </datalist>
+              <select
+                value={selectedMP}
+                onChange={(event) => {
+                  const value = event.target.value;
+                  setSelectedMP(value);
+                  if (value) setEmail(mpEmail(value));
+                  setName(value);
+                }}
+                className="w-full mt-2 px-3.5 py-2.5 text-sm border border-[#D8D3C7] text-[#1C2B4A] focus:outline-none focus:border-[#1C2B4A]"
+                aria-invalid={!!errors.mpName}
+              >
+                <option value="">Select your official MP name</option>
+                {mpOptions.map((mp) => (
+                  <option key={mp.mp_key} value={mp.mp_name}>{mp.mp_name} · {mp.state}</option>
+                ))}
+              </select>
+              {errors.mpName && <p className="text-[#B3453B] text-xs mt-1.5">{errors.mpName}</p>}
+            </div>
+          )}
+
           <form onSubmit={handleSubmit} noValidate>
             <div className="mb-5">
               <label htmlFor="name" className="block text-[13px] text-[#1C2B4A] mb-1.5">
@@ -250,7 +305,8 @@ export default function Register({ onSubmit, onNavigateLogin }) {
                 autoComplete="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@example.gov.in"
+                readOnly={role === "mp"}
+                placeholder={role === "mp" ? "Select an MP name first" : "you@example.gov.in"}
                 aria-invalid={!!errors.email}
                 aria-describedby={errors.email ? "reg-email-error" : undefined}
                 className={`w-full px-3.5 py-2.5 text-sm bg-white border text-[#1C2B4A] placeholder:text-[#AEB8CC] focus:outline-none focus:ring-2 focus:ring-offset-0 transition-colors ${

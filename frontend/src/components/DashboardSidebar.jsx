@@ -18,6 +18,7 @@ import {
   Landmark,
   Briefcase,
 } from "lucide-react";
+import AppLogo from "./AppLogo";
 
 const ROLE_CONFIG = {
   citizen: {
@@ -67,14 +68,7 @@ export default function DashboardSidebar({
     >
       {/* Logo */}
       <div className="flex items-center gap-2.5 px-4 h-16 border-b border-[#31456B] shrink-0">
-        <div className="w-8 h-8 border border-[#B8863F] flex items-center justify-center shrink-0">
-          <span
-            className="text-[#B8863F] text-sm"
-            style={{ fontFamily: "'Source Serif 4', Georgia, serif" }}
-          >
-            M
-          </span>
-        </div>
+        <AppLogo dark />
         {!collapsed && (
           <span className="text-[14px] tracking-wide text-[#DCE1EC] whitespace-nowrap">
             MPLAD Tracker
