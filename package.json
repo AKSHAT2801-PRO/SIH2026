@@ -4,7 +4,7 @@
   "private": true,
   "description": "SIH 2026 MERN Project",
   "scripts": {
-    "dev": "concurrently \"npm run dev --prefix frontend\" \"npm start --prefix backend\""
+    "dev": "concurrently --names frontend,node,model --prefix-colors cyan,green,magenta \"npm run dev --prefix frontend\" \"npm start --prefix backend\" \"python -m uvicorn backend.api.main:app --app-dir \\\"AiModel by claude/mplads-ai-monitor\\\" --host 0.0.0.0 --port 8000\""
   },
   "repository": {
     "type": "git",

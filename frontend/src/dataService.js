@@ -14,8 +14,10 @@
 //   pendingPayments, averageRating, createdAt, updatedAt
 // -----------------------------------------------------------------------
 
-export const DEMO_MODE = true;
+export const DEMO_MODE = false;
 const API_BASE_URL = "http://localhost:6005"; // <- change to your backend
+const MODEL_BASE_URL = "http://localhost:8000/api"; // <- change to your backend
+const MODEL_HEADERS = { "X-API-Key": "dev-admin-key", role: "admin" };
 
 // ---------------------------------------------------------------------
 // DEMO DATA
@@ -77,6 +79,28 @@ const DEMO_MPS = [
     averageRating: 4.5,
   },
 ];
+
+// { "work_uid": "REC-147610-1", 
+// "work_stage": "RECOMMENDED", 
+// "work_description": "letter as per attached.",
+//  "category": "Normal/Others",
+//  "mp_name": "Shri Brij Lal (2020-26)",
+//  "constituency": "Sitting Rajya Sabha",
+//  "state": "Uttar Pradesh",
+//  "ida_district": "Siddharthnagar",
+//  "amount": 4939000.0,
+//  "event_date": "2024-10-16 00:00:00.000000",
+//  "composite_risk": 76.01,
+//  "risk_band": "CRITICAL",
+//  "cost_risk": 100.0,
+//  "duplicate_risk": 100.0,
+//  "delay_risk": 58.37,
+//  "vendor_risk": 13.39,
+//  "utilisation_risk": 3.78,
+//  "data_quality_risk": 0.0 }
+
+
+
 
 const DEMO_WORKS = [
   {
@@ -223,6 +247,53 @@ function computeMPPerformance(mp) {
   };
 }
 
+function formatWorkStatus(stage) {
+  return stage === "COMPLETED" ? "Completed" : "Recommended";
+}
+
+function riskWeight(value) {
+  if (value >= 70) return "High";
+  if (value >= 35) return "Medium";
+  return "Low";
+}
+
+function normalizeWork(raw) {
+  const riskComponents = [
+    ["Cost risk", raw.cost_risk],
+    ["Duplicate risk", raw.duplicate_risk],
+    ["Delay risk", raw.delay_risk],
+    ["Vendor risk", raw.vendor_risk],
+    ["Fund utilisation risk", raw.utilisation_risk],
+    ["Data quality risk", raw.data_quality_risk],
+  ].filter(([, value]) => Number(value) > 0);
+  const completed = raw.work_stage === "COMPLETED";
+
+  return {
+    id: raw.work_uid,
+    title: raw.work_description || "Untitled work",
+    location: [raw.ida_district, raw.state].filter(Boolean).join(", "),
+    mpId: raw.mp_key,
+    mp: raw.mp_name,
+    status: formatWorkStatus(raw.work_stage),
+    progressPct: completed ? 100 : 0,
+    riskScore: Number(raw.composite_risk ?? 0),
+    riskBand: String(raw.risk_band || "LOW").toLowerCase(),
+    riskFactors: riskComponents.map(([label, value]) => ({
+      label,
+      weight: riskWeight(Number(value)),
+      detail: `${Number(value).toFixed(1)} risk score`,
+    })),
+    budgetAllocated: raw.amount ?? 0,
+    expenditure: 0,
+    timeAllottedMonths: null,
+    startDate: raw.event_date ? String(raw.event_date).slice(0, 10) : null,
+    dueDate: null,
+    contractor: { name: "Not available", contact: "", pastProjects: 0, avgRiskScore: 0 },
+    inspectionStatus: "none",
+    lastInspection: null,
+  };
+}
+
 // ---------------------------------------------------------------------
 // PUBLIC API — call these from components
 // ---------------------------------------------------------------------
@@ -241,20 +312,46 @@ export async function fetchDashboardStats() {
       totalMPs: DEMO_MPS.length,
     });
   }
-  const res = await fetch(`${API_BASE_URL}/government/stats`);
+  const res = await fetch(`${MODEL_BASE_URL}/kpis`, { headers: MODEL_HEADERS });
   if (!res.ok) throw new Error("Failed to load dashboard stats.");
-  return res.json();
+  const data = await res.json();
+  return {
+    totalWorks: Number(data.works_recommended || 0) + Number(data.works_completed || 0),
+    completed: Number(data.works_completed || 0),
+    inProgress: Number(data.works_recommended || 0),
+    flaggedForInspection: Number(data.open_alerts || 0),
+    totalMPs: Number(data.mps || 0),
+  };
 }
 
 /** All works, optionally sorted by risk score descending. */
-export async function fetchAllWorks({ sortByRisk = true } = {}) {
+export async function fetchAllWorks({
+  sortByRisk = true,
+  page = 1,
+  limit = 100,
+  mpName = "",
+} = {}) {
   if (DEMO_MODE) {
     const data = [...DEMO_WORKS];
     if (sortByRisk) data.sort((a, b) => b.riskScore - a.riskScore);
     return Promise.resolve(data);
   }
-  const res = await fetch(`${API_BASE_URL}/government/works?sortByRisk=${sortByRisk}`);
+  const params = new URLSearchParams({
+    limit: String(limit),
+    offset: String((page - 1) * limit),
+  });
+  if (mpName.trim()) params.set("mp_name", mpName.trim());
+  const res = await fetch(`${MODEL_BASE_URL}/works?${params}`, { headers: MODEL_HEADERS });
   if (!res.ok) throw new Error("Failed to load works.");
+  const works = (await res.json()).map(normalizeWork);
+  return sortByRisk
+    ? works.sort((a, b) => b.riskScore - a.riskScore)
+    : works;
+}
+
+export async function fetchStateSummaries() {
+  const res = await fetch(`${MODEL_BASE_URL}/states`, { headers: MODEL_HEADERS });
+  if (!res.ok) throw new Error("Failed to load state summaries.");
   return res.json();
 }
 
@@ -265,9 +362,12 @@ export async function fetchWorkById(workId) {
     if (!work) throw new Error("Project not found.");
     return Promise.resolve(work);
   }
-  const res = await fetch(`${API_BASE_URL}/works/${workId}`);
+  const res = await fetch(`${MODEL_BASE_URL}/works/${encodeURIComponent(workId)}`, {
+    headers: MODEL_HEADERS,
+  });
   if (!res.ok) throw new Error("Failed to load project.");
-  return res.json();
+  const data = await res.json();
+  return normalizeWork(data.work || data);
 }
 
 /**
@@ -296,14 +396,30 @@ export async function fetchMPPerformance() {
     scored.sort((a, b) => b.suspicionScore - a.suspicionScore);
     return Promise.resolve(scored);
   }
-  // If/when your backend computes this itself, swap to a direct fetch:
-  //   const res = await fetch(`${API_BASE_URL}/government/mp-performance`);
-  //   return res.json();
-  const mps = await fetchAllMPs();
-  const list = Array.isArray(mps) ? mps : mps.data || [];
-  const scored = list.map((mp) => computeMPPerformance(mp));
-  scored.sort((a, b) => b.suspicionScore - a.suspicionScore);
-  return scored;
+  const res = await fetch(`${MODEL_BASE_URL}/mps?limit=1000`, { headers: MODEL_HEADERS });
+  if (!res.ok) throw new Error("Failed to load MP performance.");
+  const list = await res.json();
+  return list
+    .map((mp) => ({
+      _id: mp.mp_key,
+      mpName: mp.mp_name,
+      constituency: mp.constituency,
+      state: mp.state,
+      house: mp.house,
+      allocatedAmount: mp.allocated_amount,
+      totalExpenditure: mp.derived_expenditure,
+      utilizationPercentage: mp.utilisation_pct,
+      completionRatePercentage: mp.completion_rate_pct,
+      completedWorks: mp.works_total,
+      recommendedWorks: mp.works_total,
+      pendingPayments: 0,
+      averageRating: null,
+      suspicionScore: Number(mp.composite_risk ?? 0),
+      utilizationRisk: Math.max(0, 100 - Number(mp.utilisation_pct ?? 0)),
+      completionRisk: Math.max(0, 100 - Number(mp.completion_rate_pct ?? 0)),
+      pendingPaymentsCount: 0,
+    }))
+    .sort((a, b) => b.suspicionScore - a.suspicionScore);
 }
 
 /** Citizen reviews, optionally filtered to one work. */

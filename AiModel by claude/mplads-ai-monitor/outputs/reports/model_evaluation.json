@@ -3,7 +3,7 @@
   "model": "HistGradientBoostingClassifier",
   "model_version": "1.0.0",
   "target": "work has been reported complete (1) vs still open (0)",
-  "trained_at": "2026-08-24T19:33:45+00:00",
+  "trained_at": "2026-09-10T06:38:51+00:00",
   "rows_train": 94483,
   "rows_test": 32311,
   "split": "GroupShuffleSplit by MP \u2014 no MP appears in both train and test",

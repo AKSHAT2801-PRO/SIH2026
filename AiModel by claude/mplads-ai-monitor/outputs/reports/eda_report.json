@@ -1,6 +1,6 @@
 {
-  "run_id": "run_20260824T180321Z_5e3822",
-  "generated_at": "2026-08-24T18:05:53+00:00",
+  "run_id": "run_20260910T063340Z_529723",
+  "generated_at": "2026-09-10T06:34:24+00:00",
   "overview": {
     "works_recommended": 83621,
     "works_completed": 43173,
@@ -12,9 +12,9 @@
     "implementing_agencies": 761,
     "vendors": 26491,
     "categories": 5,
-    "recommended_value": 53822824430.66,
+    "recommended_value": 53822824430.659996,
     "completed_value": 23640220472.61,
-    "expenditure_value": 39187346910.14,
+    "expenditure_value": 39187346910.14001,
     "allocated_value": 116210588210.35,
     "utilisation_pct": 33.720978022422464,
     "date_range": {
@@ -45,13 +45,13 @@
     "recommended_amount": {
       "variable": "recommended_amount",
       "count": 83621,
-      "mean": 643652.0064416834,
+      "mean": 643652.0064416833,
       "median": 400000.0,
       "mode": 500000.0,
       "min": 1.0,
       "max": 99965000.0,
-      "std": 1239920.415024342,
-      "variance": 1537402635594.1365,
+      "std": 1239920.4150243418,
+      "variance": 1537402635594.1362,
       "mad": 200000.0,
       "p01": 20900.0,
       "p05": 74000.0,
@@ -63,8 +63,8 @@
       "p99": 4500000.0,
       "p999": 14508648.000000184,
       "iqr": 511000.0,
-      "skewness": 23.325550997006964,
-      "kurtosis": 1136.071543807187,
+      "skewness": 23.325550997006967,
+      "kurtosis": 1136.0715438071875,
       "cv": 1.9263832049231437,
       "zero_count": 0,
       "iqr_outliers": 7121,
@@ -93,7 +93,7 @@
       "p99": 3128906.1599999936,
       "p999": 13134032.000000326,
       "iqr": 423472.0,
-      "skewness": 17.095858296553352,
+      "skewness": 17.095858296553356,
       "kurtosis": 490.1059638584426,
       "cv": 1.8703555957722737,
       "zero_count": 0,
@@ -105,7 +105,7 @@
     "expenditure_amount": {
       "variable": "expenditure_amount",
       "count": 106263,
-      "mean": 368776.96761939715,
+      "mean": 368776.9676193972,
       "median": 199999.0,
       "mode": 500000.0,
       "min": 0.01,
@@ -125,7 +125,7 @@
       "iqr": 387981.0,
       "skewness": 11.916912646938023,
       "kurtosis": 332.7611121001926,
-      "cv": 1.769931341543572,
+      "cv": 1.7699313415435718,
       "zero_count": 0,
       "iqr_outliers": 6515,
       "extreme_iqr_outliers": 2768,
@@ -243,8 +243,8 @@
       "p99": 765.0,
       "p999": 1091.0,
       "iqr": 342.0,
-      "skewness": 0.5831020628648144,
-      "kurtosis": -0.06727418677000596,
+      "skewness": 0.5831020628648145,
+      "kurtosis": -0.06727418677000419,
       "cv": 0.7286328412108409,
       "zero_count": 178,
       "iqr_outliers": 489,
@@ -1270,7 +1270,7 @@
       "median_a": 300000.0,
       "median_b": 400000.0,
       "mann_whitney_u": 1591629856.5,
-      "p_value": 3.5089288426732816e-262,
+      "p_value": 3.508928842673281e-262,
       "significant_at_1pct": true,
       "interpretation": "distributions differ significantly"
     }
@@ -1376,19 +1376,19 @@
         "median_ratio_to_national": 2.5
       },
       {
-        "state": "Nagaland",
-        "category": "Normal/Others",
-        "count": 131,
-        "median": 1000000.0,
-        "sum": 345671000.0,
-        "median_ratio_to_national": 2.5
-      },
-      {
         "state": "Madhya Pradesh",
         "category": "Trust and Society",
         "count": 112,
         "median": 1000000.0,
         "sum": 113946466.0,
+        "median_ratio_to_national": 2.5
+      },
+      {
+        "state": "Nagaland",
+        "category": "Normal/Others",
+        "count": 131,
+        "median": 1000000.0,
+        "sum": 345671000.0,
         "median_ratio_to_national": 2.5
       },
       {
@@ -1590,21 +1590,21 @@
       "median_district_hhi": 0.1288,
       "districts_hhi_above_0_3": 180,
       "most_concentrated_districts": {
-        "Longleng": 1.0,
-        "Lakhisarai": 1.0,
-        "Kishtwar": 1.0,
-        "Kulgam": 1.0,
-        "Simdega": 1.0,
+        "Senapati": 1.0,
         "Kiphire": 1.0,
+        "Longleng": 1.0,
         "South Tripura": 1.0,
-        "Tapi": 1.0,
-        "Kishanganj": 1.0,
-        "Imphal East": 1.0,
-        "Kangpokpi": 1.0,
-        "Gadag": 1.0,
-        "Gajapati": 1.0,
-        "Tengnoupal": 1.0,
-        "Leh Ladakh": 1.0
+        "Leh Ladakh": 1.0,
+        "Noklak": 1.0,
+        "Unakoti": 1.0,
+        "Simdega": 1.0,
+        "Chatra": 1.0,
+        "Changlang": 1.0,
+        "Kishtwar": 1.0,
+        "Reasi": 1.0,
+        "Rudraprayag": 1.0,
+        "Lakhisarai": 1.0,
+        "Tengnoupal": 1.0
       }
     }
   },
@@ -3257,7 +3257,7 @@
         "pending_lines": 15.0,
         "completion_rate_pct": 73.89,
         "payments_per_vendor": 42.27,
-        "run_id": "run_20260824T180321Z_5e3822"
+        "run_id": "run_20260910T063340Z_529723"
       },
       {
         "state": "Jharkhand",
@@ -3272,7 +3272,7 @@
         "pending_lines": 2.0,
         "completion_rate_pct": 33.25,
         "payments_per_vendor": 99.4,
-        "run_id": "run_20260824T180321Z_5e3822"
+        "run_id": "run_20260910T063340Z_529723"
       },
       {
         "state": "West Bengal",
@@ -3287,7 +3287,7 @@
         "pending_lines": 4.0,
         "completion_rate_pct": 26.56,
         "payments_per_vendor": 1.95,
-        "run_id": "run_20260824T180321Z_5e3822"
+        "run_id": "run_20260910T063340Z_529723"
       },
       {
         "state": "Tamil Nadu",
@@ -3302,7 +3302,7 @@
         "pending_lines": 3.0,
         "completion_rate_pct": 67.71,
         "payments_per_vendor": 6.09,
-        "run_id": "run_20260824T180321Z_5e3822"
+        "run_id": "run_20260910T063340Z_529723"
       },
       {
         "state": "Uttar Pradesh",
@@ -3317,7 +3317,7 @@
         "pending_lines": 0.0,
         "completion_rate_pct": 95.22,
         "payments_per_vendor": 32.67,
-        "run_id": "run_20260824T180321Z_5e3822"
+        "run_id": "run_20260910T063340Z_529723"
       },
       {
         "state": "Uttar Pradesh",
@@ -3332,7 +3332,7 @@
         "pending_lines": 0.0,
         "completion_rate_pct": 67.43,
         "payments_per_vendor": 13.6,
-        "run_id": "run_20260824T180321Z_5e3822"
+        "run_id": "run_20260910T063340Z_529723"
       },
       {
         "state": "Karnataka",
@@ -3347,7 +3347,7 @@
         "pending_lines": 2.0,
         "completion_rate_pct": 43.2,
         "payments_per_vendor": 5.05,
-        "run_id": "run_20260824T180321Z_5e3822"
+        "run_id": "run_20260910T063340Z_529723"
       },
       {
         "state": "Uttar Pradesh",
@@ -3362,7 +3362,7 @@
         "pending_lines": 25.0,
         "completion_rate_pct": 78.32,
         "payments_per_vendor": 84.67,
-        "run_id": "run_20260824T180321Z_5e3822"
+        "run_id": "run_20260910T063340Z_529723"
       },
       {
         "state": "Maharashtra",
@@ -3377,7 +3377,7 @@
         "pending_lines": 12.0,
         "completion_rate_pct": 0.0,
         "payments_per_vendor": 1.73,
-        "run_id": "run_20260824T180321Z_5e3822"
+        "run_id": "run_20260910T063340Z_529723"
       },
       {
         "state": "Uttar Pradesh",
@@ -3392,7 +3392,7 @@
         "pending_lines": 0.0,
         "completion_rate_pct": 32.86,
         "payments_per_vendor": 28.23,
-        "run_id": "run_20260824T180321Z_5e3822"
+        "run_id": "run_20260910T063340Z_529723"
       },
       {
         "state": "Bihar",
@@ -3407,7 +3407,7 @@
         "pending_lines": 1.0,
         "completion_rate_pct": 54.56,
         "payments_per_vendor": 17.9,
-        "run_id": "run_20260824T180321Z_5e3822"
+        "run_id": "run_20260910T063340Z_529723"
       },
       {
         "state": "Uttar Pradesh",
@@ -3422,7 +3422,7 @@
         "pending_lines": 0.0,
         "completion_rate_pct": 51.3,
         "payments_per_vendor": 15.77,
-        "run_id": "run_20260824T180321Z_5e3822"
+        "run_id": "run_20260910T063340Z_529723"
       },
       {
         "state": "Uttar Pradesh",
@@ -3437,7 +3437,7 @@
         "pending_lines": 178.0,
         "completion_rate_pct": 54.59,
         "payments_per_vendor": 32.91,
-        "run_id": "run_20260824T180321Z_5e3822"
+        "run_id": "run_20260910T063340Z_529723"
       },
       {
         "state": "Uttar Pradesh",
@@ -3452,7 +3452,7 @@
         "pending_lines": 3.0,
         "completion_rate_pct": 55.82,
         "payments_per_vendor": 19.69,
-        "run_id": "run_20260824T180321Z_5e3822"
+        "run_id": "run_20260910T063340Z_529723"
       },
       {
         "state": "Bihar",
@@ -3467,7 +3467,7 @@
         "pending_lines": 4.0,
         "completion_rate_pct": 52.88,
         "payments_per_vendor": 3.37,
-        "run_id": "run_20260824T180321Z_5e3822"
+        "run_id": "run_20260910T063340Z_529723"
       },
       {
         "state": "Uttar Pradesh",
@@ -3482,7 +3482,7 @@
         "pending_lines": 5.0,
         "completion_rate_pct": 60.25,
         "payments_per_vendor": 11.08,
-        "run_id": "run_20260824T180321Z_5e3822"
+        "run_id": "run_20260910T063340Z_529723"
       },
       {
         "state": "Uttar Pradesh",
@@ -3497,7 +3497,7 @@
         "pending_lines": 10.0,
         "completion_rate_pct": 20.83,
         "payments_per_vendor": 7.16,
-        "run_id": "run_20260824T180321Z_5e3822"
+        "run_id": "run_20260910T063340Z_529723"
       },
       {
         "state": "Bihar",
@@ -3512,7 +3512,7 @@
         "pending_lines": 1.0,
         "completion_rate_pct": 61.49,
         "payments_per_vendor": 11.67,
-        "run_id": "run_20260824T180321Z_5e3822"
+        "run_id": "run_20260910T063340Z_529723"
       },
       {
         "state": "Uttar Pradesh",
@@ -3527,7 +3527,7 @@
         "pending_lines": 3.0,
         "completion_rate_pct": 47.85,
         "payments_per_vendor": 31.95,
-        "run_id": "run_20260824T180321Z_5e3822"
+        "run_id": "run_20260910T063340Z_529723"
       },
       {
         "state": "West Bengal",
@@ -3542,7 +3542,7 @@
         "pending_lines": 1.0,
         "completion_rate_pct": 63.77,
         "payments_per_vendor": 2.08,
-        "run_id": "run_20260824T180321Z_5e3822"
+        "run_id": "run_20260910T063340Z_529723"
       },
       {
         "state": "Uttar Pradesh",
@@ -3557,7 +3557,7 @@
         "pending_lines": 1.0,
         "completion_rate_pct": 5.0,
         "payments_per_vendor": 14.53,
-        "run_id": "run_20260824T180321Z_5e3822"
+        "run_id": "run_20260910T063340Z_529723"
       },
       {
         "state": "Uttar Pradesh",
@@ -3572,7 +3572,7 @@
         "pending_lines": 2.0,
         "completion_rate_pct": 89.46,
         "payments_per_vendor": 19.24,
-        "run_id": "run_20260824T180321Z_5e3822"
+        "run_id": "run_20260910T063340Z_529723"
       },
       {
         "state": "Punjab",
@@ -3587,7 +3587,7 @@
         "pending_lines": 0.0,
         "completion_rate_pct": 75.64,
         "payments_per_vendor": 4.09,
-        "run_id": "run_20260824T180321Z_5e3822"
+        "run_id": "run_20260910T063340Z_529723"
       },
       {
         "state": "West Bengal",
@@ -3602,7 +3602,7 @@
         "pending_lines": 0.0,
         "completion_rate_pct": 70.61,
         "payments_per_vendor": 1.81,
-        "run_id": "run_20260824T180321Z_5e3822"
+        "run_id": "run_20260910T063340Z_529723"
       },
       {
         "state": "Uttar Pradesh",
@@ -3617,24 +3617,39 @@
         "pending_lines": 11.0,
         "completion_rate_pct": 39.17,
         "payments_per_vendor": 6.03,
-        "run_id": "run_20260824T180321Z_5e3822"
+        "run_id": "run_20260910T063340Z_529723"
       }
     ],
     "districts_with_lowest_completion": [
       {
-        "state": "Assam",
-        "ida_district": "Tamulpur",
-        "works_recommended": 55.0,
+        "state": "Maharashtra",
+        "ida_district": "Jalna",
+        "works_recommended": 71.0,
         "works_completed": 0.0,
-        "work_amount": 18400000.0,
-        "mps": 2.0,
-        "payment_lines": 12.0,
-        "expenditure": 2595244.0,
-        "vendors": 2.0,
+        "work_amount": 69891000.0,
+        "mps": 3.0,
+        "payment_lines": 46.0,
+        "expenditure": 42113484.0,
+        "vendors": 27.0,
+        "pending_lines": 2.0,
+        "completion_rate_pct": 0.0,
+        "payments_per_vendor": 1.7,
+        "run_id": "run_20260910T063340Z_529723"
+      },
+      {
+        "state": "Assam",
+        "ida_district": "Kamrup Metro",
+        "works_recommended": 118.0,
+        "works_completed": 0.0,
+        "work_amount": 141669919.1,
+        "mps": 6.0,
+        "payment_lines": 92.0,
+        "expenditure": 64104607.0,
+        "vendors": 65.0,
         "pending_lines": 0.0,
         "completion_rate_pct": 0.0,
-        "payments_per_vendor": 6.0,
-        "run_id": "run_20260824T180321Z_5e3822"
+        "payments_per_vendor": 1.42,
+        "run_id": "run_20260910T063340Z_529723"
       },
       {
         "state": "Assam",
@@ -3649,52 +3664,22 @@
         "pending_lines": 13.0,
         "completion_rate_pct": 0.0,
         "payments_per_vendor": 8.92,
-        "run_id": "run_20260824T180321Z_5e3822"
+        "run_id": "run_20260910T063340Z_529723"
       },
       {
-        "state": "Maharashtra",
-        "ida_district": "Mumbai Suburban",
-        "works_recommended": 284.0,
-        "works_completed": 0.0,
-        "work_amount": 669300000.0,
-        "mps": 8.0,
-        "payment_lines": 126.0,
-        "expenditure": 295075488.0,
-        "vendors": 73.0,
-        "pending_lines": 12.0,
-        "completion_rate_pct": 0.0,
-        "payments_per_vendor": 1.73,
-        "run_id": "run_20260824T180321Z_5e3822"
-      },
-      {
-        "state": "Haryana",
-        "ida_district": "Yamunanagar",
-        "works_recommended": 87.0,
-        "works_completed": 0.0,
-        "work_amount": 52521400.0,
-        "mps": 3.0,
-        "payment_lines": 77.0,
-        "expenditure": 19323183.0,
-        "vendors": 28.0,
-        "pending_lines": 2.0,
-        "completion_rate_pct": 0.0,
-        "payments_per_vendor": 2.75,
-        "run_id": "run_20260824T180321Z_5e3822"
-      },
-      {
-        "state": "Odisha",
-        "ida_district": "Anugola",
+        "state": "Assam",
+        "ida_district": "Tamulpur",
         "works_recommended": 55.0,
         "works_completed": 0.0,
-        "work_amount": 50785000.0,
-        "mps": 3.0,
-        "payment_lines": 2.0,
-        "expenditure": 1030128.0,
+        "work_amount": 18400000.0,
+        "mps": 2.0,
+        "payment_lines": 12.0,
+        "expenditure": 2595244.0,
         "vendors": 2.0,
-        "pending_lines": 1.0,
+        "pending_lines": 0.0,
         "completion_rate_pct": 0.0,
-        "payments_per_vendor": 1.0,
-        "run_id": "run_20260824T180321Z_5e3822"
+        "payments_per_vendor": 6.0,
+        "run_id": "run_20260910T063340Z_529723"
       },
       {
         "state": "Odisha",
@@ -3709,172 +3694,22 @@
         "pending_lines": 0.0,
         "completion_rate_pct": 0.0,
         "payments_per_vendor": 1.67,
-        "run_id": "run_20260824T180321Z_5e3822"
+        "run_id": "run_20260910T063340Z_529723"
       },
       {
-        "state": "Maharashtra",
-        "ida_district": "Jalna",
-        "works_recommended": 71.0,
+        "state": "West Bengal",
+        "ida_district": "Alipurduar",
+        "works_recommended": 77.0,
         "works_completed": 0.0,
-        "work_amount": 69891000.0,
-        "mps": 3.0,
-        "payment_lines": 46.0,
-        "expenditure": 42113484.0,
-        "vendors": 27.0,
-        "pending_lines": 2.0,
-        "completion_rate_pct": 0.0,
-        "payments_per_vendor": 1.7,
-        "run_id": "run_20260824T180321Z_5e3822"
-      },
-      {
-        "state": "Karnataka",
-        "ida_district": "Kodagu",
-        "works_recommended": 60.0,
-        "works_completed": 0.0,
-        "work_amount": 75000000.0,
-        "mps": 4.0,
-        "payment_lines": 47.0,
-        "expenditure": 48562000.0,
+        "work_amount": 77490039.95,
+        "mps": 2.0,
+        "payment_lines": 11.0,
+        "expenditure": 6969593.0,
         "vendors": 4.0,
         "pending_lines": 0.0,
         "completion_rate_pct": 0.0,
-        "payments_per_vendor": 11.75,
-        "run_id": "run_20260824T180321Z_5e3822"
-      },
-      {
-        "state": "Jharkhand",
-        "ida_district": "Sahebganj",
-        "works_recommended": 132.0,
-        "works_completed": 0.0,
-        "work_amount": 22300000.0,
-        "mps": 2.0,
-        "payment_lines": 241.0,
-        "expenditure": 20340000.0,
-        "vendors": 2.0,
-        "pending_lines": 0.0,
-        "completion_rate_pct": 0.0,
-        "payments_per_vendor": 120.5,
-        "run_id": "run_20260824T180321Z_5e3822"
-      },
-      {
-        "state": "Jharkhand",
-        "ida_district": "Pakur",
-        "works_recommended": 292.0,
-        "works_completed": 0.0,
-        "work_amount": 62615000.0,
-        "mps": 1.0,
-        "payment_lines": 31.0,
-        "expenditure": 6221697.0,
-        "vendors": 1.0,
-        "pending_lines": 0.0,
-        "completion_rate_pct": 0.0,
-        "payments_per_vendor": 31.0,
-        "run_id": "run_20260824T180321Z_5e3822"
-      },
-      {
-        "state": "Jharkhand",
-        "ida_district": "West Singhbhum",
-        "works_recommended": 94.0,
-        "works_completed": 0.0,
-        "work_amount": 62805160.0,
-        "mps": 2.0,
-        "payment_lines": 93.0,
-        "expenditure": 45870492.0,
-        "vendors": 2.0,
-        "pending_lines": 0.0,
-        "completion_rate_pct": 0.0,
-        "payments_per_vendor": 46.5,
-        "run_id": "run_20260824T180321Z_5e3822"
-      },
-      {
-        "state": "Jharkhand",
-        "ida_district": "Saraikela Kharsawan",
-        "works_recommended": 97.0,
-        "works_completed": 0.0,
-        "work_amount": 52177134.0,
-        "mps": 4.0,
-        "payment_lines": 116.0,
-        "expenditure": 42160749.0,
-        "vendors": 5.0,
-        "pending_lines": 0.0,
-        "completion_rate_pct": 0.0,
-        "payments_per_vendor": 23.2,
-        "run_id": "run_20260824T180321Z_5e3822"
-      },
-      {
-        "state": "Madhya Pradesh",
-        "ida_district": "Raisen",
-        "works_recommended": 104.0,
-        "works_completed": 0.0,
-        "work_amount": 39960000.0,
-        "mps": 6.0,
-        "payment_lines": 128.0,
-        "expenditure": 29647000.0,
-        "vendors": 66.0,
-        "pending_lines": 1.0,
-        "completion_rate_pct": 0.0,
-        "payments_per_vendor": 1.94,
-        "run_id": "run_20260824T180321Z_5e3822"
-      },
-      {
-        "state": "Madhya Pradesh",
-        "ida_district": "Rewa",
-        "works_recommended": 87.0,
-        "works_completed": 0.0,
-        "work_amount": 113400022.0,
-        "mps": 4.0,
-        "payment_lines": 59.0,
-        "expenditure": 72117973.0,
-        "vendors": 29.0,
-        "pending_lines": 2.0,
-        "completion_rate_pct": 0.0,
-        "payments_per_vendor": 2.03,
-        "run_id": "run_20260824T180321Z_5e3822"
-      },
-      {
-        "state": "Jharkhand",
-        "ida_district": "Chatra",
-        "works_recommended": 338.0,
-        "works_completed": 0.0,
-        "work_amount": 63250000.0,
-        "mps": 2.0,
-        "payment_lines": 148.0,
-        "expenditure": 28661363.0,
-        "vendors": 1.0,
-        "pending_lines": 28.0,
-        "completion_rate_pct": 0.0,
-        "payments_per_vendor": 148.0,
-        "run_id": "run_20260824T180321Z_5e3822"
-      },
-      {
-        "state": "Madhya Pradesh",
-        "ida_district": "Niwari",
-        "works_recommended": 72.0,
-        "works_completed": 0.0,
-        "work_amount": 29155520.0,
-        "mps": 1.0,
-        "payment_lines": 10.0,
-        "expenditure": 1954831.0,
-        "vendors": 9.0,
-        "pending_lines": 2.0,
-        "completion_rate_pct": 0.0,
-        "payments_per_vendor": 1.11,
-        "run_id": "run_20260824T180321Z_5e3822"
-      },
-      {
-        "state": "Madhya Pradesh",
-        "ida_district": "Dindori",
-        "works_recommended": 90.0,
-        "works_completed": 0.0,
-        "work_amount": 40148505.0,
-        "mps": 6.0,
-        "payment_lines": 64.0,
-        "expenditure": 20278648.0,
-        "vendors": 24.0,
-        "pending_lines": 1.0,
-        "completion_rate_pct": 0.0,
-        "payments_per_vendor": 2.67,
-        "run_id": "run_20260824T180321Z_5e3822"
+        "payments_per_vendor": 2.75,
+        "run_id": "run_20260910T063340Z_529723"
       },
       {
         "state": "Uttar Pradesh",
@@ -3889,37 +3724,202 @@
         "pending_lines": 55.0,
         "completion_rate_pct": 0.0,
         "payments_per_vendor": 27.5,
-        "run_id": "run_20260824T180321Z_5e3822"
+        "run_id": "run_20260910T063340Z_529723"
       },
       {
-        "state": "Assam",
-        "ida_district": "Kamrup",
-        "works_recommended": 71.0,
+        "state": "Uttar Pradesh",
+        "ida_district": "Jalaun",
+        "works_recommended": 361.0,
         "works_completed": 0.0,
-        "work_amount": 32950000.0,
-        "mps": 5.0,
-        "payment_lines": 33.0,
-        "expenditure": 6507796.0,
-        "vendors": 15.0,
-        "pending_lines": 1.0,
+        "work_amount": 129252014.0,
+        "mps": 4.0,
+        "payment_lines": 279.0,
+        "expenditure": 51978109.0,
+        "vendors": 7.0,
+        "pending_lines": 5.0,
         "completion_rate_pct": 0.0,
-        "payments_per_vendor": 2.2,
-        "run_id": "run_20260824T180321Z_5e3822"
+        "payments_per_vendor": 39.86,
+        "run_id": "run_20260910T063340Z_529723"
       },
       {
-        "state": "Assam",
-        "ida_district": "Golaghat",
-        "works_recommended": 64.0,
+        "state": "Odisha",
+        "ida_district": "Anugola",
+        "works_recommended": 55.0,
         "works_completed": 0.0,
-        "work_amount": 76019000.0,
+        "work_amount": 50785000.0,
         "mps": 3.0,
-        "payment_lines": 24.0,
-        "expenditure": 11168880.0,
-        "vendors": 15.0,
+        "payment_lines": 2.0,
+        "expenditure": 1030128.0,
+        "vendors": 2.0,
         "pending_lines": 1.0,
         "completion_rate_pct": 0.0,
-        "payments_per_vendor": 1.6,
-        "run_id": "run_20260824T180321Z_5e3822"
+        "payments_per_vendor": 1.0,
+        "run_id": "run_20260910T063340Z_529723"
+      },
+      {
+        "state": "Maharashtra",
+        "ida_district": "Mumbai Suburban",
+        "works_recommended": 284.0,
+        "works_completed": 0.0,
+        "work_amount": 669300000.0,
+        "mps": 8.0,
+        "payment_lines": 126.0,
+        "expenditure": 295075488.0,
+        "vendors": 73.0,
+        "pending_lines": 12.0,
+        "completion_rate_pct": 0.0,
+        "payments_per_vendor": 1.73,
+        "run_id": "run_20260910T063340Z_529723"
+      },
+      {
+        "state": "Haryana",
+        "ida_district": "Yamunanagar",
+        "works_recommended": 87.0,
+        "works_completed": 0.0,
+        "work_amount": 52521400.0,
+        "mps": 3.0,
+        "payment_lines": 77.0,
+        "expenditure": 19323183.0,
+        "vendors": 28.0,
+        "pending_lines": 2.0,
+        "completion_rate_pct": 0.0,
+        "payments_per_vendor": 2.75,
+        "run_id": "run_20260910T063340Z_529723"
+      },
+      {
+        "state": "Jharkhand",
+        "ida_district": "Chatra",
+        "works_recommended": 338.0,
+        "works_completed": 0.0,
+        "work_amount": 63250000.0,
+        "mps": 2.0,
+        "payment_lines": 148.0,
+        "expenditure": 28661363.0,
+        "vendors": 1.0,
+        "pending_lines": 28.0,
+        "completion_rate_pct": 0.0,
+        "payments_per_vendor": 148.0,
+        "run_id": "run_20260910T063340Z_529723"
+      },
+      {
+        "state": "Jharkhand",
+        "ida_district": "Pakur",
+        "works_recommended": 292.0,
+        "works_completed": 0.0,
+        "work_amount": 62615000.0,
+        "mps": 1.0,
+        "payment_lines": 31.0,
+        "expenditure": 6221697.0,
+        "vendors": 1.0,
+        "pending_lines": 0.0,
+        "completion_rate_pct": 0.0,
+        "payments_per_vendor": 31.0,
+        "run_id": "run_20260910T063340Z_529723"
+      },
+      {
+        "state": "Jharkhand",
+        "ida_district": "Sahebganj",
+        "works_recommended": 132.0,
+        "works_completed": 0.0,
+        "work_amount": 22300000.0,
+        "mps": 2.0,
+        "payment_lines": 241.0,
+        "expenditure": 20340000.0,
+        "vendors": 2.0,
+        "pending_lines": 0.0,
+        "completion_rate_pct": 0.0,
+        "payments_per_vendor": 120.5,
+        "run_id": "run_20260910T063340Z_529723"
+      },
+      {
+        "state": "Jharkhand",
+        "ida_district": "Saraikela Kharsawan",
+        "works_recommended": 97.0,
+        "works_completed": 0.0,
+        "work_amount": 52177134.0,
+        "mps": 4.0,
+        "payment_lines": 116.0,
+        "expenditure": 42160749.0,
+        "vendors": 5.0,
+        "pending_lines": 0.0,
+        "completion_rate_pct": 0.0,
+        "payments_per_vendor": 23.2,
+        "run_id": "run_20260910T063340Z_529723"
+      },
+      {
+        "state": "Jharkhand",
+        "ida_district": "West Singhbhum",
+        "works_recommended": 94.0,
+        "works_completed": 0.0,
+        "work_amount": 62805160.0,
+        "mps": 2.0,
+        "payment_lines": 93.0,
+        "expenditure": 45870492.0,
+        "vendors": 2.0,
+        "pending_lines": 0.0,
+        "completion_rate_pct": 0.0,
+        "payments_per_vendor": 46.5,
+        "run_id": "run_20260910T063340Z_529723"
+      },
+      {
+        "state": "Madhya Pradesh",
+        "ida_district": "Rewa",
+        "works_recommended": 87.0,
+        "works_completed": 0.0,
+        "work_amount": 113400022.0,
+        "mps": 4.0,
+        "payment_lines": 59.0,
+        "expenditure": 72117973.0,
+        "vendors": 29.0,
+        "pending_lines": 2.0,
+        "completion_rate_pct": 0.0,
+        "payments_per_vendor": 2.03,
+        "run_id": "run_20260910T063340Z_529723"
+      },
+      {
+        "state": "Karnataka",
+        "ida_district": "Kodagu",
+        "works_recommended": 60.0,
+        "works_completed": 0.0,
+        "work_amount": 75000000.0,
+        "mps": 4.0,
+        "payment_lines": 47.0,
+        "expenditure": 48562000.0,
+        "vendors": 4.0,
+        "pending_lines": 0.0,
+        "completion_rate_pct": 0.0,
+        "payments_per_vendor": 11.75,
+        "run_id": "run_20260910T063340Z_529723"
+      },
+      {
+        "state": "Madhya Pradesh",
+        "ida_district": "Raisen",
+        "works_recommended": 104.0,
+        "works_completed": 0.0,
+        "work_amount": 39960000.0,
+        "mps": 6.0,
+        "payment_lines": 128.0,
+        "expenditure": 29647000.0,
+        "vendors": 66.0,
+        "pending_lines": 1.0,
+        "completion_rate_pct": 0.0,
+        "payments_per_vendor": 1.94,
+        "run_id": "run_20260910T063340Z_529723"
+      },
+      {
+        "state": "Madhya Pradesh",
+        "ida_district": "Niwari",
+        "works_recommended": 72.0,
+        "works_completed": 0.0,
+        "work_amount": 29155520.0,
+        "mps": 1.0,
+        "payment_lines": 10.0,
+        "expenditure": 1954831.0,
+        "vendors": 9.0,
+        "pending_lines": 2.0,
+        "completion_rate_pct": 0.0,
+        "payments_per_vendor": 1.11,
+        "run_id": "run_20260910T063340Z_529723"
       }
     ],
     "expenditure_gini_across_states": 0.6184233364523821,

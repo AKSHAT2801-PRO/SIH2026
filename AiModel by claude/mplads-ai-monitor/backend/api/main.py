@@ -112,6 +112,7 @@ def health() -> dict:
 
 @app.get("/api/meta")
 def meta(user: dict = Depends(principal)) -> dict:
+    print(dict)
     return {
         "platform": cfg["project.name"],
         "run_id": latest_run(),
@@ -174,7 +175,8 @@ def districts(state: str | None = None, limit: int = Query(100, le=1000),
 
 @app.get("/api/works")
 def works(state: str | None = None, district: str | None = None, band: str | None = None,
-          min_risk: float = 0, stage: str | None = None, limit: int = Query(100, le=1000),
+          mp_name: str | None = None, min_risk: float = 0, stage: str | None = None,
+          limit: int = Query(100, le=1000),
           offset: int = 0, user: dict = Depends(principal)) -> list[dict]:
     clauses, params = ["composite_risk >= :min_risk"], {"min_risk": min_risk,
                                                         "limit": limit, "offset": offset}
@@ -183,6 +185,9 @@ def works(state: str | None = None, district: str | None = None, band: str | Non
         if value:
             clauses.append(f"{column} = :{field}")
             params[field] = value
+    if mp_name:
+        clauses.append("LOWER(mp_name) LIKE :mp_name")
+        params["mp_name"] = f"%{mp_name.lower()}%"
     return rows(f"""SELECT work_uid, work_stage, work_description, category, mp_name, constituency,
                            state, ida_district, amount, event_date, composite_risk, risk_band,
                            cost_risk, duplicate_risk, delay_risk, vendor_risk, utilisation_risk,
@@ -227,7 +232,7 @@ def mps(state: str | None = None, band: str | None = None, limit: int = Query(20
         params["band"] = band
     return rows(f"""SELECT mp_key, mp_name, constituency, state, house, allocated_amount,
                            derived_expenditure, utilisation_pct, completion_rate_pct,
-                           works_scored, high_risk_works, composite_risk, risk_band
+                      works_total, high_risk_works, composite_risk, risk_band
                     FROM analytics_mp_risk WHERE {' AND '.join(clauses)}
                     ORDER BY composite_risk DESC LIMIT :limit""", params)
 

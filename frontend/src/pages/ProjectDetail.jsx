@@ -175,10 +175,13 @@ export default function ProjectDetail({ workId, onBack, onLogout }) {
   const loadData = () => {
     setLoading(true);
     setError("");
-    Promise.all([fetchWorkById(workId), fetchReviews({ workId })])
-      .then(([workData, reviewsData]) => {
-        setWork(workData);
-        setReviews(reviewsData);
+    Promise.allSettled([fetchWorkById(workId), fetchReviews({ workId })])
+      .then(([workResult, reviewsResult]) => {
+        if (workResult.status === "rejected") {
+          throw workResult.reason;
+        }
+        setWork(workResult.value);
+        setReviews(reviewsResult.status === "fulfilled" ? reviewsResult.value : []);
       })
       .catch((err) => setError(err.message || "Failed to load project."))
       .finally(() => setLoading(false));

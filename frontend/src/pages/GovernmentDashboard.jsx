@@ -17,18 +17,15 @@ import {
   ResponsiveContainer,
   Tooltip,
   Legend,
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
 } from "recharts";
+import indiaMap from "@svg-maps/india";
 import Navbar from "../components/Navbar";
 import ProjectDrawer from "../components/ProjectDrawer";
 import { RiskBadge, StatusPill, InspectionPill, formatINR } from "../components/ui";
 import {
   fetchDashboardStats,
   fetchAllWorks,
+  fetchStateSummaries,
   fetchAllMPs,
   fetchMPPerformance,
   fetchReviews,
@@ -83,9 +80,74 @@ function SectionHeader({ eyebrow, title, action }) {
   );
 }
 
+function IndiaWorksMap({ summaries }) {
+  const [hoveredState, setHoveredState] = useState(null);
+  const summaryByState = useMemo(
+    () => new Map(summaries.map((summary) => [summary.state.toLowerCase(), summary])),
+    [summaries]
+  );
+  const maxWorks = Math.max(...summaries.map((summary) => Number(summary.works) || 0), 1);
+  const hoveredSummary = hoveredState
+    ? summaryByState.get(hoveredState.name.toLowerCase())
+    : null;
+
+  return (
+    <div className="grid md:grid-cols-[1fr_210px] items-center gap-4">
+      <svg
+        viewBox={indiaMap.viewBox}
+        role="img"
+        aria-label="India works by state map"
+        className="w-full h-[340px]"
+      >
+        {indiaMap.locations.map((location) => {
+          const summary = summaryByState.get(location.name.toLowerCase());
+          const intensity = summary ? 0.18 + (Number(summary.works) / maxWorks) * 0.72 : 0.08;
+          return (
+            <path
+              key={location.id}
+              d={location.path}
+              aria-label={location.name}
+              fill={`rgba(28, 43, 74, ${intensity})`}
+              stroke="#FAF9F6"
+              strokeWidth="1.2"
+              className="cursor-pointer transition-all hover:brightness-125"
+              onMouseEnter={() => setHoveredState(location)}
+              onMouseLeave={() => setHoveredState(null)}
+            />
+          );
+        })}
+      </svg>
+      <div className="min-h-[150px] border-l border-[#EFECE3] pl-4">
+        <div className="text-[11px] uppercase tracking-wide text-[#B8863F] mb-2">
+          Hover a state
+        </div>
+        {hoveredState ? (
+          <>
+            <h3 className="text-[#1C2B4A] text-[17px] mb-3">{hoveredState.name}</h3>
+            <div className="space-y-2 text-[12px] text-[#5A6478]">
+              <div className="flex justify-between gap-4"><span>Total works</span><strong>{hoveredSummary?.works ?? 0}</strong></div>
+              <div className="flex justify-between gap-4"><span>High risk</span><strong>{hoveredSummary?.high_risk ?? 0}</strong></div>
+              <div className="flex justify-between gap-4"><span>Mean risk</span><strong>{hoveredSummary?.mean_risk ?? "—"}</strong></div>
+              <div className="flex justify-between gap-4"><span>Work value</span><strong>{formatINR(hoveredSummary?.work_value ?? 0)}</strong></div>
+            </div>
+          </>
+        ) : (
+          <p className="text-[12px] leading-relaxed text-[#8993A8]">Move over a state to inspect its work and risk results.</p>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export default function GovernmentDashboard({ onNavigateToProject, onLogout }) {
   const [stats, setStats] = useState(null);
   const [works, setWorks] = useState([]);
+  const [workPage, setWorkPage] = useState(1);
+  const [workQuery, setWorkQuery] = useState("");
+  const [workSearch, setWorkSearch] = useState("");
+  const [worksLoading, setWorksLoading] = useState(true);
+  const workLimit = 30;
+  const [stateSummaries, setStateSummaries] = useState([]);
   const [mps, setMPs] = useState([]);
   const [mpPage, setMPPage] = useState(1);
   const [mpLimit,setMpLimit] = useState(30);
@@ -100,40 +162,62 @@ export default function GovernmentDashboard({ onNavigateToProject, onLogout }) {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [markingId, setMarkingId] = useState(null);
   const [reviewFilter, setReviewFilter] = useState("all"); // all | negative | positive
+  const [mpSortOrder, setMpSortOrder] = useState("desc");
+  const [mpPerformancePage, setMpPerformancePage] = useState(1);
+  const mpPerformanceLimit = 30;
 
   useEffect(() => {
     let cancelled = false;
-    setLoading(true);
+    setWorksLoading(true);
     setError("");
-
-// sb comment kiya hai koi haath bhi mt lagana-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x--x-x-x-x-x-x-x-x-x-x
-
-    Promise.all([
+    Promise.allSettled([
       fetchDashboardStats(),
-      fetchAllWorks({ sortByRisk: true }),
-      fetchMPPerformance(),
-      fetchReviews(),
+      fetchAllWorks({
+        sortByRisk: true,
+        page: workPage,
+        limit: workLimit,
+        mpName: workSearch,
+      }),
     ])
-      .then(([
-        statsData,
-         worksData,
-           perfData,
-            reviewsData
-          ]) => {
+      .then(([statsResult, worksResult]) => {
         if (cancelled) return;
-        setStats(statsData);
-        setWorks(worksData);
-        setMPPerformance(perfData);
-        setReviews(reviewsData);
+        if (statsResult.status === "fulfilled") setStats(statsResult.value);
+        if (worksResult.status === "fulfilled") {
+          setWorks(worksResult.value);
+        } else {
+          throw worksResult.reason;
+        }
       })
       .catch((err) => {
         if (!cancelled) setError(err.message || "Failed to load dashboard data.");
       })
       .finally(() => {
-        if (!cancelled) setLoading(false);
+        if (!cancelled) {
+          setWorksLoading(false);
+          setLoading(false);
+        }
       });
-// sb comment kiya hai koi haath bhi mt lagana-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x--x-x-x-x-x-x-x-x-x-x
 
+    return () => {
+      cancelled = true;
+    };
+  }, [workPage, workLimit, workSearch]);
+
+  useEffect(() => {
+    fetchStateSummaries()
+      .then(setStateSummaries)
+      .catch((err) => setError(err.message || "Failed to load state map."));
+  }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetchMPPerformance()
+      .then((items) => {
+        if (!cancelled) setMPPerformance(items);
+      })
+      .catch((err) => {
+        if (!cancelled) setError(err.message || "Failed to load MP performance.");
+      });
     return () => {
       cancelled = true;
     };
@@ -173,21 +257,28 @@ export default function GovernmentDashboard({ onNavigateToProject, onLogout }) {
     ];
   }, [stats]);
 
-  const stateBarData = useMemo(() => {
-    const byState = {};
-    works.forEach((w) => {
-      const state = w.location.split(",").pop().trim();
-      if (!byState[state]) byState[state] = { state, completed: 0, inProgress: 0 };
-      if (w.status === "Completed") byState[state].completed += 1;
-      else byState[state].inProgress += 1;
-    });
-    return Object.values(byState);
-  }, [works]);
-
   const filteredReviews = useMemo(() => {
     if (reviewFilter === "all") return reviews;
     return reviews.filter((r) => r.sentiment === reviewFilter);
   }, [reviews, reviewFilter]);
+
+  const sortedMPPerformance = useMemo(() => {
+    return [...mpPerformance].sort((a, b) =>
+      mpSortOrder === "desc"
+        ? b.suspicionScore - a.suspicionScore
+        : a.suspicionScore - b.suspicionScore
+    );
+  }, [mpPerformance, mpSortOrder]);
+
+  const visibleMPPerformance = sortedMPPerformance.slice(
+    (mpPerformancePage - 1) * mpPerformanceLimit,
+    mpPerformancePage * mpPerformanceLimit
+  );
+
+  const mpPerformancePageCount = Math.max(
+    1,
+    Math.ceil(sortedMPPerformance.length / mpPerformanceLimit)
+  );
 
   const openDrawer = (work) => {
     setDrawerWork(work);
@@ -291,17 +382,8 @@ export default function GovernmentDashboard({ onNavigateToProject, onLogout }) {
             </div>
 
             <div className="border border-[#D8D3C7] bg-white p-6">
-              <div className="text-[12px] text-[#8993A8] mb-4">Works by state</div>
-              <ResponsiveContainer width="100%" height={220}>
-                <BarChart data={stateBarData} barGap={4}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#EFECE3" vertical={false} />
-                  <XAxis dataKey="state" tick={{ fontSize: 11, fill: "#8993A8" }} axisLine={{ stroke: "#D8D3C7" }} tickLine={false} />
-                  <YAxis tick={{ fontSize: 11, fill: "#8993A8" }} axisLine={false} tickLine={false} allowDecimals={false} />
-                  <Tooltip contentStyle={{ fontSize: "12px", border: "1px solid #D8D3C7", borderRadius: 0 }} />
-                  <Bar dataKey="completed" name="Completed" fill={CHART_COLORS.completed} radius={[2, 2, 0, 0]} />
-                  <Bar dataKey="inProgress" name="In Progress" fill={CHART_COLORS.inProgress} radius={[2, 2, 0, 0]} />
-                </BarChart>
-              </ResponsiveContainer>
+              <div className="text-[12px] text-[#8993A8] mb-2">Works by state</div>
+              <IndiaWorksMap summaries={stateSummaries} />
             </div>
           </div>
         </section>
@@ -311,10 +393,46 @@ export default function GovernmentDashboard({ onNavigateToProject, onLogout }) {
           <SectionHeader
             eyebrow="Needs attention"
             title="Projects by risk score"
-            action={<span className="text-[12px] text-[#8993A8]">Highest risk first</span>}
+            action={
+              <form
+                onSubmit={(event) => {
+                  event.preventDefault();
+                  setWorkPage(1);
+                  setWorkSearch(workQuery);
+                }}
+                className="flex gap-2"
+              >
+                <input
+                  value={workQuery}
+                  onChange={(event) => {
+                    const value = event.target.value;
+                    setWorkQuery(value);
+                    setWorkPage(1);
+                    setWorkSearch(value);
+                  }}
+                  placeholder="Search by MP name"
+                  className="w-48 border border-[#D8D3C7] bg-white px-3 py-1.5 text-[12px] text-[#1C2B4A] outline-none focus:border-[#1C2B4A]"
+                />
+                <button
+                  type="submit"
+                  className="border border-[#1C2B4A] px-3 py-1.5 text-[12px] text-[#1C2B4A] hover:bg-[#1C2B4A] hover:text-white transition-colors"
+                >
+                  Search
+                </button>
+              </form>
+            }
           />
-          <div className="border border-[#D8D3C7] bg-white">
-            {works.map((w, i) => (
+          <div className="border border-[#D8D3C7] bg-white relative">
+            {worksLoading && (
+              <div className="absolute inset-0 z-10 flex items-center justify-center bg-white/70">
+                <Loader2 size={18} className="animate-spin text-[#5A6478]" />
+              </div>
+            )}
+            {works.length === 0 && !worksLoading ? (
+              <div className="px-5 py-8 text-center text-[#8993A8] text-[13px]">
+                No works match this MP name.
+              </div>
+            ) : works.map((w, i) => (
               <button
                 key={w.id}
                 onClick={() => openDrawer(w)}
@@ -322,7 +440,9 @@ export default function GovernmentDashboard({ onNavigateToProject, onLogout }) {
                   i !== 0 ? "border-t border-[#EFECE3]" : ""
                 }`}
               >
-                <span className="w-6 text-[12px] text-[#8993A8] shrink-0">{i + 1}</span>
+                <span className="w-6 text-[12px] text-[#8993A8] shrink-0">
+                  {(workPage - 1) * workLimit + i + 1}
+                </span>
                 <div className="flex-1 min-w-0">
                   <div className="text-[#1C2B4A] text-[13.5px] truncate">{w.title}</div>
                   <div className="flex items-center gap-1.5 text-[#8993A8] text-[11.5px] mt-0.5">
@@ -336,6 +456,28 @@ export default function GovernmentDashboard({ onNavigateToProject, onLogout }) {
               </button>
             ))}
           </div>
+          <div className="flex items-center justify-between mt-4">
+            <button
+              onClick={() => setWorkPage((page) => Math.max(1, page - 1))}
+              disabled={workPage === 1 || worksLoading}
+              className="inline-flex items-center gap-1.5 border border-[#D8D3C7] px-4 py-2 text-[13px] text-[#1C2B4A] hover:border-[#1C2B4A] disabled:opacity-40 disabled:cursor-not-allowed"
+            >
+              <ChevronLeft size={14} />
+              Previous
+            </button>
+            <span className="text-[12.5px] text-[#8993A8]">
+              Page {workPage}
+              {workSearch && ` · ${workSearch}`}
+            </span>
+            <button
+              onClick={() => setWorkPage((page) => page + 1)}
+              disabled={worksLoading || works.length < workLimit}
+              className="inline-flex items-center gap-1.5 border border-[#D8D3C7] px-4 py-2 text-[13px] text-[#1C2B4A] hover:border-[#1C2B4A] disabled:opacity-40 disabled:cursor-not-allowed"
+            >
+              Next
+              <ChevronRight size={14} />
+            </button>
+          </div>
         </section>
 
         {/* MP PERFORMANCE LIST */}
@@ -343,10 +485,33 @@ export default function GovernmentDashboard({ onNavigateToProject, onLogout }) {
           <SectionHeader
             eyebrow="Accountability"
             title="MP performance"
-            action={<span className="text-[12px] text-[#8993A8]">Most suspicious first</span>}
+            action={
+              <div className="flex border border-[#D8D3C7]">
+                {[
+                  { value: "desc", label: "Most suspicious" },
+                  { value: "asc", label: "Least suspicious" },
+                ].map((option) => (
+                  <button
+                    key={option.value}
+                    type="button"
+                    onClick={() => {
+                      setMpSortOrder(option.value);
+                      setMpPerformancePage(1);
+                    }}
+                    className={`px-3 py-1.5 text-[12px] transition-colors ${
+                      mpSortOrder === option.value
+                        ? "bg-[#1C2B4A] text-[#FAF9F6]"
+                        : "text-[#5A6478] hover:bg-[#F3F1EB]"
+                    }`}
+                  >
+                    {option.label}
+                  </button>
+                ))}
+              </div>
+            }
           />
           <div className="border border-[#D8D3C7] bg-white">
-            {mpPerformance.map((mp, i) => (
+            {visibleMPPerformance.map((mp, i) => (
               <div
                 key={mp._id}
                 className={`flex items-center gap-4 px-5 py-4 ${i !== 0 ? "border-t border-[#EFECE3]" : ""}`}
@@ -392,6 +557,27 @@ export default function GovernmentDashboard({ onNavigateToProject, onLogout }) {
                 </div>
               </div>
             ))}
+          </div>
+          <div className="flex items-center justify-between mt-4">
+            <button
+              onClick={() => setMpPerformancePage((page) => Math.max(1, page - 1))}
+              disabled={mpPerformancePage <= 1}
+              className="inline-flex items-center gap-1.5 border border-[#D8D3C7] px-4 py-2 text-[13px] text-[#1C2B4A] hover:border-[#1C2B4A] disabled:opacity-40 disabled:cursor-not-allowed"
+            >
+              <ChevronLeft size={14} />
+              Previous
+            </button>
+            <span className="text-[12.5px] text-[#8993A8]">
+              Page {mpPerformancePage} of {mpPerformancePageCount}
+            </span>
+            <button
+              onClick={() => setMpPerformancePage((page) => Math.min(mpPerformancePageCount, page + 1))}
+              disabled={mpPerformancePage >= mpPerformancePageCount}
+              className="inline-flex items-center gap-1.5 border border-[#D8D3C7] px-4 py-2 text-[13px] text-[#1C2B4A] hover:border-[#1C2B4A] disabled:opacity-40 disabled:cursor-not-allowed"
+            >
+              Next
+              <ChevronRight size={14} />
+            </button>
           </div>
         </section>
 
