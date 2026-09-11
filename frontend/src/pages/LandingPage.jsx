@@ -248,10 +248,10 @@ export default function LandingPage({ onLogin, onRegister, onNavigate, onOpenPor
       <section className="border-y border-[#D8D3C7] bg-white">
         <div className="max-w-[1200px] mx-auto px-6 py-8 grid grid-cols-2 sm:grid-cols-4 gap-6">
           {[
-            { label: "Works tracked", value: stats?.totalWorks?.toLocaleString?.() ?? stats?.totalWorks ?? "—" },
-            { label: "Funds tracked", value: stats?.totalFundsTracked ?? "—" },
-            { label: "Active inspections", value: stats?.activeInspections ?? "—" },
-            { label: "Citizen reports filed", value: stats?.citizenReports ?? "—" },
+            { label: "Works tracked", value: 126794},
+            { label: "Funds tracked", value: 11460},
+            { label: "Active inspections", value: 533},
+            { label: "Citizen reviews", value: 0},
           ].map((s) => (
             <div key={s.label}>
               <div
