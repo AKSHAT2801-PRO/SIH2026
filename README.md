@@ -1,6 +1,8 @@
 <div align="center">
 
-<img src="assets/sahaya-round2.gif" alt="SAHAYA animated overview" width="900"/>
+<img src="assets/sahaya-round2-animation.svg"
+     alt="SAHAYA animated risk monitoring workflow"
+     width="100%"/>
 
 # SAHAYA
 ### AI-Powered MPLADS Risk & Monitoring Platform
